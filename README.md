@@ -1,6 +1,6 @@
 #MyOIDC
 
-<img src="https://andaily.com/blog/wp-content/uploads/2016/05/openid-r-logo-900x360.png"/>
+<img src="https://andaily.com/blog/wp-content/uploads/2016/05/openid-r-logo-900x360.png" style="width:300px;"/>
 <p>
     基于OIDC协议的参考实现,根据各类库提供实现参考.
 </p>
