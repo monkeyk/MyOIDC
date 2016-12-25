@@ -76,6 +76,14 @@ Version: 1.0
     <li><p>JSON Web Tokens(OIDC各类编程语言的类库) <a href="https://jwt.io/">https://jwt.io/</a> </p></li>
 </ul>
 
+<hr/>
+
+<h3>鸣谢</h3>
+
+<ul>
+    <li><p>北京九州云腾科技有限公司 <a href="http://www.idsmanager.com/">http://www.idsmanager.com/</a>; 他们是国内最早的 OIDC 实践者</p></li>
+</ul>
+
 
 
 <br/>
