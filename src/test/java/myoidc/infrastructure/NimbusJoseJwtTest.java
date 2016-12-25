@@ -11,7 +11,6 @@ import org.testng.annotations.Test;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
-import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
 
 import static org.testng.Assert.assertEquals;

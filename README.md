@@ -75,6 +75,7 @@ Version: 1.0
     <li><p>Open ID Connect网站 <a href="http://openid.net/connect/">http://openid.net/connect/</a> </p></li>
     <li><p>OIDC相关文章与介绍 <a href="https://andaily.com/blog/?s=OIDC">https://andaily.com/blog/?s=OIDC</a> </p></li>
     <li><p>JSON Web Tokens(OIDC各类编程语言的类库) <a href="https://jwt.io/">https://jwt.io/</a> </p></li>
+    <li><p>connect2id(OpenID Connect server for the enterprise) <a href="http://connect2id.com/">http://connect2id.com/</a> </p></li>
 </ul>
 
 <hr/>
