@@ -30,4 +30,31 @@ Version: 1.0
 <hr/>
 
 
+<h3>功能列表</h3>
+
+
+
+<hr/>
+
+<h3>项目日志</h3>
+
+<ol>
+    <li><p>2016-12-25  项目公开, 完善文档</p></li>
+    <li><p>2016-07-12  开始尝试翻译OIDC协议为中文</p></li>
+</ol>
+
+<hr/>
+
+<h3>相关资源</h3>
+
+<ul>
+    <li><p>Open ID Connect网站 <a href="http://openid.net/connect/">http://openid.net/connect/</a> </p></li>
+    <li><p>OIDC相关文章与介绍 <a href="https://andaily.com/blog/?s=OIDC">https://andaily.com/blog/?s=OIDC</a> </p></li>
+</ul>
+
+
+
+<br/>
+<br/>
+<p>拥抱OIDC…</p>
 
