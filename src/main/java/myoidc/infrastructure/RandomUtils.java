@@ -17,4 +17,10 @@ public abstract class RandomUtils {
 
     private RandomUtils() {
     }
+
+    //全数字的随机值
+    public static String randomNumber() {
+        return RandomStringUtils.random(32, false, true);
+    }
+
 }
