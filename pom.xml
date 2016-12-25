@@ -114,6 +114,16 @@
             <artifactId>sitemesh</artifactId>
             <version>2.4</version>
         </dependency>
+
+
+        <!--jose4j-->
+        <dependency>
+            <groupId>org.bitbucket.b_c</groupId>
+            <artifactId>jose4j</artifactId>
+            <version>0.5.3</version>
+        </dependency>
+
+
         <!--<dependency>-->
         <!--<groupId>org.aspectj</groupId>-->
         <!--<artifactId>aspectjrt</artifactId>-->

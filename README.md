@@ -30,6 +30,23 @@ Version: 1.0
 <hr/>
 
 
+<h3>项目介绍</h3>
+<p>
+    Maven项目, 字符编码: UTF-8; 基于TDD模式与DDD模式设计
+</p>
+<strong>使用的框架与版本号</strong>
+<ul>
+    <li><p>JDK (1.8.0_40)</p></li>
+    <li><p>Servlet (3.1.0)</p></li>
+    <li><p>Jose4j (0.5.3)</p></li>
+    <li><p>Spring (4.1.6.RELEASE)</p></li>
+    <li><p>Log4j (1.2.14)</p></li>
+</ul>
+
+
+<hr/>
+
+
 <h3>功能列表</h3>
 <p>介绍项目开发的计划与安排, 以及各个功能点</p>
 
