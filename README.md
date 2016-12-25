@@ -63,7 +63,7 @@ Version: 1.0
 <h3>项目日志</h3>
 
 <ol>
-    <li><p>2016-12-25  项目公开, 完善文档</p></li>
+    <li><p>2016-12-25  项目公开, 完善文档. 添加OIDC 库测试代码 <code>Jose4JTest.java</code>, <code>NimbusJoseJwtTest.java</code></p></li>
     <li><p>2016-07-12  开始尝试翻译OIDC协议为中文</p></li>
 </ol>
 
