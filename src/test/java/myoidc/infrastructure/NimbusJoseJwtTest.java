@@ -265,6 +265,7 @@ public class NimbusJoseJwtTest {
 
 
     /**
+     * JWS
      * 使用 EC 算法 生成 id_token
      * 以及对其进行校验(verify)
      * 需要公私钥对
@@ -317,6 +318,70 @@ public class NimbusJoseJwtTest {
         assertTrue(verify);
         final String s = parseJWS.getPayload().toString();
         assertEquals(s, payloadText);
+
+    }
+
+
+    /**
+     * JWT
+     * 使用 EC 算法 生成 id_token
+     * 以及对其进行校验(verify)
+     * 需要公私钥对
+     * <p/>
+     * 支持算法
+     * ES256
+     * ES384
+     * ES512
+     *
+     * @throws Exception
+     */
+    @Test
+    public void jwtEC() throws Exception {
+
+        //EC KeyPair
+        KeyPairGenerator keyGenerator = KeyPairGenerator.getInstance("EC");
+//        keyGenerator.initialize(ECKey.Curve.P_256.toECParameterSpec());
+//        keyGenerator.initialize(ECKey.Curve.P_384.toECParameterSpec());
+        keyGenerator.initialize(ECKey.Curve.P_521.toECParameterSpec());
+        KeyPair keyPair = keyGenerator.generateKeyPair();
+
+        ECPublicKey publicKey = (ECPublicKey) keyPair.getPublic();
+        ECPrivateKey privateKey = (ECPrivateKey) keyPair.getPrivate();
+
+        //keyId
+        String keyId = RandomUtils.randomNumber();
+
+        //生成id_token
+        JWSSigner signer = new ECDSASigner(privateKey);
+
+//        JWSHeader header = new JWSHeader.Builder(JWSAlgorithm.ES256).keyID(keyId).build();
+//        JWSHeader header = new JWSHeader.Builder(JWSAlgorithm.ES384).keyID(keyId).build();
+        JWSHeader header = new JWSHeader.Builder(JWSAlgorithm.ES512).keyID(keyId).build();
+
+        final String payloadText = "I am MyOIDC [ECDSA]";
+        JWTClaimsSet claimsSet = new JWTClaimsSet.Builder()
+                .subject("subject")
+                .issuer("Issuer")
+                .audience("Audience")
+                .claim("payloadText", payloadText)
+                .expirationTime(new Date(new Date().getTime() + 60 * 1000))
+                .build();
+        SignedJWT signedJWT = new SignedJWT(header, claimsSet);
+
+        signedJWT.sign(signer);
+        final String idToken = signedJWT.serialize();
+        System.out.println(payloadText + " -> id_token: " + idToken);
+
+
+        //校验 id_token
+        final SignedJWT parseJWS = SignedJWT.parse(idToken);
+
+        JWSVerifier verifier = new ECDSAVerifier(publicKey);
+        final boolean verify = parseJWS.verify(verifier);
+
+        assertTrue(verify);
+        final JWTClaimsSet jwtClaimsSet = parseJWS.getJWTClaimsSet();
+        assertEquals(jwtClaimsSet.getClaim("payloadText"), payloadText);
 
     }
 
