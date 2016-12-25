@@ -42,6 +42,7 @@ Version: 1.0
     <li><p>Jose4j (0.5.3)</p></li>
     <li><p>Spring (4.1.6.RELEASE)</p></li>
     <li><p>Log4j (1.2.14)</p></li>
+    <li><p>TestNG (6.1.1) - Unit Test</p></li>
 </ul>
 
 
