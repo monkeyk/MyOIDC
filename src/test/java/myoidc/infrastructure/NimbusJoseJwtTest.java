@@ -1,19 +1,21 @@
 package myoidc.infrastructure;
 
 import com.nimbusds.jose.*;
-import com.nimbusds.jose.crypto.MACSigner;
-import com.nimbusds.jose.crypto.MACVerifier;
-import com.nimbusds.jose.crypto.RSASSASigner;
-import com.nimbusds.jose.crypto.RSASSAVerifier;
+import com.nimbusds.jose.crypto.*;
+import com.nimbusds.jose.jwk.ECKey;
+import net.minidev.json.JSONObject;
 import org.apache.commons.lang.RandomStringUtils;
 import org.testng.annotations.Test;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
+import java.security.interfaces.ECPrivateKey;
+import java.security.interfaces.ECPublicKey;
 import java.security.interfaces.RSAPublicKey;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
 /**
@@ -72,16 +74,24 @@ public class NimbusJoseJwtTest {
      * 使用 RSA 算法 生成 id_token
      * 以及对其进行校验(verify)
      * 需要公私钥对
+     * <p/>
+     * 支持算法
+     * RS256
+     * RS384
+     * RS512
      *
      * @throws Exception
      */
     @Test
     public void jwsRSA() throws Exception {
 
-        //keyPair
+        // RSA keyPair Generator
         final KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-        //长度 2048
-        keyPairGenerator.initialize(2048);
+        /**
+         * 长度 至少 1024, 建议 2048
+         */
+        final int keySize = 2048;
+        keyPairGenerator.initialize(keySize);
 
         final KeyPair keyPair = keyPairGenerator.genKeyPair();
         //公钥
@@ -95,9 +105,18 @@ public class NimbusJoseJwtTest {
         //生成id_token
         JWSSigner jwsSigner = new RSASSASigner(privateKey);
 
-        JWSHeader header = new JWSHeader.Builder(JWSAlgorithm.RS256).keyID(keyId).build();
+//        JWSHeader header = new JWSHeader.Builder(JWSAlgorithm.RS256).keyID(keyId).build();
+//        JWSHeader header = new JWSHeader.Builder(JWSAlgorithm.RS384).keyID(keyId).build();
+        JWSHeader header = new JWSHeader.Builder(JWSAlgorithm.RS512).keyID(keyId).build();
+
         final String payloadText = "I am MyOIDC [RSA]";
-        Payload payload = new Payload(payloadText);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("Issuer", "Issuer");
+        jsonObject.put("Audience", "Audience");
+        jsonObject.put("payloadText", payloadText);
+
+//        Payload payload = new Payload(payloadText);
+        Payload payload = new Payload(jsonObject);
         JWSObject jwsObject = new JWSObject(header, payload);
 
         jwsObject.sign(jwsSigner);
@@ -112,9 +131,71 @@ public class NimbusJoseJwtTest {
         final boolean verify = parseJWS.verify(verifier);
         assertTrue(verify);
 
-        final String s = jwsObject.getPayload().toString();
-        assertEquals(payloadText, s);
+        final Payload payload1 = jwsObject.getPayload();
+        assertNotNull(payload1);
+        final JSONObject jsonObject1 = payload1.toJSONObject();
+        assertNotNull(jsonObject1);
+
+        assertEquals(payloadText, jsonObject1.get("payloadText"));
 
     }
+
+
+    /**
+     * 使用 EC 算法 生成 id_token
+     * 以及对其进行校验(verify)
+     * 需要公私钥对
+     * <p/>
+     * 支持算法
+     * ES256
+     * ES384
+     * ES512
+     *
+     * @throws Exception
+     */
+    @Test
+    public void jwsEC() throws Exception {
+
+        //EC KeyPair
+        KeyPairGenerator keyGenerator = KeyPairGenerator.getInstance("EC");
+//        keyGenerator.initialize(ECKey.Curve.P_256.toECParameterSpec());
+//        keyGenerator.initialize(ECKey.Curve.P_384.toECParameterSpec());
+        keyGenerator.initialize(ECKey.Curve.P_521.toECParameterSpec());
+        KeyPair keyPair = keyGenerator.generateKeyPair();
+
+        ECPublicKey publicKey = (ECPublicKey) keyPair.getPublic();
+        ECPrivateKey privateKey = (ECPrivateKey) keyPair.getPrivate();
+
+        //keyId
+        String keyId = RandomUtils.randomNumber();
+
+        //生成id_token
+        JWSSigner signer = new ECDSASigner(privateKey);
+
+//        JWSHeader header = new JWSHeader.Builder(JWSAlgorithm.ES256).keyID(keyId).build();
+//        JWSHeader header = new JWSHeader.Builder(JWSAlgorithm.ES384).keyID(keyId).build();
+        JWSHeader header = new JWSHeader.Builder(JWSAlgorithm.ES512).keyID(keyId).build();
+
+        final String payloadText = "I am MyOIDC [ECDSA]";
+        Payload payload = new Payload(payloadText);
+        JWSObject jwsObject = new JWSObject(header, payload);
+
+        jwsObject.sign(signer);
+        final String idToken = jwsObject.serialize();
+        System.out.println(payloadText + " -> id_token: " + idToken);
+
+
+        //校验 id_token
+        final JWSObject parseJWS = JWSObject.parse(idToken);
+
+        JWSVerifier verifier = new ECDSAVerifier(publicKey);
+        final boolean verify = parseJWS.verify(verifier);
+
+        assertTrue(verify);
+        final String s = parseJWS.getPayload().toString();
+        assertEquals(s, payloadText);
+
+    }
+
 
 }
