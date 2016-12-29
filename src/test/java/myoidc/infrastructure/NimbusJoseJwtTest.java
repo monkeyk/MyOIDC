@@ -10,6 +10,8 @@ import net.minidev.json.JSONObject;
 import org.apache.commons.lang.RandomStringUtils;
 import org.testng.annotations.Test;
 
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
@@ -390,6 +392,11 @@ public class NimbusJoseJwtTest {
     /**
      * 使用RSA 算法进行加密数据
      * 与解密数据
+     * <p/>
+     * 128
+     * RSA_OAEP   - A128GCM
+     * 256
+     * RSA_OAEP_256 - A256GCM
      *
      * @throws Exception
      */
@@ -441,6 +448,42 @@ public class NimbusJoseJwtTest {
         final JWTClaimsSet jwtClaimsSet = parseJWT.getJWTClaimsSet();
         assertNotNull(jwtClaimsSet);
         assertNotNull(jwtClaimsSet.getAudience());
+
+    }
+
+
+    /**
+     * AES 加密/解密
+     * JWE
+     *
+     * @throws Exception
+     */
+    @Test
+    public void jweAES() throws Exception {
+
+        final KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+        //位数
+//        keyGenerator.init(128);
+        keyGenerator.init(256);
+        final SecretKey secretKey = keyGenerator.generateKey();
+
+        //加密
+//        JWEHeader jweHeader = new JWEHeader(JWEAlgorithm.DIR, EncryptionMethod.A128GCM);
+        JWEHeader jweHeader = new JWEHeader(JWEAlgorithm.DIR, EncryptionMethod.A256GCM);
+        Payload payload = new Payload("I am MyOIDC");
+
+        JWEObject jweObject = new JWEObject(jweHeader, payload);
+        jweObject.encrypt(new DirectEncrypter(secretKey));
+
+        final String idToken = jweObject.serialize();
+        assertNotNull(idToken);
+
+        //解密
+        final JWEObject parseJWE = JWEObject.parse(idToken);
+        parseJWE.decrypt(new DirectDecrypter(secretKey));
+
+        final Payload payload1 = parseJWE.getPayload();
+        assertNotNull(payload1);
 
     }
 
