@@ -423,7 +423,8 @@ public class NimbusJoseJwtTest {
                 .jwtID(RandomStringUtils.random(16, true, true))
                 .build();
 
-        JWEHeader header = new JWEHeader(JWEAlgorithm.RSA_OAEP, EncryptionMethod.A128GCM);
+//        JWEHeader header = new JWEHeader(JWEAlgorithm.RSA_OAEP, EncryptionMethod.A128GCM);
+        JWEHeader header = new JWEHeader(JWEAlgorithm.RSA_OAEP_256, EncryptionMethod.A256GCM);
         EncryptedJWT jwt = new EncryptedJWT(header, claimsSet);
 
         RSAEncrypter encrypter = new RSAEncrypter(publicKey);
