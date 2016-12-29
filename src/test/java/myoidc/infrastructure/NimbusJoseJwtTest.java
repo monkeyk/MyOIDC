@@ -3,6 +3,7 @@ package myoidc.infrastructure;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.*;
 import com.nimbusds.jose.jwk.ECKey;
+import com.nimbusds.jwt.EncryptedJWT;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import net.minidev.json.JSONObject;
@@ -382,6 +383,63 @@ public class NimbusJoseJwtTest {
         assertTrue(verify);
         final JWTClaimsSet jwtClaimsSet = parseJWS.getJWTClaimsSet();
         assertEquals(jwtClaimsSet.getClaim("payloadText"), payloadText);
+
+    }
+
+
+    /**
+     * 使用RSA 算法进行加密数据
+     * 与解密数据
+     *
+     * @throws Exception
+     */
+    @Test
+    public void jwtRSAEncryption() throws Exception {
+
+        // RSA keyPair Generator
+        final KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        /**
+         * 长度 至少 1024, 建议 2048
+         */
+        final int keySize = 2048;
+        keyPairGenerator.initialize(keySize);
+
+        final KeyPair keyPair = keyPairGenerator.genKeyPair();
+        //公钥
+        final RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
+        //私钥
+        final PrivateKey privateKey = keyPair.getPrivate();
+
+
+        //加密, 生成idToken
+        //加密的数据放在 JWTClaimsSet 中
+        JWTClaimsSet claimsSet = new JWTClaimsSet.Builder()
+                .issuer("https://myoidc.cc")
+                .subject("Lims")
+                .audience("https://one-app.com")
+                .notBeforeTime(new Date())
+                .issueTime(new Date())
+                .expirationTime(new Date(new Date().getTime() + 1000 * 60 * 10))
+                .jwtID(RandomStringUtils.random(16, true, true))
+                .build();
+
+        JWEHeader header = new JWEHeader(JWEAlgorithm.RSA_OAEP, EncryptionMethod.A128GCM);
+        EncryptedJWT jwt = new EncryptedJWT(header, claimsSet);
+
+        RSAEncrypter encrypter = new RSAEncrypter(publicKey);
+        jwt.encrypt(encrypter);
+
+        final String idToken = jwt.serialize();
+        assertNotNull(idToken);
+
+        //解密
+        final EncryptedJWT parseJWT = EncryptedJWT.parse(idToken);
+        RSADecrypter decrypter = new RSADecrypter(privateKey);
+        parseJWT.decrypt(decrypter);
+
+        final JWTClaimsSet jwtClaimsSet = parseJWT.getJWTClaimsSet();
+        assertNotNull(jwtClaimsSet);
+        assertNotNull(jwtClaimsSet.getAudience());
 
     }
 
