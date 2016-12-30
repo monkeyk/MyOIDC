@@ -1,7 +1,7 @@
 package myoidc.infrastructure.oauth;
 
 
-import org.springframework.security.oauth2.common.util.RandomValueStringGenerator;
+import org.apache.commons.lang.RandomStringUtils;
 
 /**
  * 2016/12/25
@@ -33,21 +33,8 @@ public abstract class OAuthUtils {
     }
 
 
-    //Multi grant_type split by ','
-    public static final String EMM_GRANT_TYPES = "client_credentials";
-
-
-    //See  security.xml configuration
-    public static final String EMM_RESOURCE_IDS = "emm-server-resource";
-
     //Available values:   read, read write
-    public static final String EMM_CLIENT_SCOPE = "read";
-
-
-    /*
-    * Generate client_secret
-    * */
-    private static RandomValueStringGenerator randomValueStringGenerator = new RandomValueStringGenerator(42);
+    public static final String READ_SCOPE = "read";
 
 
     //singleton
@@ -69,7 +56,7 @@ public abstract class OAuthUtils {
      * @return clientId
      */
     public static String generateClientId() {
-        return randomValueStringGenerator.generate();
+        return RandomStringUtils.random(32, true, true);
     }
 
 
@@ -79,7 +66,7 @@ public abstract class OAuthUtils {
      * @return clientSecret
      */
     public static String generateClientSecret() {
-        return randomValueStringGenerator.generate();
+        return RandomStringUtils.random(40, true, true);
     }
 
 

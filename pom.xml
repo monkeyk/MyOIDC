@@ -15,8 +15,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <spring.version>4.1.6.RELEASE</spring.version>
-        <spring.security.version>4.0.4.RELEASE</spring.security.version>
-        <spring.security.oauth.version>2.0.8.RELEASE</spring.security.oauth.version>
+        <oltu.version>1.0.2</oltu.version>
+        <shiro.version>1.3.2</shiro.version>
         <!--<aspectj.version>1.8.6</aspectj.version>-->
         <!--<fasterxml.jackson.version>2.5.4</fasterxml.jackson.version>-->
 
@@ -256,11 +256,11 @@
         <!--<version>${spring.security.version}</version>-->
         <!--</dependency>-->
 
-        <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2</artifactId>
-            <version>${spring.security.oauth.version}</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.security.oauth</groupId>-->
+        <!--<artifactId>spring-security-oauth2</artifactId>-->
+        <!--<version>${spring.security.oauth.version}</version>-->
+        <!--</dependency>-->
 
 
         <!--&lt;!&ndash;MongoDB&ndash;&gt;-->
