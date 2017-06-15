@@ -77,6 +77,7 @@ Version: 1.0
     <li><p>OIDC相关文章与介绍 <a href="https://andaily.com/blog/?s=OIDC">https://andaily.com/blog/?s=OIDC</a> </p></li>
     <li><p>JSON Web Tokens(OIDC各类编程语言的类库) <a href="https://jwt.io/">https://jwt.io/</a> </p></li>
     <li><p>connect2id(OpenID Connect server for the enterprise) <a href="http://connect2id.com/">http://connect2id.com/</a> </p></li>
+    <li><p>[认证授权] 4.OIDC（OpenId Connect）身份认证授权（核心部分） <a href="http://www.cnblogs.com/linianhui/p/openid-connect-core.html">http://www.cnblogs.com/linianhui/p/openid-connect-core.html</a> </p></li>
 </ul>
 
 <hr/>
