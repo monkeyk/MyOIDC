@@ -39,7 +39,7 @@ Version: 1.0
 <ul>
     <li><p>JDK (1.8.0_40)</p></li>
     <li><p>Servlet (3.1.0)</p></li>
-    <li><p>Jose4j (0.5.3)</p></li>
+    <li><p>Jose4j (0.6.2)</p></li>
     <li><p>Spring (4.2.5.RELEASE)</p></li>
     <li><p>Log4j (1.2.14)</p></li>
     <li><p>TestNG (6.1.1) - Unit Test</p></li>
