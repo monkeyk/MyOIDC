@@ -27,7 +27,7 @@ Version: 1.0
 <p>
     JSON Web Signature(JWS): <a href="https://tools.ietf.org/html/rfc7515">https://tools.ietf.org/html/rfc7515</a>
 </p>
-<p>OIDC相关文章与介绍 <a href="https://andaily.com/blog/?s=OIDC">http://andaily.com/blog/?s=OIDC</a> </p>
+<p>OIDC相关文章与介绍 <a href="http://andaily.com/blog/?s=OIDC">http://andaily.com/blog/?s=OIDC</a> </p>
 <hr/>
 
 
