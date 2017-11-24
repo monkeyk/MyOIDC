@@ -41,7 +41,7 @@ Version: 1.0
     <li><p>Servlet (3.1.0)</p></li>
     <li><p>Jose4j (0.6.2)</p></li>
     <li><p>Spring (4.3.11.RELEASE)</p></li>
-    <li><p>Log4j (1.2.14)</p></li>
+    <li><p>slf4j-log4j (1.7.25)</p></li>
     <li><p>TestNG (6.1.1) - Unit Test</p></li>
 </ul>
 
