@@ -1,6 +1,6 @@
 #MyOIDC
 
-<img src="https://andaily.com/blog/wp-content/uploads/2016/12/openid.png" alt="openid"/>
+<img src="http://andaily.com/blog/wp-content/uploads/2016/12/openid.png" alt="openid"/>
 <p>
     基于OIDC协议的参考实现,根据各类库提供实现参考.
 </p>
@@ -10,14 +10,14 @@ OIDC(OpenID Connect), 下一代的身份认证授权协议; 当前发布版本1.
 OIDC是基于OAuth2+OpenID整合的新的认证授权协议; OAuth2是一个授权(authorization)的开放协议, 在全世界得到广泛使用, 但在实际使用中,OAuth2只解决了授权问题, 没有实现认证部分,往往需要添加额外的API来实现认证; 而OpenID呢,是一个认证(authentication )的协议, 二者在实际使用过程中都有其局限性;
 <br/>
 综合二者,即是OIDC; 通过OIDC,既能有OAUTH2的功能,也有OpenID的功能; 恰到好处…
-    <a href="https://andaily.com/blog/?p=440">查看完整介绍</a>
+    <a href="http://andaily.com/blog/?p=440">查看完整介绍</a>
 </p>
 <hr/>
 
 <h3>OIDC 协议</h3>
 Version: 1.0
 <p>
-    中文版:  <a href="https://monkeyk.com/oidc/Final_OpenID-Connect-Core-1.0-incorporating-errata-set-1_CN.html">https://monkeyk.com/oidc/Final_OpenID-Connect-Core-1.0-incorporating-errata-set-1_CN.html</a>    (翻译中)
+    中文版:  <a href="http://monkeyk.com/oidc/Final_OpenID-Connect-Core-1.0-incorporating-errata-set-1_CN.html">http://monkeyk.com/oidc/Final_OpenID-Connect-Core-1.0-incorporating-errata-set-1_CN.html</a>    (翻译中)
     <br/>
     翻译最新进展请访问:<br/> <a href="http://git.oschina.net/shengzhao/spring-oauth-server/tree/master/others/oidc?dir=1&filepath=others%2Foidc&oid=ec2b907c58efcb56a8c774e8f7868ab80c6cb69a&sha=25a0e1f2357768eadf3f0e3b8035959e3bbd3d66">http://git.oschina.net/shengzhao/spring-oauth-server/tree/master/others/oidc?dir=1&filepath=others%2Foidc&oid=ec2b907c58efcb56a8c774e8f7868ab80c6cb69a&sha=25a0e1f2357768eadf3f0e3b8035959e3bbd3d66</a>
 </p>
@@ -74,7 +74,7 @@ Version: 1.0
 
 <ul>
     <li><p>Open ID Connect网站 <a href="http://openid.net/connect/">http://openid.net/connect/</a> </p></li>
-    <li><p>OIDC相关文章与介绍 <a href="https://andaily.com/blog/?s=OIDC">https://andaily.com/blog/?s=OIDC</a> </p></li>
+    <li><p>OIDC相关文章与介绍 <a href="https://andaily.com/blog/?s=OIDC">http://andaily.com/blog/?s=OIDC</a> </p></li>
     <li><p>JSON Web Tokens(OIDC各类编程语言的类库) <a href="https://jwt.io/">https://jwt.io/</a> </p></li>
     <li><p>connect2id(OpenID Connect server for the enterprise) <a href="http://connect2id.com/">http://connect2id.com/</a> </p></li>
     <li><p>[认证授权] 4.OIDC（OpenId Connect）身份认证授权（核心部分） <a href="http://www.cnblogs.com/linianhui/p/openid-connect-core.html">http://www.cnblogs.com/linianhui/p/openid-connect-core.html</a> </p></li>
@@ -85,7 +85,7 @@ Version: 1.0
 <h3>鸣谢</h3>
 
 <ul>
-    <li><p>北京九州云腾科技有限公司 <a href="http://www.idsmanager.com/">http://www.idsmanager.com/</a>; 他们是国内最早的 OIDC 实践者</p></li>
+    <li><p>北京九州云腾科技有限公司 <a href="https://www.idsmanager.com/">https://www.idsmanager.com/</a>; 他们是国内最早的 OIDC 实践者</p></li>
 </ul>
 
 
