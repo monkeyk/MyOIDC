@@ -17,8 +17,7 @@ OIDC是基于OAuth2+OpenID整合的新的认证授权协议; OAuth2是一个授�
 <h3>OIDC 协议</h3>
 Version: 1.0
 <p>
-    中文版:  <a href="http://monkeyk.com/oidc/Final_OpenID-Connect-Core-1.0-incorporating-errata-set-1_CN.html">http://monkeyk.com/oidc/Final_OpenID-Connect-Core-1.0-incorporating-errata-set-1_CN.html</a>    (翻译中)
-    <br/>
+   <br/>
     翻译最新进展请访问:<br/> <a href="http://git.oschina.net/shengzhao/spring-oauth-server/tree/master/others/oidc?dir=1&filepath=others%2Foidc&oid=ec2b907c58efcb56a8c774e8f7868ab80c6cb69a&sha=25a0e1f2357768eadf3f0e3b8035959e3bbd3d66">http://git.oschina.net/shengzhao/spring-oauth-server/tree/master/others/oidc?dir=1&filepath=others%2Foidc&oid=ec2b907c58efcb56a8c774e8f7868ab80c6cb69a&sha=25a0e1f2357768eadf3f0e3b8035959e3bbd3d66</a>
 </p>
 <p>
