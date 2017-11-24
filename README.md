@@ -16,17 +16,18 @@ OIDC是基于OAuth2+OpenID整合的新的认证授权协议; OAuth2是一个授�
 
 <h3>OIDC 协议</h3>
 Version: 1.0
-<p>
-   <br/>
-    翻译最新进展请访问:<br/> <a href="http://git.oschina.net/shengzhao/spring-oauth-server/tree/master/others/oidc?dir=1&filepath=others%2Foidc&oid=ec2b907c58efcb56a8c774e8f7868ab80c6cb69a&sha=25a0e1f2357768eadf3f0e3b8035959e3bbd3d66">http://git.oschina.net/shengzhao/spring-oauth-server/tree/master/others/oidc?dir=1&filepath=others%2Foidc&oid=ec2b907c58efcb56a8c774e8f7868ab80c6cb69a&sha=25a0e1f2357768eadf3f0e3b8035959e3bbd3d66</a>
-</p>
+<br/>
 <p>
     英文原版: <a href="http://openid.net/specs/openid-connect-core-1_0.html">http://openid.net/specs/openid-connect-core-1_0.html</a>
 </p>
 <p>
-    JSON Web Signature(JWS): <a href="https://tools.ietf.org/html/rfc7515">https://tools.ietf.org/html/rfc7515</a>
+    中文翻译最新进展请访问:<br/> <a href="http://git.oschina.net/shengzhao/spring-oauth-server/tree/master/others/oidc?dir=1&filepath=others%2Foidc&oid=ec2b907c58efcb56a8c774e8f7868ab80c6cb69a&sha=25a0e1f2357768eadf3f0e3b8035959e3bbd3d66">http://git.oschina.net/shengzhao/spring-oauth-server/tree/master/others/oidc?dir=1&filepath=others%2Foidc&oid=ec2b907c58efcb56a8c774e8f7868ab80c6cb69a&sha=25a0e1f2357768eadf3f0e3b8035959e3bbd3d66</a>
 </p>
 
+<p>
+    JSON Web Signature(JWS): <a href="https://tools.ietf.org/html/rfc7515">https://tools.ietf.org/html/rfc7515</a>
+</p>
+<p>OIDC相关文章与介绍 <a href="https://andaily.com/blog/?s=OIDC">http://andaily.com/blog/?s=OIDC</a> </p>
 <hr/>
 
 
@@ -73,7 +74,6 @@ Version: 1.0
 
 <ul>
     <li><p>Open ID Connect网站 <a href="http://openid.net/connect/">http://openid.net/connect/</a> </p></li>
-    <li><p>OIDC相关文章与介绍 <a href="https://andaily.com/blog/?s=OIDC">http://andaily.com/blog/?s=OIDC</a> </p></li>
     <li><p>JSON Web Tokens(OIDC各类编程语言的类库) <a href="https://jwt.io/">https://jwt.io/</a> </p></li>
     <li><p>connect2id(OpenID Connect server for the enterprise) <a href="http://connect2id.com/">http://connect2id.com/</a> </p></li>
     <li><p>[认证授权] 4.OIDC（OpenId Connect）身份认证授权（核心部分） <a href="http://www.cnblogs.com/linianhui/p/openid-connect-core.html">http://www.cnblogs.com/linianhui/p/openid-connect-core.html</a> </p></li>
