@@ -33,16 +33,13 @@ Version: 1.0
 
 <h3>项目介绍</h3>
 <p>
-    Maven项目, 字符编码: UTF-8; 基于TDD模式与DDD模式设计
+    Maven项目, 字符编码: UTF-8; 基于TDD模式与DDD模式设计; 使用SpringBoot实现
 </p>
 <strong>使用的框架与版本号</strong>
 <ul>
     <li><p>JDK (1.8.0_40)</p></li>
-    <li><p>Servlet (3.1.0)</p></li>
+    <li><p>SprintBoot (1.5.9.RELEASE)</p></li>
     <li><p>Jose4j (0.6.2)</p></li>
-    <li><p>Spring (4.3.11.RELEASE)</p></li>
-    <li><p>slf4j-log4j (1.7.25)</p></li>
-    <li><p>TestNG (6.1.1) - Unit Test</p></li>
 </ul>
 
 
@@ -65,7 +62,8 @@ Version: 1.0
 <ol>
     <li><p>2016-12-25  项目公开, 完善文档. 添加OIDC 库测试代码 <code>Jose4JTest.java</code>, <code>NimbusJoseJwtTest.java</code></p></li>
     <li><p>2016-07-12  开始尝试翻译OIDC协议为中文</p></li>
-    <li><p>2017-01-21  加入GitHub https://github.com/monkeyk/MyOIDC, Git@OSC地址 http://git.oschina.net/mkk/MyOIDC</p></li>
+    <li><p>2017-01-21  加入GitHub https://github.com/monkeyk/MyOIDC, Git@OSC地址 http://git.oschina.net/mkk/MyOIDC</p>(与GitHub同步)</li>
+    <li><p>2018-02-04  开始1.1.0分支, 使用SprintBoot重构</p></li>
 </ol>
 
 <hr/>
