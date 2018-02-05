@@ -16,7 +16,7 @@ public class MyOIDCController {
     /**
      * 首页
      */
-    @RequestMapping(value = "")
+    @RequestMapping(value = "/")
     public String index(Model model) {
 
         return "index";
