@@ -28,7 +28,7 @@ CREATE TABLE `user_` (
   `last_login_time` DATETIME,
   `creator_id`      INT(11),
   PRIMARY KEY (`id`),
-  INDEX `guid_index` (`guid`),
+  INDEX `uuid_index` (`uuid`),
   INDEX `creator_id_index` (`creator_id`)
 )
   ENGINE = InnoDB
