@@ -35,4 +35,11 @@ CREATE TABLE `user_` (
   AUTO_INCREMENT = 20
   DEFAULT CHARSET = utf8;
 
+--
+--  Insert default user
+INSERT INTO user_ (id, uuid, create_time, archived, version, username, password, phone, email, default_user)
+VALUES
+  (21, 'wR4XwW4UdCbfOWuMCYj8lafxApKZHtgl6uls55Ij2i', now(), 0, 0, 'admin', '$2a$10$XWN7zOvSLDiyxQnX01KMXuf5NTkkuAUtt23YxUMWaIPURcR7bdULi', NULL,
+   'sz@qc8.me', 1);
+
 

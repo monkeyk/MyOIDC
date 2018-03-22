@@ -18,6 +18,9 @@ import java.util.List;
 public class OIDCUserDetails implements UserDetails {
 
 
+    protected static final String ROLE_PREFIX = "ROLE_";
+    private static final long serialVersionUID = 5161957098952238466L;
+
     protected User user;
 
     protected List<GrantedAuthority> authorities = new ArrayList<>();
@@ -33,15 +36,18 @@ public class OIDCUserDetails implements UserDetails {
     private void initialPrivileges() {
         List<Privilege> privilegeList = privilegeList();
         for (Privilege privilege : privilegeList) {
-            this.authorities.add(new SimpleGrantedAuthority(privilege.name()));
+            this.authorities.add(new SimpleGrantedAuthority(ROLE_PREFIX + privilege.name()));
         }
     }
 
     private List<Privilege> privilegeList() {
+        //defaultUser  有所有权限
         if (user.defaultUser()) {
             return Arrays.asList(Privilege.values());
         } else {
-            final List<Privilege> privileges = user.privileges();
+            //固定值
+//            final List<Privilege> privileges = user.privileges();
+            final List<Privilege> privileges = new ArrayList<>();
             privileges.add(Privilege.USER);
             return privileges;
         }
@@ -86,18 +92,12 @@ public class OIDCUserDetails implements UserDetails {
         return user;
     }
 
-//    public String getLastLoginTime() {
-//        if (user != null && user.lastLoginTime() != null) {
-//            return DateUtils.toDateText(user.lastLoginTime(), DateUtils.DEFAULT_DATE_TIME_FORMAT);
-//        }
-//        return "---";
-//    }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append("{user=").append(user);
-        sb.append('}');
-        return sb.toString();
+        return "{" +
+                "user=" + user +
+                ", authorities=" + authorities +
+                '}';
     }
 }
