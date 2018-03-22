@@ -4,12 +4,20 @@
     <meta charset="UTF-8"/>
     <link rel="shortcut icon" href="../../static/favicon.ico" th:href="@{/static/favicon.ico}"/>
 
-    <title>首页 * MyOIDC(Server)</title>
+    <title>首页 . MyOIDC</title>
 
+    <th:block th:include="fragment/header :: public-css"/>
 </head>
 <body>
 
-<h3>MyOIDC Server...</h3>
+<div th:replace="fragment/header :: public-header"/>
 
+<div class="container">
+    <h3>MyOIDC Server...</h3>
+</div>
+
+
+<hr/>
+<div th:replace="fragment/footer :: footer-oidc"/>
 </body>
 </html>

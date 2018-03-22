@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Fragment Footer</title>
+</head>
+<body>
+
+<div th:fragment="footer-oidc">
+    <!--<hr/>-->
+    <p class="text-muted text-center">&copy; 2018 &nbsp;<a href="https://github.com/monkeyk/MyOIDC"
+                                                           target="_blank">MyOIDC</a>&nbsp;
+        V<span th:text="${application.mainVersion}"></span></p>
+</div>
+
+</body>
+</html>

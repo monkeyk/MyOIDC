@@ -2,12 +2,16 @@ package myoidc.server.configuration;
 
 
 import myoidc.server.domain.shared.Application;
+import myoidc.server.web.filter.ExtCharacterEncodingFilter;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.servlet.Filter;
 import java.nio.charset.Charset;
 import java.util.List;
 
@@ -30,6 +34,18 @@ public class MVCConfiguration implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
 
         WebMvcConfigurer.super.addInterceptors(registry);
+    }
+
+
+    /**
+     * 字符编码配置 UTF-8
+     */
+    @Bean
+    public FilterRegistrationBean encodingFilter() {
+        FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
+        registrationBean.setFilter(new ExtCharacterEncodingFilter());
+        registrationBean.addUrlPatterns("/*");
+        return registrationBean;
     }
 
 
