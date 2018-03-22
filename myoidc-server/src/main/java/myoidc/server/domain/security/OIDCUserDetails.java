@@ -46,8 +46,7 @@ public class OIDCUserDetails implements UserDetails {
             return Arrays.asList(Privilege.values());
         } else {
             //固定值
-//            final List<Privilege> privileges = user.privileges();
-            final List<Privilege> privileges = new ArrayList<>();
+            final List<Privilege> privileges = user.privileges();
             privileges.add(Privilege.USER);
             return privileges;
         }

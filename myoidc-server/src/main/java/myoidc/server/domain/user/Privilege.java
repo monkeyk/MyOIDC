@@ -8,7 +8,12 @@ package myoidc.server.domain.user;
 public enum Privilege {
 
     //Any user have the default privilege
-    USER("User");
+    USER("User"),
+
+    ADMIN("Admin"),    //管理 权限
+
+    UNITY("Unity"),       //资源 权限
+    MOBILE("Mobile");   //资源 权限
 
 
     private String label;

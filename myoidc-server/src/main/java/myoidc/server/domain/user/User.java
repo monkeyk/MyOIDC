@@ -72,9 +72,9 @@ public class User extends AbstractDomain {
         return this;
     }
 
-//    public List<Privilege> privileges() {
-//        return userRepository.findUserPrivileges(this);
-//    }
+    public List<Privilege> privileges() {
+        return userRepository.findUserPrivileges(this);
+    }
 
     public boolean defaultUser() {
         return defaultUser;
