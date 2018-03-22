@@ -38,7 +38,7 @@ Version: 1.0
 <strong>使用的框架与版本号</strong>
 <ul>
     <li><p>JDK (1.8.0_40)</p></li>
-    <li><p>SprintBoot (1.5.9.RELEASE)</p></li>
+    <li><p>SprintBoot (2.0.0.RELEASE)</p></li>
     <li><p>Jose4j (0.6.2)</p></li>
 </ul>
 

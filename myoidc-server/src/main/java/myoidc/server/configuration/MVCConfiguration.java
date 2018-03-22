@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.nio.charset.Charset;
 import java.util.List;
@@ -16,12 +16,11 @@ import java.util.List;
  * <p>
  * Spring MVC 扩展配置
  * <p>
- * Replace hb-servlet.xml
  *
  * @author Shengzhao Li
  */
 @Configuration
-public class MVCConfiguration extends WebMvcConfigurerAdapter {
+public class MVCConfiguration implements WebMvcConfigurer {
 
 
     /**
@@ -30,23 +29,19 @@ public class MVCConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
-        //注册校验码
-//        registry.addInterceptor(new RegisterUserInterceptor()).addPathPatterns("/register.hb");
-
-        super.addInterceptors(registry);
+        WebMvcConfigurer.super.addInterceptors(registry);
     }
 
 
     /**
      * 解决乱码问题
+     * For UTF-8
      */
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        super.configureMessageConverters(converters);
+        WebMvcConfigurer.super.configureMessageConverters(converters);
         converters.add(new StringHttpMessageConverter(Charset.forName(Application.ENCODING)));
     }
-
-
 
 
 }
