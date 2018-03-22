@@ -73,7 +73,7 @@ public class User extends AbstractDomain {
     }
 
     public List<Privilege> privileges() {
-        return userRepository.findUserPrivileges(this);
+        return userRepository.findUserPrivileges(this.uuid);
     }
 
     public boolean defaultUser() {
@@ -86,6 +86,11 @@ public class User extends AbstractDomain {
 
     public String password() {
         return password;
+    }
+
+    public User password(String password) {
+        this.password = password;
+        return this;
     }
 
     public String phone() {

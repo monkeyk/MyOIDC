@@ -7,8 +7,9 @@
 1. 在MySQL中创建数据库: myoidc_server
   create database if not exists myoidc_server default character set utf8;
 
-2.在数据库中执行SQL文件: myoidc-server.ddl   (others/database/myoidc-server.ddl)
+2.在数据库中执行SQL文件: myoidc-server.ddl, initial-db.ddl   (others/database/ 目录)
   source myoidc-server.ddl
+  source initial-db.ddl
 
 3.修改 application.properties 中的 数据库连接信息 与  application.host
 4.使用TOMCAT或其他服务器启动,  访问, 初始账号/密码:  admin/admin

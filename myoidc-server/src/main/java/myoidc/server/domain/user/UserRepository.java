@@ -14,5 +14,5 @@ public interface UserRepository extends Repository {
 
     User findLoginUserByUsername(String username);
 
-    List<Privilege> findUserPrivileges(User user);
+    List<Privilege> findUserPrivileges(String userUuid);
 }

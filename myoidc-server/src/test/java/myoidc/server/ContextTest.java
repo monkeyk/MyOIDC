@@ -1,6 +1,10 @@
 package myoidc.server;
 
 
+import myoidc.server.domain.security.OIDCUserDetails;
+import myoidc.server.domain.security.SecurityUtils;
+import myoidc.server.domain.shared.BeanProvider;
+import myoidc.server.web.context.SpringSecurityHolder;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
@@ -20,14 +24,14 @@ public abstract class ContextTest extends AbstractTransactionalJUnit4SpringConte
 
     @BeforeTransaction
     public void before() throws Exception {
-//        BeanProvider.initialize(applicationContext);
-//        SecurityUtils securityUtils = new SecurityUtils();
-//        securityUtils.setSecurityHolder(new SpringSecurityHolder() {
-//            @Override
-//            public AndailyUserDetails userDetails() {
-//                return null;
-//            }
-//        });
+        BeanProvider.initialize(applicationContext);
+        SecurityUtils securityUtils = new SecurityUtils();
+        securityUtils.setSecurityHolder(new SpringSecurityHolder() {
+            @Override
+            public OIDCUserDetails userDetails() {
+                return null;
+            }
+        });
     }
 
 

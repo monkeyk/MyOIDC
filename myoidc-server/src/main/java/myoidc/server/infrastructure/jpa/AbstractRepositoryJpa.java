@@ -7,6 +7,7 @@ import myoidc.server.domain.shared.Repository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
@@ -64,6 +65,7 @@ public abstract class AbstractRepositoryJpa<T> implements Repository, Initializi
     }
 
     @Override
+//    @Transactional()
     public <T extends AbstractDomain> void saveOrUpdate(T domain) {
         this.entityManager().persist(domain);
     }

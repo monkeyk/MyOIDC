@@ -26,9 +26,9 @@ public class UserRepositoryJpa extends AbstractRepositoryJpa<User> implements Us
     }
 
     @Override
-    public List<Privilege> findUserPrivileges(User user) {
-        final String hql = " select up.privilege from UserPrivilege up where up.archived = false and up.user = :user";
-        final Query query = entityManager().createQuery(hql).setParameter("user", user);
+    public List<Privilege> findUserPrivileges(String userUuid) {
+        final String hql = " select up.privilege from UserPrivilege up where up.archived = false and up.user.uuid = :userUuid";
+        final Query query = entityManager().createQuery(hql).setParameter("userUuid", userUuid);
         return query.getResultList();
     }
 
