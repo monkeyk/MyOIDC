@@ -3,6 +3,7 @@
 
 --
 --  Insert default user: admin/admin
+truncate user_;
 INSERT INTO user_ (id, uuid, create_time, archived, version, username, password, phone, email, default_user)
 VALUES
   (21, 'wR4XwW4UdCbfOWuMCYj8lafxApKZHtgl6uls55Ij2i', now(), 0, 0, 'admin', '$2a$10$XWN7zOvSLDiyxQnX01KMXuf5NTkkuAUtt23YxUMWaIPURcR7bdULi', NULL,
@@ -23,6 +24,7 @@ VALUES
 
 
 -- user-privilege
+truncate user_privilege;
 insert into user_privilege(uuid,create_time,user_id,privilege) values ('HJvLBVf1FuOBfEi782TIfoJOxLIKFKPdCTJGlX5ulo',now(),22,'UNITY');
 insert into user_privilege(uuid,create_time,user_id,privilege) values ('YAHsOvr8Z57UKeyiRPDn5IpS8HVZ87gEvlfUy8ynAW',now(),23,'MOBILE');
 
@@ -37,10 +39,10 @@ insert into oauth_client_details
  web_server_redirect_uri,authorities, access_token_validity,
  refresh_token_validity, additional_information, create_time, archived, trusted)
 values
-  ('unity-client','unity-resource', 'unity', 'read,write','authorization_code,refresh_token,implicit',
+  ('unity-client','unity-resource', 'unity', 'read','authorization_code,refresh_token,implicit',
                   null,'ROLE_CLIENT',null,
                   null,null, now(), 0, 0),
-  ('mobile-client','mobile-resource', 'mobile', 'read,write','password,refresh_token',
+  ('mobile-client','mobile-resource', 'mobile', 'read','password,refresh_token',
                    null,'ROLE_CLIENT',null,
                    null,null, now(), 0, 0);
 
