@@ -22,10 +22,10 @@ http://localhost:8080/myoidc-server/oauth/token?client_id=unity-client&client_se
 
 方式2:基于客户端(如IOS,Android) (grant_type=password) ,需要账号与密码, 一步完成
 (注意参数中的username,password,对应用户的账号,密码) [POST]
-http://localhost:8080/myoidc-server/oauth/token?client_id=mobile-client&client_secret=mobile&grant_type=password&scope=read,write&username=mobile&password=mobile
+http://localhost:8080/myoidc-server/oauth/token?client_id=mobile-client&client_secret=mobile&grant_type=password&scope=read&username=mobile&password=mobile
 
 说明:由于unity-client不支持password,所以若用unity-client通过password方式去授权,将返回invalid_grant
-http://localhost:8080/myoidc-server/oauth/token?client_id=unity-client&client_secret=unity&grant_type=password&scope=read,write&username=mobile&password=mobile
+http://localhost:8080/myoidc-server/oauth/token?client_id=unity-client&client_secret=unity&grant_type=password&scope=read&username=mobile&password=mobile
 
 
 
