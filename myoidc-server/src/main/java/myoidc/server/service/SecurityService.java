@@ -1,5 +1,6 @@
 package myoidc.server.service;
 
+import myoidc.server.service.dto.UserJsonDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
@@ -8,4 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * @author Shengzhao Li
  */
 public interface SecurityService extends UserDetailsService {
+
+    UserJsonDto loadCurrentUserJsonDto();
+
 }
