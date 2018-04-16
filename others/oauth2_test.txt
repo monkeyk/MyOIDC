@@ -34,7 +34,7 @@ http://localhost:8080/myoidc-server/oauth/token?client_id=unity-client&client_se
 
 
 获取access_token后访问资源 [GET]
-http://localhost:8080/myoidc-server/unity/dashboard.htm?access_token=3420d0e0-ed77-45e1-8370-2b55af0a62e8
+http://localhost:8080/myoidc-server/unity/dashboard?access_token=3420d0e0-ed77-45e1-8370-2b55af0a62e8
 
 
 
@@ -46,7 +46,7 @@ Restful OAuth2 Test [POST]
 URL: /oauth2/rest_token
 ContentType: application/json
 
-DEMO URL: http://localhost:8080/myoidc-server/oauth2/rest_token
+DEMO URL: http://localhost:8080/myoidc-server/oauth/rest_token
 Request Body: {"grant_type":"client_credentials","scope":"read","client_id":"credentials","client_secret":"credentials","username":"user","password":"123"}
 
 Response Body:
