@@ -13,7 +13,7 @@ http://localhost:8080/myoidc-server/auth/authorize?client_id=mobile-client&redir
 
 
 响应的URL如:
-http://localhost:8080/myoidc-server/unity/dashboard?code=zLl170
+http://localhost:8080/myoidc-server/unity/dashboard?code=68t2Dz&state=123456
 
 第二步: 通过code换取access_token [POST]
 http://localhost:8080/myoidc-server/oauth/token?client_id=unity-client&client_secret=unity&grant_type=authorization_code&code=zLl170&redirect_uri=http%3a%2f%2flocalhost%3a8080%2fmyoidc-server%2funity%2fdashboard
