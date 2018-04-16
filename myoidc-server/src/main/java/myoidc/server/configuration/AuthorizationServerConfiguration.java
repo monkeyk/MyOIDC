@@ -1,12 +1,11 @@
 package myoidc.server.configuration;
 
 import myoidc.server.service.OauthService;
+import myoidc.server.service.SecurityService;
 import myoidc.server.service.oauth.OauthUserApprovalHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -15,6 +14,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.OAuth2RequestFactory;
 import org.springframework.security.oauth2.provider.approval.UserApprovalHandler;
+import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 
@@ -49,6 +49,14 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private OauthService oauthService;
 
 
+    @Autowired
+    private AuthorizationCodeServices authorizationCodeServices;
+
+
+    @Autowired
+    private SecurityService userDetailsService;
+
+
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
@@ -64,6 +72,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore)
+                .authorizationCodeServices(authorizationCodeServices)
+                .userDetailsService(userDetailsService)
                 .userApprovalHandler(userApprovalHandler());
 //                .authenticationManager(authenticationManager);
 

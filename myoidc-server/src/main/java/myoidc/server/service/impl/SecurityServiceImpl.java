@@ -23,7 +23,7 @@ import java.util.Collection;
  *
  * @author Shengzhao Li
  */
-@Service
+@Service("securityService")
 public class SecurityServiceImpl implements SecurityService {
 
 
