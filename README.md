@@ -62,8 +62,8 @@ Version: 1.0
 <ol>
     <li><p>2016-12-25  项目公开, 完善文档. 添加OIDC 库测试代码 <code>Jose4JTest.java</code>, <code>NimbusJoseJwtTest.java</code></p></li>
     <li><p>2016-07-12  开始尝试翻译OIDC协议为中文</p></li>
-    <li><p>2017-01-21  加入GitHub https://github.com/monkeyk/MyOIDC, Git@OSC地址 http://git.oschina.net/mkk/MyOIDC</p>(与GitHub同步)</li>
-    <li><p>2018-02-04  开始1.1.0分支, 使用SprintBoot重构</p></li>
+    <li><p>2017-01-21  加入GitHub https://github.com/monkeyk/MyOIDC, Git@OSC地址 http://gitee.com/mkk/MyOIDC</p>(与GitHub同步)</li>
+    <li><p>2018-02-04  开始1.1.0分支, 使用SprintBoot重构, 开始受折磨的技术</p></li>
 </ol>
 
 <hr/>
