@@ -159,8 +159,8 @@ public class OAuth2ServerConfiguration {
 
         @Override
         public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-//            oauthServer.authenticationEntryPoint()
-            oauthServer.realm("MyOIDC");
+            oauthServer.realm("MyOIDC")
+                    .allowFormAuthenticationForClients();
         }
 
         @Bean

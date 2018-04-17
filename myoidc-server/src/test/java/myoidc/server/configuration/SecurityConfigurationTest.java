@@ -16,11 +16,12 @@ public class SecurityConfigurationTest {
 
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        final String admin = passwordEncoder.encode("admin");
+        final String rawPassword = "mobile";
+        final String admin = passwordEncoder.encode(rawPassword);
 
         assertNotNull(admin);
 
-//        System.out.println("admin --> " + admin);
+//        System.out.println(rawPassword + " --> " + admin);
 
     }
 

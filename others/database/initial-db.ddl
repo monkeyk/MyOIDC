@@ -31,18 +31,18 @@ insert into user_privilege(uuid,create_time,user_id,privilege) values ('YAHsOvr8
 
 
 -- initial oauth client details test data
--- 'unity-client'   support browser, js(flash) visit
--- 'mobile-client'  only support mobile-device visit
+-- 'unity-client'   support browser, js(flash) visit,  secret:  unity
+-- 'mobile-client'  only support mobile-device visit,  secret:  mobile
 truncate  oauth_client_details;
 insert into oauth_client_details
 (client_id, resource_ids, client_secret, scope, authorized_grant_types,
  web_server_redirect_uri,authorities, access_token_validity,
  refresh_token_validity, additional_information, create_time, archived, trusted)
 values
-  ('unity-client','unity-resource', 'unity', 'read','authorization_code,refresh_token,implicit',
+  ('unity-client','unity-resource', '$2a$10$QQTKDdNfj9sPjak6c8oWaumvTsa10MxOBOV6BW3DvLWU6VrjDfDam', 'read','authorization_code,refresh_token,implicit',
                   'http://localhost:8080/myoidc-server/unity/dashboard','ROLE_CLIENT',null,
                   null,null, now(), 0, 0),
-  ('mobile-client','mobile-resource', 'mobile', 'read','password,refresh_token',
+  ('mobile-client','mobile-resource', '$2a$10$uLvpxfvm3CuUyjIvYq7a9OUmd9b3tHFKrUaMyU/jC01thrTdkBDVm', 'read','password,refresh_token',
                    null,'ROLE_CLIENT',null,
                    null,null, now(), 0, 0);
 
