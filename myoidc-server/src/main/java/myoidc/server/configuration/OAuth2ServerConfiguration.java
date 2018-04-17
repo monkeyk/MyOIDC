@@ -42,14 +42,14 @@ import javax.sql.DataSource;
 public class OAuth2ServerConfiguration {
 
 
+    // unity resource
     @Configuration
     @EnableResourceServer
-    protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
+    protected static class UnityResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
         @Override
         public void configure(ResourceServerSecurityConfigurer resources) {
-            resources.resourceId("unity-resource").stateless(false)
-                    .resourceId("mobile-resource").stateless(false);
+            resources.resourceId("unity-resource").stateless(false);
         }
 
         @Override
@@ -59,10 +59,35 @@ public class OAuth2ServerConfiguration {
                     // session creation to be allowed (it's disabled by default in 2.0.6)
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                     .and()
-                    .requestMatchers().antMatchers("/unity/**", "/m/**")
+                    .requestMatchers().antMatchers("/unity/**")
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/unity/**").access("#oauth2.hasScope('read') and hasRole('ROLE_UNITY')")
+                    .antMatchers("/unity/**").access("#oauth2.hasScope('read') and hasRole('ROLE_UNITY')");
+
+        }
+
+    }
+
+    // mobile resource
+    @Configuration
+    @EnableResourceServer
+    protected static class MobileResourceServerConfiguration extends ResourceServerConfigurerAdapter {
+
+        @Override
+        public void configure(ResourceServerSecurityConfigurer resources) {
+            resources.resourceId("mobile-resource").stateless(false);
+        }
+
+        @Override
+        public void configure(HttpSecurity http) throws Exception {
+            http
+                    // Since we want the protected resources to be accessible in the UI as well we need
+                    // session creation to be allowed (it's disabled by default in 2.0.6)
+                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                    .and()
+                    .requestMatchers().antMatchers("/m/**")
+                    .and()
+                    .authorizeRequests()
                     .antMatchers("/m/**").access("#oauth2.hasScope('read') and hasRole('ROLE_MOBILE')");
 
         }
@@ -80,7 +105,6 @@ public class OAuth2ServerConfiguration {
 
         @Autowired
         private ClientDetailsService clientDetailsService;
-
 
 
         @Autowired
@@ -129,7 +153,6 @@ public class OAuth2ServerConfiguration {
         public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
             endpoints.tokenStore(tokenStore)
                     .authorizationCodeServices(authorizationCodeServices)
-                    .userDetailsService(userDetailsService)
                     .userApprovalHandler(userApprovalHandler())
                     .authenticationManager(authenticationManager);
         }
