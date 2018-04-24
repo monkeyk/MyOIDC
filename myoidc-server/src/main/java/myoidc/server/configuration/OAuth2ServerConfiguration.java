@@ -42,6 +42,11 @@ import javax.sql.DataSource;
 public class OAuth2ServerConfiguration {
 
 
+
+    /*Fixed,  resource-id */
+    public static final String RESOURCE_ID = "myoidc-resource";
+
+
     // unity resource
     @Configuration
     @EnableResourceServer
@@ -49,7 +54,7 @@ public class OAuth2ServerConfiguration {
 
         @Override
         public void configure(ResourceServerSecurityConfigurer resources) {
-            resources.resourceId("unity-resource").stateless(false);
+            resources.resourceId(RESOURCE_ID).stateless(false);
         }
 
         @Override
@@ -75,7 +80,7 @@ public class OAuth2ServerConfiguration {
 
         @Override
         public void configure(ResourceServerSecurityConfigurer resources) {
-            resources.resourceId("mobile-resource").stateless(false);
+            resources.resourceId(RESOURCE_ID).stateless(false);
         }
 
         @Override
