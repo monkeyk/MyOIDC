@@ -1,4 +1,4 @@
-package myoidc.server.configuration;
+package myoidc.server.config;
 
 
 import myoidc.server.domain.security.SecurityUtils;

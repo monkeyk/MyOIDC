@@ -1,4 +1,4 @@
-package myoidc.server.configuration;
+package myoidc.server.config;
 
 import myoidc.server.service.OauthService;
 import myoidc.server.service.SecurityService;
