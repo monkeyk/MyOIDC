@@ -13,7 +13,60 @@
 <div th:replace="fragment/header :: public-header"/>
 
 <div class="container">
-    <h3>MyOIDC Server...</h3>
+    <h3>在开始OIDC之前, 您需要清楚的OIDC术语
+        <small>这与OAuth2有些区别</small>
+    </h3>
+    <ul>
+        <li>
+            <p>
+                <strong class="text-primary">EU</strong> End User, 指用户(一般指有账号的个体)
+            </p>
+        </li>
+        <li>
+            <p>
+                <strong class="text-primary">RP</strong> Relying Party, 信任方, 理解为OAuth2中的客户端(client)即可, 需要在OP中注册
+            </p>
+        </li>
+        <li>
+            <p>
+                <strong class="text-primary">OP</strong> OpenID Provider, 能提供对EU进行认证的服务端(可理解为OAuth2中授权服务端),
+                提供RP的注册(或管理)能力与EU
+                <br/>
+                <span class="text-muted">OIDC-Server 就是一个OP的参考实现</span>
+            </p>
+        </li>
+        <li>
+            <p>
+                <code>id_token</code> JSON Web Token(JWT), 包含EU认证授权信息等. 有关JWT请访问 <a href="https://jwt.io/"
+                                                                                    target="_blank">https://jwt.io/</a>
+            </p>
+        </li>
+        <li>
+            <p>
+                <strong>UserInfo Endpoint</strong> EU信息接口(OAuth2保护), 在RP获取到<code>access_token</code>后,可调用此接口获取EU的详细信息.
+                OIDC要求此接口必须使用
+                <small>https</small>
+                访问(更安全)
+                <br/>
+                <span class="text-muted">OIDC-Server 的EU信息接口为 <em>/api/userinfo</em></span>
+            </p>
+        </li>
+        <li>
+            <p>
+                <strong>Claim</strong> EU信息的载体, 可在<code>id_token</code>中获取
+            </p>
+        </li>
+    </ul>
+
+    <p>
+        完整的OIDC术语介绍请访问 <a href="http://openid.net/specs/openid-connect-core-1_0.html#Terminology" target="_blank">http://openid.net/specs/openid-connect-core-1_0.html#Terminology</a>
+    </p>
+
+    <!--<hr/>-->
+    <!--<p>-->
+        <!--...-->
+    <!--</p>-->
+
 </div>
 
 
