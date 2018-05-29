@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <link rel="shortcut icon" href="../../static/favicon.ico" th:href="@{/static/favicon.ico}"/>
 
-    <title>首页 . MyOIDC[Client]</title>
+    <title>首页 . MyOIDC[RP]</title>
 
     <th:block th:include="fragment/header :: public-css"/>
 </head>
@@ -13,7 +13,13 @@
 <div th:replace="fragment/header :: public-header"/>
 
 <div class="container">
-    <h3>MyOIDC Client...</h3>
+    <h3>这是OIDC中的一个RP
+        <small>
+            RP(Relying Party), 信任方, 理解为OAuth2中的客户端(client)即可
+        </small>
+    </h3>
+    <p>在进行操作前,请先填写从<label>myoidc-server</label>注册客户端[RP]后获取到的信息</p>
+
 </div>
 
 
