@@ -124,6 +124,8 @@ public class Jose4JTest {
         //set private key
         jws.setKey(jwk.getPrivateKey());
 
+//        jwk.toJson(JsonWebKey.OutputControlLevel.PUBLIC_ONLY);
+
         final String idToken = jws.getCompactSerialization();
         assertNotNull(idToken);
         System.out.println("idToken: " + idToken);
