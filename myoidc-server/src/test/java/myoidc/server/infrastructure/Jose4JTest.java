@@ -107,7 +107,7 @@ public class Jose4JTest {
     @Test
     public void jwtIdTokenConsumer() throws Exception {
 
-        String keyId = RandomStringUtils.random(32);
+        String keyId = keyId();
 
         //生成idToken
         JwtClaims claims = getJwtClaims();
@@ -149,6 +149,10 @@ public class Jose4JTest {
 
     }
 
+    private String keyId() {
+        return RandomStringUtils.random(32, true, true);
+    }
+
     private JwtClaims getJwtClaims() {
         JwtClaims claims = new JwtClaims();
         claims.setIssuer("Issuer");  // who creates the token and signs it
@@ -174,7 +178,7 @@ public class Jose4JTest {
 
 //        String keyId = GuidGenerator.generate();
         EllipticCurveJsonWebKey sendJwk = EcJwkGenerator.generateJwk(EllipticCurves.P256);
-        sendJwk.setKeyId(RandomStringUtils.random(32));
+        sendJwk.setKeyId(keyId());
 
         final String publicKeyString = sendJwk.toJson(JsonWebKey.OutputControlLevel.PUBLIC_ONLY);
         final String privateKeyString = sendJwk.toJson(JsonWebKey.OutputControlLevel.INCLUDE_PRIVATE);
@@ -203,7 +207,7 @@ public class Jose4JTest {
 
 
         EllipticCurveJsonWebKey receiverJwk = EcJwkGenerator.generateJwk(EllipticCurves.P256);
-        receiverJwk.setKeyId(RandomStringUtils.random(32));
+        receiverJwk.setKeyId(keyId());
 
         jwe.setKey(receiverJwk.getPublicKey());
         jwe.setKeyIdHeaderValue(receiverJwk.getKeyId());
