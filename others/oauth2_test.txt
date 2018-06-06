@@ -8,7 +8,7 @@
 http://localhost:8080/myoidc-server/oauth/authorize?client_id=unity-client&redirect_uri=http%3a%2f%2flocalhost%3a8080%2fmyoidc-server%2funity%2fdashboard&response_type=code&scope=read&state=123456
 
 说明: 由于mobile-client只支持password,refresh_token, 所以不管用哪个账号登录后都将返回Illegal action
-http://localhost:8080/myoidc-server/auth/authorize?client_id=mobile-client&redirect_uri=http%3a%2f%2flocalhost%3a8080%2fmyoidc-server%2fm%2fdashboard&response_type=code&scope=read&state=123456
+http://localhost:8080/myoidc-server/oauth/authorize?client_id=mobile-client&redirect_uri=http%3a%2f%2flocalhost%3a8080%2fmyoidc-server%2fm%2fdashboard&response_type=code&scope=read&state=123456
 
 
 
