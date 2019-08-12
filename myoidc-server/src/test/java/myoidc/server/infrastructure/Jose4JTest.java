@@ -17,6 +17,8 @@ import org.junit.Test;
 
 
 import java.security.Key;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 
 import static org.junit.Assert.*;
 
@@ -30,6 +32,48 @@ import static org.junit.Assert.*;
  * @author Shengzhao Li
  */
 public class Jose4JTest {
+
+
+    /**
+     * RSA 加密与解密, 256位
+     *
+     * @since 1.1.0
+     */
+    @Test
+    public void aesEncryptDecryptRSA() throws Exception {
+
+        RsaJsonWebKey jwk = RsaJwkGenerator.generateJwk(2048);
+        jwk.setKeyId(keyId());
+
+        final String publicKeyString = jwk.toJson(JsonWebKey.OutputControlLevel.PUBLIC_ONLY);
+        final String privateKeyString = jwk.toJson(JsonWebKey.OutputControlLevel.INCLUDE_PRIVATE);
+
+        String data = "I am marico 3";
+        //加密
+        JsonWebEncryption jwe = new JsonWebEncryption();
+        jwe.setAlgorithmHeaderValue(KeyManagementAlgorithmIdentifiers.RSA_OAEP_256);
+        jwe.setEncryptionMethodHeaderParameter(ContentEncryptionAlgorithmIdentifiers.AES_256_CBC_HMAC_SHA_512);
+        PublicKey publicKey = RsaJsonWebKey.Factory.newPublicJwk(publicKeyString).getPublicKey();
+        jwe.setKey(publicKey);
+        jwe.setPayload(data);
+
+        String idToken = jwe.getCompactSerialization();
+        assertNotNull(idToken);
+        System.out.println(data + " ->>: " + idToken);
+
+
+        //解密
+        JsonWebEncryption jwe2 = new JsonWebEncryption();
+        PrivateKey privateKey = RsaJsonWebKey.Factory.newPublicJwk(privateKeyString).getPrivateKey();
+        jwe2.setKey(privateKey);
+//        jwe2.setKey(jwk.getRsaPrivateKey());
+        jwe2.setCompactSerialization(idToken);
+
+        final String payload = jwe2.getPayload();
+        assertNotNull(payload);
+        assertEquals(payload, data);
+
+    }
 
 
     /*
