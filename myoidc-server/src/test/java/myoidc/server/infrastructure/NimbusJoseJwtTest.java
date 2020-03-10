@@ -5,7 +5,6 @@ import com.google.common.io.CharStreams;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.*;
 import com.nimbusds.jose.jwk.Curve;
-import com.nimbusds.jose.jwk.ECKey;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jwt.EncryptedJWT;
@@ -13,11 +12,10 @@ import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import net.minidev.json.JSONObject;
 import org.apache.commons.lang.RandomStringUtils;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
-
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -50,11 +48,11 @@ public class NimbusJoseJwtTest {
      * @since 1.1.0
      */
     @Test
+    @Ignore
     public void testJWKSet() throws Exception {
 
-//        Resource resource = new ClassPathResource("classpath*:keystore.jwks");
-        Resource resource = new FileSystemResource("D:\\monkeyk\\projects\\MyOIDC\\myoidc-server\\src\\test\\resources\\keystore.jwks");
-        // read in the file from disk
+        Resource resource = new ClassPathResource("classpath*:keystore.jwks");
+        // read in the file
         String s = CharStreams.toString(new InputStreamReader(resource.getInputStream(), Charsets.UTF_8));
         JWKSet jwkSet = JWKSet.parse(s);
         assertNotNull(jwkSet);
@@ -70,6 +68,19 @@ public class NimbusJoseJwtTest {
 //            System.out.println(key.getParsedX509CertChain());
             System.out.println(key.getKeyID());
             System.out.println(key.isPrivate());
+
+//            JWK jwk = key.toPublicJWK();
+//            System.out.println(jwk);
+//            JSONObject jsonObject = key.toJSONObject();
+//            System.out.println(jsonObject);
+
+//            PublicJsonWebKey rsk = RsaJsonWebKey.Factory.newPublicJwk(key.toString());
+//            PrivateKey privateKey = rsk.getPrivateKey();
+//            PublicKey publicKey = rsk.getPublicKey();
+//            System.out.println(publicKey + "\n" + privateKey);
+
+//            RSAKey  rsaKey= new RSAKey();
+//            rsaKey.
         }
     }
 
