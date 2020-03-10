@@ -1,19 +1,27 @@
 package myoidc.server.infrastructure;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.CharStreams;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.*;
 import com.nimbusds.jose.jwk.Curve;
 import com.nimbusds.jose.jwk.ECKey;
+import com.nimbusds.jose.jwk.JWK;
+import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jwt.EncryptedJWT;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import net.minidev.json.JSONObject;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Test;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import java.io.InputStreamReader;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
@@ -21,6 +29,7 @@ import java.security.interfaces.ECPrivateKey;
 import java.security.interfaces.ECPublicKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -34,6 +43,35 @@ import static org.junit.Assert.*;
  * @author Shengzhao Li
  */
 public class NimbusJoseJwtTest {
+
+
+    /**
+     * @throws Exception e
+     * @since 1.1.0
+     */
+    @Test
+    public void testJWKSet() throws Exception {
+
+//        Resource resource = new ClassPathResource("classpath*:keystore.jwks");
+        Resource resource = new FileSystemResource("D:\\monkeyk\\projects\\MyOIDC\\myoidc-server\\src\\test\\resources\\keystore.jwks");
+        // read in the file from disk
+        String s = CharStreams.toString(new InputStreamReader(resource.getInputStream(), Charsets.UTF_8));
+        JWKSet jwkSet = JWKSet.parse(s);
+        assertNotNull(jwkSet);
+//        System.out.println(jwkSet);
+
+        List<JWK> keys = jwkSet.getKeys();
+        for (JWK key : keys) {
+//            System.out.println(key);
+//            System.out.println(key.getAlgorithm());
+//            System.out.println(key.getKeyStore());
+//            System.out.println(key.getKeyUse());
+//            System.out.println(key.getKeyType());
+//            System.out.println(key.getParsedX509CertChain());
+            System.out.println(key.getKeyID());
+            System.out.println(key.isPrivate());
+        }
+    }
 
 
     /**

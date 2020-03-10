@@ -1,0 +1,6 @@
+{
+  "kty": "RSA",
+  "kid": "myoidc-keyid",
+  "n": "iqMKlSdSeKO9cVN_hjFA_HZ-IcEEnTloUBdPNOx5TpD3DNztyG7XTV3OUE1pMy69M7ngGmNM6w9UJ1lt6IjSvm7hHEIjkhRC4QWlYCdS9twSXXmpUIQ1eAdUFauuftuau-J-9qk-28DIlBpKyrPyjJmX0mqo4CcwjURvhI5RYp853aeNSaeqHA3oR8euKLWj66VOcSdGf9OL71IMEOGmthc9q2ZFk2iSvjNSooG0fgWgeRW9tTHoTyD8xSPY2c65hFRZwwL_kaBKuT8GoKMo3H3W485trmdh1TywJ8Z2L-yxIw91ZjTdVN75UK2E6QyshbrYi1SqUa2CPUJqAq7B6Q",
+  "e": "AQAB"
+}
