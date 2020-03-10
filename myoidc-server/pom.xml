@@ -27,6 +27,7 @@
         <spring.security.oauth.version>2.3.5.RELEASE</spring.security.oauth.version>
         <spring.security.jwt.version>1.0.9.RELEASE</spring.security.jwt.version>
         <jose4j.version>0.6.2</jose4j.version>
+        <nimbus.jose.jwt.version>8.8</nimbus.jose.jwt.version>
 
         <test.skip>false</test.skip>
     </properties>
@@ -84,11 +85,16 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!--jose4j-->
+        <!-- nimbus-jose-jwt -->
         <dependency>
-            <groupId>org.bitbucket.b_c</groupId>
-            <artifactId>jose4j</artifactId>
-            <version>${jose4j.version}</version>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+            <version>${nimbus.jose.jwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.minidev</groupId>
+            <artifactId>json-smart</artifactId>
+            <version>2.3</version>
         </dependency>
 
 
@@ -123,17 +129,11 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- nimbus-jose-jwt -->
+        <!--jose4j-->
         <dependency>
-            <groupId>com.nimbusds</groupId>
-            <artifactId>nimbus-jose-jwt</artifactId>
-            <version>8.8</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.minidev</groupId>
-            <artifactId>json-smart</artifactId>
-            <version>2.3</version>
+            <groupId>org.bitbucket.b_c</groupId>
+            <artifactId>jose4j</artifactId>
+            <version>${jose4j.version}</version>
             <scope>test</scope>
         </dependency>
         <!--auth0-->
