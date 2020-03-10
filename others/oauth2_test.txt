@@ -43,7 +43,7 @@ http://localhost:8080/myoidc-server/oauth/token?client_id=mobile-client&client_s
 
 
 Restful OAuth2 Test [POST]
-URL: /oauth2/rest_token
+URL: /oauth/rest_token
 ContentType: application/json
 
 DEMO URL: http://localhost:8080/myoidc-server/oauth/rest_token
