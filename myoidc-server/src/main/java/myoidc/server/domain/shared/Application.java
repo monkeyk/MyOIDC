@@ -1,20 +1,14 @@
 package myoidc.server.domain.shared;
 
 
+import myoidc.server.Constants;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 
 /**
  * @author Shengzhao Li
  */
-public class Application implements InitializingBean {
-
-    //系统字符编码
-    public static final String ENCODING = "UTF-8";
-
-    public static final String PROJECT_HOME = "https://github.com/monkeyk/MyOIDC";
-    //Current  version
-    public static final String VERSION = "1.1.0";
+public class Application implements InitializingBean, Constants {
 
 
     //application host
