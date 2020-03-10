@@ -2,6 +2,7 @@ package myoidc.server.infrastructure;
 
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.*;
+import com.nimbusds.jose.jwk.Curve;
 import com.nimbusds.jose.jwk.ECKey;
 import com.nimbusds.jwt.EncryptedJWT;
 import com.nimbusds.jwt.JWTClaimsSet;
@@ -287,7 +288,7 @@ public class NimbusJoseJwtTest {
         KeyPairGenerator keyGenerator = KeyPairGenerator.getInstance("EC");
 //        keyGenerator.initialize(ECKey.Curve.P_256.toECParameterSpec());
 //        keyGenerator.initialize(ECKey.Curve.P_384.toECParameterSpec());
-        keyGenerator.initialize(ECKey.Curve.P_521.toECParameterSpec());
+        keyGenerator.initialize(Curve.P_521.toECParameterSpec());
         KeyPair keyPair = keyGenerator.generateKeyPair();
 
         ECPublicKey publicKey = (ECPublicKey) keyPair.getPublic();
@@ -345,7 +346,7 @@ public class NimbusJoseJwtTest {
         KeyPairGenerator keyGenerator = KeyPairGenerator.getInstance("EC");
 //        keyGenerator.initialize(ECKey.Curve.P_256.toECParameterSpec());
 //        keyGenerator.initialize(ECKey.Curve.P_384.toECParameterSpec());
-        keyGenerator.initialize(ECKey.Curve.P_521.toECParameterSpec());
+        keyGenerator.initialize(Curve.P_521.toECParameterSpec());
         KeyPair keyPair = keyGenerator.generateKeyPair();
 
         ECPublicKey publicKey = (ECPublicKey) keyPair.getPublic();
