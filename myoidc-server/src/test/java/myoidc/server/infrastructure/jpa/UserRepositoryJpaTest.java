@@ -34,11 +34,11 @@ public class UserRepositoryJpaTest extends AbstractRepositoryTest {
         UserPrivilege userPrivilege = new UserPrivilege(user, Privilege.USER);
         userRepository.saveOrUpdate(userPrivilege);
 
-        flush();
+//        flush();
 
         final List<Privilege> privileges = userRepository.findUserPrivileges(user.uuid());
         assertNotNull(privileges);
-        System.out.println(privileges);
+//        System.out.println(privileges);
     }
 
 }

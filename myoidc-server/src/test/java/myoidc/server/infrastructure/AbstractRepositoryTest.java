@@ -24,8 +24,9 @@ public class AbstractRepositoryTest extends ContextTest {
 
 
     protected void flush() {
-        entityManager().flush();
-        entityManager().clear();
+        EntityManager entityManager = entityManager();
+        entityManager.flush();
+        entityManager.clear();
     }
 
 
