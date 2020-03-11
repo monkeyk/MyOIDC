@@ -76,22 +76,26 @@ grant_type(授权方式)
 scope
 1.read
 2.write
-3.trust
+3.openid
 
 
 ------------------------------------------------------------------------------------------------
 
 Resource API
-Use it get resource-server resources after auth successful. will use it in <spring-oauth-client> project.
+Use it get resource-server resources after auth successful. will use it in <myoidc-client> project.
 (retrieve current logged user information)
 
-[ROLE_UNITY]
-http://localhost:8080/spring-oauth-server/unity/user_info?access_token=b03b99a1-f128-4d6e-b9d3-38a0ebcab5ef
+[userinfo API]
+http://localhost:8080/myoidc-server/api/userinfo
 Response JSON
-{"archived":false,"email":"unity@wdcy.cc","guid":"55b713df1c6f423e842ad68668523c49","phone":"","privileges":["UNITY"],"username":"unity"}
+{"openid":"wR4XwW4UdCbfOWuMCYj8lafxApKZHtgl6uls55Ij2i","archived":false,"username":"admin","phone":null,"email":"admin@qc8.me","privileges":[]}
+
+[ROLE_UNITY]
+http://localhost:8080/myoidc-server/unity/user_info
+Response JSON
+{"openid":"fFVLrIx6MgVwXDhKUHE23KR3w0KqOulHjSNyf6rC04","archived":false,"username":"unity","phone":null,"email":"unity@qc8.me","privileges":["UNITY"]}
 
 [ROLE_MOBILE]
-http://localhost:8080/spring-oauth-server/m/user_info?access_token=20837fa5-a0a1-4c76-9083-1f0e47ca0208
+http://localhost:8080/myoidc-server/m/user_info
 Response JSON
-{"archived":false,"email":"mobile@wdcy.cc","guid":"612025cb3f964a64a48bbdf77e53c2c1","phone":"","privileges":["MOBILE"],"username":"mobile"}
-
+{"openid":"Ajlt9ZwVyGUvxrJCdKlFA4AataAVKVgH6gxYeCxD6J","archived":false,"username":"mobile","phone":null,"email":"mobile@qc8.me","privileges":["MOBILE"]}

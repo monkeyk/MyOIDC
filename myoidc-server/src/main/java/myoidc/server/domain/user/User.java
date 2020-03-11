@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -73,6 +74,10 @@ public class User extends AbstractDomain {
     }
 
     public List<Privilege> privileges() {
+        if (this.defaultUser) {
+            LOG.debug("Default user: {}, all-privileges", this);
+            return Arrays.asList(Privilege.values());
+        }
         return userRepository.findUserPrivileges(this.uuid);
     }
 
