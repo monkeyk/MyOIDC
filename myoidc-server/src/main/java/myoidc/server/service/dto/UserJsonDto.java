@@ -16,7 +16,7 @@ public class UserJsonDto implements Serializable {
 
     private static final long serialVersionUID = 2310668385840569887L;
 
-    private String uuid;
+    private String openid;
     private boolean archived;
 
     private String username;
@@ -29,7 +29,7 @@ public class UserJsonDto implements Serializable {
     }
 
     public UserJsonDto(User user) {
-        this.uuid = user.uuid();
+        this.openid = user.uuid();
         this.archived = user.archived();
         this.username = user.username();
 
@@ -42,6 +42,15 @@ public class UserJsonDto implements Serializable {
         }
     }
 
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
+    }
+
     public boolean isArchived() {
         return archived;
     }
@@ -50,13 +59,6 @@ public class UserJsonDto implements Serializable {
         this.archived = archived;
     }
 
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
 
     public String getUsername() {
         return username;

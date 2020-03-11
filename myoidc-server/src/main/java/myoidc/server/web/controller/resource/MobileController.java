@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import static myoidc.server.Constants.RESOURCE_ID;
+
 /**
- * Mobile Resource
- * from <a href="https://gitee.com/shengzhao/spring-oauth-server">spring-oauth-server</a>
+ * Mobile Resource API
  *
  * @author Shengzhao Li
  */
@@ -28,7 +29,7 @@ public class MobileController {
     @GetMapping("dashboard")
     @ResponseBody
     public OAuthResourceDto dashboard() {
-        return new OAuthResourceDto("mobile-resource", "Just mobile OAuth2-Resource");
+        return new OAuthResourceDto(RESOURCE_ID, "Just mobile-Resource");
     }
 
     @GetMapping("user_info")

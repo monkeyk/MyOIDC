@@ -53,7 +53,10 @@ import java.security.KeyPair;
 public class OAuth2ServerConfiguration implements Constants {
 
 
-    // unity resource
+    /**
+     * // unity resource
+     * unity 资源 的权限配置
+     */
     @Configuration
     @EnableResourceServer
     protected static class UnityResourceServerConfiguration extends ResourceServerConfigurerAdapter {
@@ -73,13 +76,17 @@ public class OAuth2ServerConfiguration implements Constants {
                     .requestMatchers().antMatchers("/unity/**")
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/unity/**").access("#oauth2.hasScope('read') and hasRole('ROLE_UNITY')");
+                    .antMatchers("/unity/**").access("#oauth2.hasScope('openid') and hasRole('ROLE_UNITY')");
 
         }
 
     }
 
-    // mobile resource
+
+    /**
+     * // mobile resource
+     * mobile 资源 的权限配置
+     */
     @Configuration
     @EnableResourceServer
     protected static class MobileResourceServerConfiguration extends ResourceServerConfigurerAdapter {
@@ -99,7 +106,37 @@ public class OAuth2ServerConfiguration implements Constants {
                     .requestMatchers().antMatchers("/m/**")
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/m/**").access("#oauth2.hasScope('read') and hasRole('ROLE_MOBILE')");
+                    .antMatchers("/m/**").access("#oauth2.hasScope('openid') and hasRole('ROLE_MOBILE')");
+
+        }
+
+    }
+
+
+    /**
+     * 只要认证后能访问 资源 权限配置
+     */
+    @Configuration
+    @EnableResourceServer
+    protected static class DefaultResourceServerConfiguration extends ResourceServerConfigurerAdapter {
+
+        @Override
+        public void configure(ResourceServerSecurityConfigurer resources) {
+            resources.resourceId(RESOURCE_ID).stateless(false);
+        }
+
+        @Override
+        public void configure(HttpSecurity http) throws Exception {
+            http
+                    // Since we want the protected resources to be accessible in the UI as well we need
+                    // session creation to be allowed (it's disabled by default in 2.0.6)
+                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                    .and()
+                    .requestMatchers().antMatchers("/api/**")
+                    .and()
+                    .authorizeRequests()
+                    .antMatchers("/api/**")
+                    .access("#oauth2.hasScope('openid') or #oauth2.hasScope('read') and hasRole('ROLE_USER')");
 
         }
 

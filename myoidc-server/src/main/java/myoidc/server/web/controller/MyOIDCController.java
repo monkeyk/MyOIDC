@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import static myoidc.server.domain.shared.Application.host;
+
 
 /**
  * 2018/2/5
@@ -26,7 +28,7 @@ public class MyOIDCController {
      */
     @RequestMapping(value = "/")
     public String index(Model model) {
-
+        model.addAttribute("host", host());
         return "index";
     }
 
@@ -35,6 +37,7 @@ public class MyOIDCController {
     @GetMapping(value = {"/login"})
     public String login(Model model) {
         LOG.info("Go to login, IP: {}", WebUtils.getIp());
+        model.addAttribute("host", host());
         return "login";
     }
 

@@ -33,14 +33,21 @@ public interface Constants {
      */
     String KEYSTORE_NAME = "keystore.json";
 
+    /**
+     * ALG: RS256
+     *
+     * @since 1.1.0
+     */
+    String OIDC_ALG = "RS256";
+
 
     //系统字符编码
-    public static final String ENCODING = "UTF-8";
+    String ENCODING = "UTF-8";
 
-    public static final String PROJECT_HOME = "https://github.com/monkeyk/MyOIDC";
+    String PROJECT_HOME = "https://github.com/monkeyk/MyOIDC";
 
     //Current  version
-    public static final String VERSION = "1.1.0";
+    String VERSION = "1.1.0";
 
 
 }
