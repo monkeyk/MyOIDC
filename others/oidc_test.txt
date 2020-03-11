@@ -88,7 +88,7 @@ Use it get resource-server resources after auth successful. will use it in <myoi
 [userinfo API]
 http://localhost:8080/myoidc-server/api/userinfo
 Response JSON
-{"openid":"wR4XwW4UdCbfOWuMCYj8lafxApKZHtgl6uls55Ij2i","archived":false,"username":"admin","phone":null,"email":"admin@qc8.me","privileges":[]}
+{"openid":"wR4XwW4UdCbfOWuMCYj8lafxApKZHtgl6uls55Ij2i","archived":false,"username":"admin","phone":null,"email":"admin@qc8.me","privileges":["USER","ADMIN","UNITY","MOBILE"]}
 
 [ROLE_UNITY]
 http://localhost:8080/myoidc-server/unity/user_info
