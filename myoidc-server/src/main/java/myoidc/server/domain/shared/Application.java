@@ -27,7 +27,7 @@ public class Application implements InitializingBean, Constants {
     }
 
     public void setHost(String host) {
-        Application.host = host;
+        Application.host = host.endsWith("/") ? host : host + "/";
     }
 
 

@@ -3,6 +3,8 @@ package myoidc.server.config;
 import com.google.common.base.Charsets;
 import com.google.common.io.CharStreams;
 import myoidc.server.Constants;
+import myoidc.server.infrastructure.oauth.MyOIDCAccessTokenConverter;
+import myoidc.server.infrastructure.oauth.MyOIDCUserAuthenticationConverter;
 import myoidc.server.service.OauthService;
 import myoidc.server.service.SecurityService;
 import myoidc.server.service.oauth.CustomJdbcClientDetailsService;
@@ -157,6 +159,11 @@ public class OAuth2ServerConfiguration implements Constants {
                 accessTokenConverter.setKeyPair(new KeyPair(pjwk.getPublicKey(), pjwk.getPrivateKey()));
             }
 //            System.out.println("Key:\n" + accessTokenConverter.getKey());
+
+            MyOIDCAccessTokenConverter tokenConverter = new MyOIDCAccessTokenConverter();
+            tokenConverter.setUserTokenConverter(new MyOIDCUserAuthenticationConverter());
+            accessTokenConverter.setAccessTokenConverter(tokenConverter);
+
             return accessTokenConverter;
         }
 
@@ -201,6 +208,11 @@ public class OAuth2ServerConfiguration implements Constants {
 
         @Override
         public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+            //只允许SSL访问时加上此配置
+//            oauthServer.sslOnly();
+            // /oauth/token_key 与 /oauth/check_token 访问不需要权限
+            oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("permitAll()");
+
             oauthServer.realm("MyOIDC")
                     // 支持 client_credentials 的配置
                     .allowFormAuthenticationForClients();
