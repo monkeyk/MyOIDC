@@ -54,6 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //        http.csrf().disable()
         http.authorizeRequests()
                 .antMatchers("/public/**").permitAll()
+                .antMatchers("/.well-known/openid-configuration*").permitAll()
                 .antMatchers("/static/**").permitAll()
                 .antMatchers("/login*").permitAll()
 
