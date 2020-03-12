@@ -189,12 +189,8 @@ public class OAuth2ServerConfiguration implements Constants {
         @Bean
         public JwtAccessTokenConverter accessTokenConverter() throws Exception {
             JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
-            //加载 keystore配置文件
-            try (InputStream is = getClass().getClassLoader().getResourceAsStream(KEYSTORE_NAME)) {
-                String keyJson = CharStreams.toString(new InputStreamReader(is, Charsets.UTF_8));
-                PublicJsonWebKey pjwk = RsaJsonWebKey.Factory.newPublicJwk(keyJson);
-                accessTokenConverter.setKeyPair(new KeyPair(pjwk.getPublicKey(), pjwk.getPrivateKey()));
-            }
+            PublicJsonWebKey publicJsonWebKey = publicJsonWebKey();
+            accessTokenConverter.setKeyPair(new KeyPair(publicJsonWebKey.getPublicKey(), publicJsonWebKey.getPrivateKey()));
 //            System.out.println("Key:\n" + accessTokenConverter.getKey());
 
             MyOIDCAccessTokenConverter tokenConverter = new MyOIDCAccessTokenConverter();
@@ -202,6 +198,23 @@ public class OAuth2ServerConfiguration implements Constants {
             accessTokenConverter.setAccessTokenConverter(tokenConverter);
 
             return accessTokenConverter;
+        }
+
+
+        /**
+         * Only one key
+         *
+         * @return PublicJsonWebKey
+         * @throws Exception e
+         * @since 1.1.0
+         */
+        @Bean
+        public PublicJsonWebKey publicJsonWebKey() throws Exception {
+            //加载 keystore配置文件
+            try (InputStream is = getClass().getClassLoader().getResourceAsStream(KEYSTORE_NAME)) {
+                String keyJson = CharStreams.toString(new InputStreamReader(is, Charsets.UTF_8));
+                return RsaJsonWebKey.Factory.newPublicJwk(keyJson);
+            }
         }
 
         @Bean
