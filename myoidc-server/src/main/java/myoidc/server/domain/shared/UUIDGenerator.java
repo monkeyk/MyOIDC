@@ -1,7 +1,7 @@
 package myoidc.server.domain.shared;
 
-import org.apache.commons.lang.RandomStringUtils;
 
+import org.apache.commons.lang3.RandomStringUtils;
 
 /**
  * @author Shengzhao Li

@@ -35,7 +35,7 @@ public class MyOIDCUserAuthenticationConverter extends DefaultUserAuthentication
         //按协议规范增加 required 属性
         // https://openid.net/specs/openid-connect-core-1_0.html#IDToken
         myOIDCMap.put(ReservedClaimNames.ISSUER, Application.host());
-        myOIDCMap.put(ReservedClaimNames.ISSUED_AT, String.valueOf(System.currentTimeMillis()));
+        myOIDCMap.put(ReservedClaimNames.ISSUED_AT, System.currentTimeMillis() / 1000);
 
         Object details = authentication.getDetails();
         if (details instanceof OIDCUserDetails) {

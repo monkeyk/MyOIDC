@@ -1,7 +1,7 @@
 package myoidc.server.infrastructure.oauth;
 
 
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 
 /**
  * 2016/12/25
@@ -93,9 +93,9 @@ public abstract class OIDCUtils {
      */
     public static String jwksURI(String host) {
         if (host.endsWith("/")) {
-            return host + "oauth/token_key";
+            return host + "public/jwks";
         }
-        return host + "/oauth/token_key";
+        return host + "/public/jwks";
     }
 
 

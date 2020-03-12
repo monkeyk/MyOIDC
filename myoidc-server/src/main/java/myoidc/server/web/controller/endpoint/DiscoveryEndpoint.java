@@ -48,10 +48,11 @@ public class DiscoveryEndpoint {
 
         model.put("scopes_supported", Arrays.asList(SCOPE_OPENID, SCOPE_READ, SCOPE_WRITE));
         model.put("grant_types_supported", OIDCUtils.GrantType.values());
-        model.put("response_types_supported", Arrays.asList("token", "id_token"));
+        model.put("response_types_supported", Arrays.asList("token", "code"));
         //ALG:
         model.put("id_token_signing_alg_values_supported", Collections.singletonList(OIDC_ALG));
-        model.put("subject_types_supported", Arrays.asList("pairwise", "public"));
+        // "pairwise",
+        model.put("subject_types_supported", Arrays.asList("public"));
         return model;
     }
 

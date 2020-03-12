@@ -1,6 +1,7 @@
 package myoidc.server.infrastructure;
 
-import org.apache.commons.lang.RandomStringUtils;
+
+import org.apache.commons.lang3.RandomStringUtils;
 
 /**
  * 2016/12/25
