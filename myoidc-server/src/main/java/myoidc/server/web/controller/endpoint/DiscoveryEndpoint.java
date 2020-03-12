@@ -47,7 +47,7 @@ public class DiscoveryEndpoint {
         model.put("registration_endpoint", OIDCUtils.registrationEndpoint(host));
 
         model.put("scopes_supported", Arrays.asList(SCOPE_OPENID, SCOPE_READ, SCOPE_WRITE));
-        model.put("grant_types_supported", OIDCUtils.GrantType.values());
+        model.put("grant_types_supported", OIDCUtils.GrantType.types());
         model.put("response_types_supported", Arrays.asList("token", "code"));
         //ALG:
         model.put("id_token_signing_alg_values_supported", Collections.singletonList(OIDC_ALG));

@@ -3,6 +3,9 @@ package myoidc.server.infrastructure.oauth;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 2016/12/25
  *
@@ -26,6 +29,15 @@ public abstract class OIDCUtils {
 
         public String getType() {
             return type;
+        }
+
+        public static List<String> types() {
+            GrantType[] values = values();
+            List<String> list = new ArrayList<>(values.length);
+            for (GrantType value : values) {
+                list.add(value.getType());
+            }
+            return list;
         }
 
         @Override
