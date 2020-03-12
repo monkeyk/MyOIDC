@@ -1,5 +1,6 @@
 package myoidc.server.web.controller.endpoint;
 
+import myoidc.server.web.WebUtils;
 import org.jose4j.jwk.JsonWebKey;
 import org.jose4j.jwk.JsonWebKeySet;
 import org.jose4j.jwk.PublicJsonWebKey;
@@ -33,6 +34,9 @@ public class JWKSEndpoint {
 
     @GetMapping("/public/jwks")
     public Map<String, Object> jwks(Model model) throws Exception {
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Call 'jwks' API from IP: {}", WebUtils.getIp());
+        }
         Map<String, Object> params = publicJsonWebKey.toParams(JsonWebKey.OutputControlLevel.PUBLIC_ONLY);
         //only one key
         model.addAttribute(JsonWebKeySet.JWK_SET_MEMBER_NAME, Collections.singletonList(params));
