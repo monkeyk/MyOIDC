@@ -54,6 +54,7 @@ public class DiscoveryEndpoint {
         model.put("id_token_signing_alg_values_supported", Collections.singletonList(OIDC_ALG));
         // "pairwise",
         model.put("subject_types_supported", Arrays.asList("public"));
+        model.put("claims_supported", Arrays.asList("sub", "aud", "scope", "iss", "exp", "iat", "client_id", "authorities", "user_name"));
         return model;
     }
 
