@@ -9,7 +9,7 @@
  * it only in accordance with the terms of the license agreement you
  * entered into with MONKEYK Information Technology Co. Ltd.
  */
-package myoidc.server.infrastructure.jpa;
+package myoidc.server.infrastructure.jdbc;
 
 
 import myoidc.server.domain.oauth.OauthClientDetails;

@@ -14,8 +14,8 @@ import java.util.List;
  *
  * @author Shengzhao Li
  */
-@Repository("userRepositoryJpa")
-public class UserRepositoryJpa extends AbstractRepositoryJpa<User> implements UserRepository {
+@Repository()
+public class UserRepositoryHibernate extends AbstractRepositoryHibernate<User> implements UserRepository {
 
 
     @Override
@@ -26,9 +26,10 @@ public class UserRepositoryJpa extends AbstractRepositoryJpa<User> implements Us
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Privilege> findUserPrivileges(String userUuid) {
         final String hql = " select up.privilege from UserPrivilege up where up.archived = false and up.user.uuid = :userUuid";
-        final Query query = entityManager().createQuery(hql).setParameter("userUuid", userUuid);
+        final Query query = session().createQuery(hql).setParameter("userUuid", userUuid);
         return query.getResultList();
     }
 

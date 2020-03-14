@@ -4,14 +4,14 @@ package myoidc.server.infrastructure.jpa;
 import com.google.common.collect.ImmutableMap;
 import myoidc.server.domain.AbstractDomain;
 import myoidc.server.domain.shared.Repository;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -19,26 +19,21 @@ import java.util.List;
 /**
  * @author Shengzhao Li
  */
-public abstract class AbstractRepositoryJpa<T> implements Repository, InitializingBean {
+public abstract class AbstractRepositoryHibernate<T> implements Repository, InitializingBean {
 
 
     @Autowired
-    private EntityManagerFactory entityManagerFactory;
+    private SessionFactory sessionFactory;
 
 
-    protected EntityManager entityManager() {
-        return entityManagerFactory.createEntityManager();
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        Assert.notNull(entityManagerFactory, "EntityManagerFactory is required!");
+    protected Session session() {
+        return sessionFactory.getCurrentSession();
     }
 
 
     @SuppressWarnings("unchecked")
     protected <T extends AbstractDomain> List<T> find(final String queryString, final ImmutableMap<String, ?> paramsMap) throws DataAccessException {
-        final javax.persistence.Query query = entityManager().createQuery(queryString);
+        final Query query = session().createQuery(queryString);
         if (paramsMap != null) {
             for (String key : paramsMap.keySet()) {
                 query.setParameter(key, paramsMap.get(key));
@@ -65,9 +60,8 @@ public abstract class AbstractRepositoryJpa<T> implements Repository, Initializi
     }
 
     @Override
-//    @Transactional()
     public <T extends AbstractDomain> void saveOrUpdate(T domain) {
-        this.entityManager().persist(domain);
+        this.session().saveOrUpdate(domain);
     }
 
     @Override
@@ -79,7 +73,7 @@ public abstract class AbstractRepositoryJpa<T> implements Repository, Initializi
 
     @Override
     public <T extends AbstractDomain> void delete(T domain) {
-        this.entityManager().remove(domain);
+        this.session().delete(domain);
     }
 
     @Override
@@ -106,9 +100,14 @@ public abstract class AbstractRepositoryJpa<T> implements Repository, Initializi
         if (uuids == null || uuids.isEmpty()) {
             return Collections.emptyList();
         }
-        final javax.persistence.Query query = this.entityManager().createQuery("from " + clazz.getName() + " c where c.uuid in (:uuids)");
-//        query.setParameterList("uuids", uuids);
+        final Query query = this.session().createQuery("from " + clazz.getName() + " c where c.uuid in (:uuids)");
         query.setParameter("uuids", uuids);
         return query.getResultList();
+    }
+
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        Assert.notNull(sessionFactory, "sessionFactory is required!");
     }
 }

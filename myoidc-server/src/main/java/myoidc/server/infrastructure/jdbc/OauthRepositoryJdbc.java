@@ -1,10 +1,9 @@
-package myoidc.server.infrastructure.jpa;
+package myoidc.server.infrastructure.jdbc;
 
 
 import myoidc.server.domain.oauth.OauthClientDetails;
 import myoidc.server.domain.oauth.OauthRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +15,7 @@ import java.util.List;
  *
  * @author Shengzhao Li
  */
-@Repository("oauthRepositoryJdbc")
+@Repository()
 public class OauthRepositoryJdbc implements OauthRepository {
 
 

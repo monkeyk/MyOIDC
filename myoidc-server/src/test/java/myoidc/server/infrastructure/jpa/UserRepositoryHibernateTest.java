@@ -17,7 +17,7 @@ import static org.junit.Assert.assertNotNull;
  *
  * @author Shengzhao Li
  */
-public class UserRepositoryJpaTest extends AbstractRepositoryTest {
+public class UserRepositoryHibernateTest extends AbstractRepositoryTest {
 
 
     @Autowired
