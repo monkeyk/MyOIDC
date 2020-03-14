@@ -4,6 +4,7 @@ import com.google.common.base.Charsets;
 import com.google.common.io.CharStreams;
 import myoidc.server.Constants;
 import myoidc.server.infrastructure.oauth.MyOIDCAccessTokenConverter;
+import myoidc.server.infrastructure.oauth.MyOIDCJwtAccessTokenConverter;
 import myoidc.server.infrastructure.oauth.MyOIDCUserAuthenticationConverter;
 import myoidc.server.service.OauthService;
 import myoidc.server.service.SecurityService;
@@ -41,7 +42,6 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import javax.sql.DataSource;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.security.KeyPair;
 
 /**
  * 2018/2/8
@@ -190,9 +190,8 @@ public class OAuth2ServerConfiguration implements Constants {
          */
         @Bean
         public JwtAccessTokenConverter accessTokenConverter() throws Exception {
-            JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
             PublicJsonWebKey publicJsonWebKey = publicJsonWebKey();
-            accessTokenConverter.setKeyPair(new KeyPair(publicJsonWebKey.getPublicKey(), publicJsonWebKey.getPrivateKey()));
+            MyOIDCJwtAccessTokenConverter accessTokenConverter = new MyOIDCJwtAccessTokenConverter(publicJsonWebKey);
 //            System.out.println("Key:\n" + accessTokenConverter.getKey());
 
             MyOIDCAccessTokenConverter tokenConverter = new MyOIDCAccessTokenConverter();

@@ -55,6 +55,13 @@ public interface Constants {
      */
     String ID_TOKEN = "id_token";
 
+    /**
+     * JWT keyid
+     *
+     * @since 1.1.0
+     */
+    String KEY_ID = "kid";
+
 
     //系统字符编码
     String ENCODING = "UTF-8";

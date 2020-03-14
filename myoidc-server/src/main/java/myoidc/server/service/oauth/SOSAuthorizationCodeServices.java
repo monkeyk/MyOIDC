@@ -1,5 +1,6 @@
 package myoidc.server.service.oauth;
 
+import org.springframework.security.oauth2.common.util.RandomValueStringGenerator;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
 
@@ -16,10 +17,20 @@ import javax.sql.DataSource;
 public class SOSAuthorizationCodeServices extends JdbcAuthorizationCodeServices {
 
 
+    // 扩展长度 18
+    private RandomValueStringGenerator generator = new RandomValueStringGenerator(18);
+
+
     public SOSAuthorizationCodeServices(DataSource dataSource) {
         super(dataSource);
     }
 
+
+    public String createAuthorizationCode(OAuth2Authentication authentication) {
+        String code = generator.generate();
+        store(code, authentication);
+        return code;
+    }
 
     @Override
 //    @Cacheable(value = AUTHORIZATION_CODE_CACHE, key = "#code")
