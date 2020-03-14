@@ -10,8 +10,10 @@ import myoidc.server.service.SecurityService;
 import myoidc.server.service.oauth.CustomJdbcClientDetailsService;
 import myoidc.server.service.oauth.OauthUserApprovalHandler;
 import myoidc.server.service.oauth.SOSAuthorizationCodeServices;
+import org.jose4j.jwk.JsonWebKeySet;
 import org.jose4j.jwk.PublicJsonWebKey;
 import org.jose4j.jwk.RsaJsonWebKey;
+import org.jose4j.keys.RsaKeyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -202,19 +204,32 @@ public class OAuth2ServerConfiguration implements Constants {
 
 
         /**
-         * Only one key
+         * JWK set
          *
-         * @return PublicJsonWebKey
+         * @return JsonWebKeySet
          * @throws Exception e
          * @since 1.1.0
          */
         @Bean
-        public PublicJsonWebKey publicJsonWebKey() throws Exception {
+        public JsonWebKeySet jsonWebKeySet() throws Exception {
             //加载 keystore配置文件
             try (InputStream is = getClass().getClassLoader().getResourceAsStream(KEYSTORE_NAME)) {
                 String keyJson = CharStreams.toString(new InputStreamReader(is, Charsets.UTF_8));
-                return RsaJsonWebKey.Factory.newPublicJwk(keyJson);
+                return new JsonWebKeySet(keyJson);
             }
+        }
+
+        /**
+         * Only  use one key
+         *
+         * @return RsaJsonWebKey
+         * @throws Exception e
+         * @since 1.1.0
+         */
+        @Bean
+        public RsaJsonWebKey publicJsonWebKey() throws Exception {
+            JsonWebKeySet jsonWebKeySet = jsonWebKeySet();
+            return (RsaJsonWebKey) jsonWebKeySet.findJsonWebKey(DEFAULT_KEY_ID, RsaKeyUtil.RSA, USE_SIG, OIDC_ALG);
         }
 
         @Bean

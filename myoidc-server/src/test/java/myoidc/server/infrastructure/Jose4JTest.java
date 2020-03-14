@@ -1,6 +1,8 @@
 package myoidc.server.infrastructure;
 
 
+import com.google.common.base.Charsets;
+import com.google.common.io.CharStreams;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.jose4j.jwe.ContentEncryptionAlgorithmIdentifiers;
 import org.jose4j.jwe.JsonWebEncryption;
@@ -13,13 +15,17 @@ import org.jose4j.jwt.consumer.JwtConsumer;
 import org.jose4j.jwt.consumer.JwtConsumerBuilder;
 import org.jose4j.keys.AesKey;
 import org.jose4j.keys.EllipticCurves;
+import org.jose4j.keys.RsaKeyUtil;
 import org.junit.Test;
 
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.security.Key;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
+import static myoidc.server.Constants.*;
 import static org.junit.Assert.*;
 
 
@@ -32,6 +38,38 @@ import static org.junit.Assert.*;
  * @author Shengzhao Li
  */
 public class Jose4JTest {
+
+
+    @Test
+    public void testRsaJsonWebKey() throws Exception {
+
+        RsaJsonWebKey jwk = RsaJwkGenerator.generateJwk(DEFAULT_KEY_SIZE);
+        //sig or enc
+        jwk.setUse(USE_SIG);
+        jwk.setKeyId(DEFAULT_KEY_ID);
+        jwk.setAlgorithm(OIDC_ALG);
+//        jwk.setKeyOps();
+
+        final String publicKeyString = jwk.toJson(JsonWebKey.OutputControlLevel.PUBLIC_ONLY);
+        final String privateKeyString = jwk.toJson(JsonWebKey.OutputControlLevel.INCLUDE_PRIVATE);
+
+        assertNotNull(publicKeyString);
+        assertNotNull(privateKeyString);
+//        System.out.println("PublicKey:\n" + publicKeyString);
+//        System.out.println("PrivateKey:\n" + privateKeyString);
+
+
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream(KEYSTORE_NAME)) {
+            String keyJson = CharStreams.toString(new InputStreamReader(is, Charsets.UTF_8));
+            JsonWebKeySet jsonWebKeySet = new JsonWebKeySet(keyJson);
+            assertNotNull(jsonWebKeySet);
+            JsonWebKey jsonWebKey = jsonWebKeySet.findJsonWebKey(DEFAULT_KEY_ID, RsaKeyUtil.RSA, USE_SIG, OIDC_ALG);
+            assertNotNull(jsonWebKey);
+//            System.out.println(jsonWebKey);
+        }
+
+
+    }
 
 
     /**

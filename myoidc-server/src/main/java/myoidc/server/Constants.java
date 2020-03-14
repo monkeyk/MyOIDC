@@ -31,7 +31,7 @@ public interface Constants {
      *
      * @since 1.1.0
      */
-    String KEYSTORE_NAME = "keystore.json";
+    String KEYSTORE_NAME = "jwks.json";
 
     /**
      * ALG: RS256
@@ -39,6 +39,12 @@ public interface Constants {
      * @since 1.1.0
      */
     String OIDC_ALG = "RS256";
+
+    /**
+     * OIDC key use: sig or enc
+     */
+    String USE_SIG = "sig";
+    String USE_ENC = "enc";
 
 
     //系统字符编码
