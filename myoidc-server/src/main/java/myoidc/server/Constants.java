@@ -42,9 +42,18 @@ public interface Constants {
 
     /**
      * OIDC key use: sig or enc
+     *
+     * @since 1.1.0
      */
     String USE_SIG = "sig";
     String USE_ENC = "enc";
+
+    /**
+     * id_token constants
+     *
+     * @since 1.1.0
+     */
+    String ID_TOKEN = "id_token";
 
 
     //系统字符编码

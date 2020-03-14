@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import static myoidc.server.Constants.ID_TOKEN;
 import static myoidc.server.Constants.OIDC_ALG;
 import static myoidc.server.domain.shared.Application.host;
 import static myoidc.server.infrastructure.oauth.OIDCUtils.SCOPE_OPENID;
@@ -48,7 +49,7 @@ public class DiscoveryEndpoint {
 
         model.put("scopes_supported", Arrays.asList(SCOPE_OPENID, SCOPE_READ, SCOPE_WRITE));
         model.put("grant_types_supported", OIDCUtils.GrantType.types());
-        model.put("response_types_supported", Arrays.asList("token", "code"));
+        model.put("response_types_supported", Arrays.asList("token", "code", ID_TOKEN));
         //ALG:
         model.put("id_token_signing_alg_values_supported", Collections.singletonList(OIDC_ALG));
         // "pairwise",
