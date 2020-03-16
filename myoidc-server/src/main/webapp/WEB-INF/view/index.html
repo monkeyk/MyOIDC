@@ -13,7 +13,7 @@
 <div th:replace="fragment/header :: public-header"/>
 
 <div class="container">
-    <h3>在开始OIDC之前, 您需要清楚的OIDC术语
+    <h3>在开始OIDC之前, 您需要清楚一些OIDC术语
         <small>这与OAuth2有些区别</small>
     </h3>
     <ul>
@@ -30,15 +30,26 @@
         <li>
             <p>
                 <strong class="text-primary">OP</strong> OpenID Provider, 能提供对EU进行认证的服务端(可理解为OAuth2中授权服务端),
-                提供RP的注册(或管理)能力与EU
+                提供RP的注册(或管理)能力与EU管理
                 <br/>
                 <span class="text-muted">OIDC-Server 就是一个OP的参考实现</span>
             </p>
         </li>
         <li>
             <p>
-                <code>id_token</code> JSON Web Token(JWT), 包含EU认证授权信息等. 有关JWT请访问 <a href="https://jwt.io/"
-                                                                                    target="_blank">https://jwt.io/</a>
+                <code>id_token</code> JSON Web Token(<a
+                    href="http://tools.ietf.org/html/draft-ietf-oauth-json-web-token" target="_blank">JWT</a>),
+                包含EU认证授权信息等. 有关JWT请访问 <a
+                    href="https://jwt.io/" target="_blank">https://jwt.io/</a>
+                <br/>
+                <span class="text-muted">除了JWT, 知道以下概念对掌握OIDC会很有帮助<br/>
+                    JSON Web Key(<a href="https://tools.ietf.org/html/draft-ietf-jose-json-web-key-41" target="_blank">JWK</a>),
+                    JSON Web Encryption(<a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-encryption"
+                                           target="_blank">JWE</a>),
+                    JSON Web Algorithm(<a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms"
+                                          target="_blank">JWA</a>),
+                    JSON Web Signature(<a href="https://tools.ietf.org/html/draft-ietf-jose-json-web-signature-41"
+                                          target="_blank">JWS</a>)</span>
             </p>
         </li>
         <li>
@@ -64,7 +75,7 @@
 
     <!--<hr/>-->
     <!--<p>-->
-        <!--...-->
+    <!--...-->
     <!--</p>-->
 
 </div>
