@@ -14,7 +14,8 @@
     <div class="col-md-offset-2 col-md-8">
         <div class="panel panel-default">
             <div class="panel-body">
-                <img alt="Logo" th:src="@{/static/images/openid.png}" style="max-height: 100px;"/>
+                <a th:href="@{'/'}"><img alt="Logo" th:src="@{/static/images/openid.png}"
+                                         style="max-height: 100px;"/></a>
 
                 <form th:action="@{/registration}" method="post" class="form-horizontal">
                     尚未实现...
