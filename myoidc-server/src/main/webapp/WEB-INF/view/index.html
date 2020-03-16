@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8"/>
     <link rel="shortcut icon" href="../../static/favicon.ico" th:href="@{/static/favicon.ico}"/>
@@ -73,10 +74,42 @@
         完整的OIDC术语介绍请访问 <a href="http://openid.net/specs/openid-connect-core-1_0.html#Terminology" target="_blank">http://openid.net/specs/openid-connect-core-1_0.html#Terminology</a>
     </p>
 
-    <!--<hr/>-->
-    <!--<p>-->
-    <!--...-->
-    <!--</p>-->
+    <hr/>
+    <h4>菜单</h4>
+    <ul>
+        <li>
+            <p>
+                <a th:href="@{'/static/api/MyOIDC_API-1.1.0.html'}" target="_blank">API</a> <span
+                    class="text-muted">- 查看提供的API文档</span>
+            </p>
+        </li>
+        <li sec:authorize="hasRole('ROLE_ADMIN')">
+            <p>
+                <a th:href="@{'/admin/rp/list'}">客户端[RP]</a> <span
+                    class="text-muted">- 管理客户端[RP] (client_details)</span>
+            </p>
+        </li>
+        <li sec:authorize="hasRole('ROLE_ADMIN')">
+            <p>
+                <a th:href="@{'/admin/user/list'}">用户[EU]</a> <span class="text-muted">- 管理用户[EU] (也指账号)</span>
+            </p>
+        </li>
+        <li>
+            <p>
+                <a th:href="@{'/public/registration'}">注册客户端[RP]</a> <span class="text-muted">- 若需要可提供对外注册客户端[RP] (这是可选的, 不需要授权也能访问)</span>
+            </p>
+        </li>
+        <li>
+            <p>
+                <a th:href="@{'/unity/dashboard'}">Unity</a> <span class="text-muted">- Unity 资源(resource), 需要具有 [ROLE_UNITY] 权限的<code>access_token</code>才能访问</span>
+            </p>
+        </li>
+        <li>
+            <p>
+                <a th:href="@{'/m/dashboard'}">Mobile</a> <span class="text-muted">- Mobile资源(resource), 需要具有 [ROLE_MOBILE] 权限的<code>access_token</code>才能访问</span>
+            </p>
+        </li>
+    </ul>
 
 </div>
 
