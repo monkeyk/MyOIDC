@@ -2,23 +2,23 @@
 
 
 --
---  Insert default user: admin/admin
+--  Insert default user: admin/MyOIDC-2017
 truncate user_;
 INSERT INTO user_ (id, uuid, create_time, archived, version, username, password, phone, email, default_user)
 VALUES
-  (21, 'wR4XwW4UdCbfOWuMCYj8lafxApKZHtgl6uls55Ij2i', now(), 0, 0, 'admin', '$2a$10$XWN7zOvSLDiyxQnX01KMXuf5NTkkuAUtt23YxUMWaIPURcR7bdULi', NULL,
+  (21, 'wR4XwW4UdCbfOWuMCYj8lafxApKZHtgl6uls55Ij2i', now(), 0, 0, 'admin', '$2a$10$K2bdNUA09wrgKOMYGCMWeeyb7V49sZluTolXeNf0J14ArEzfn82Qi', NULL,
    'admin@qc8.me', 1);
 
--- unity/unity
+-- unity/MyOIDC-2017
 INSERT INTO user_ (id, uuid, create_time, archived, version, username, password, phone, email, default_user)
 VALUES
-  (22, 'fFVLrIx6MgVwXDhKUHE23KR3w0KqOulHjSNyf6rC04', now(), 0, 0, 'unity', '$2a$10$gq3eUch/h.eHt20LpboSXeeZinzSLBk49K5KD.Ms4/1tOAJIsrrfq', NULL,
+  (22, 'fFVLrIx6MgVwXDhKUHE23KR3w0KqOulHjSNyf6rC04', now(), 0, 0, 'unity', '$2a$10$K2bdNUA09wrgKOMYGCMWeeyb7V49sZluTolXeNf0J14ArEzfn82Qi', NULL,
    'unity@qc8.me', 0);
 
--- mobile/mobile
+-- mobile/MyOIDC-2017
 INSERT INTO user_ (id, uuid, create_time, archived, version, username, password, phone, email, default_user)
 VALUES
-  (23, 'Ajlt9ZwVyGUvxrJCdKlFA4AataAVKVgH6gxYeCxD6J', now(), 0, 0, 'mobile', '$2a$10$BOmMzLDaoiIQ4Q1pCw6Z4u0gzL01B8bNL.0WUecJ2YxTtHVRIA8Zm', NULL,
+  (23, 'Ajlt9ZwVyGUvxrJCdKlFA4AataAVKVgH6gxYeCxD6J', now(), 0, 0, 'mobile', '$2a$10$K2bdNUA09wrgKOMYGCMWeeyb7V49sZluTolXeNf0J14ArEzfn82Qi', NULL,
    'mobile@qc8.me', 0);
 
 
