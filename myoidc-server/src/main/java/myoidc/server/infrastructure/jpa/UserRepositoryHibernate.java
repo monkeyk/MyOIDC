@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import myoidc.server.domain.user.Privilege;
 import myoidc.server.domain.user.User;
 import myoidc.server.domain.user.UserRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
@@ -35,9 +36,13 @@ public class UserRepositoryHibernate extends AbstractRepositoryHibernate<User> i
 
     @Override
     public List<User> findUsersByUsername(String username) {
-        final String hql = "from User u where u.username like :username and u.archived = false order by u.id desc ";
-        // 右半 %,  使用索引
-        return find(hql, ImmutableMap.of("username", username + "%"));
+        if (StringUtils.isNoneBlank(username)) {
+            final String hql = "from User u where u.username like :username and u.archived = false order by u.id desc ";
+            // 右半 %,  使用索引
+            return find(hql, ImmutableMap.of("username", username + "%"));
+        } else {
+            return find("from User u where u.archived = false order by u.id desc ");
+        }
     }
 
 }

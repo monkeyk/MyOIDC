@@ -3,16 +3,14 @@ package myoidc.server.service.impl;
 import myoidc.server.domain.user.User;
 import myoidc.server.domain.user.UserRepository;
 import myoidc.server.service.UserService;
+import myoidc.server.service.business.UserFormSaver;
 import myoidc.server.service.dto.UserDto;
 import myoidc.server.service.dto.UserFormDto;
 import myoidc.server.service.dto.UserListDto;
-import myoidc.server.web.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -32,8 +30,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @Override
     @Transactional(readOnly = true)
@@ -54,10 +50,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional()
     public String saveUserForm(UserFormDto formDto) {
-        User user = formDto.newUser();
-        user.password(passwordEncoder.encode(formDto.getPassword()));
-        userRepository.saveOrUpdate(user);
-        LOG.debug("{}|Save User: {}", WebUtils.getIp(), user);
-        return user.uuid();
+        UserFormSaver saver = new UserFormSaver(formDto);
+        return saver.save();
     }
 }
