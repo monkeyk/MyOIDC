@@ -5,6 +5,8 @@ import myoidc.server.domain.user.Privilege;
 import myoidc.server.domain.user.User;
 
 import java.io.Serializable;
+import java.time.temporal.ChronoField;
+import java.time.temporal.TemporalField;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class UserJsonDto implements Serializable {
         this.openid = user.uuid();
 //        this.archived = user.archived();
         this.username = user.username();
-        this.create_time = user.createTime().getTime();
+        this.create_time = user.createTime().getLong(ChronoField.MILLI_OF_SECOND);
 
         this.phone = user.phone();
         this.email = user.email();

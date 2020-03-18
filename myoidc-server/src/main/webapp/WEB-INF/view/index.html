@@ -85,13 +85,13 @@
         </li>
         <li sec:authorize="hasRole('ROLE_ADMIN')">
             <p>
-                <a th:href="@{'/admin/rp/list'}">客户端[RP]</a> <span
-                    class="text-muted">- 管理客户端[RP] (client_details)</span>
+                <a th:href="@{'/admin/user/list'}">用户[EU]</a> <span class="text-muted">- 管理用户[EU] (也指账号)</span>
             </p>
         </li>
         <li sec:authorize="hasRole('ROLE_ADMIN')">
             <p>
-                <a th:href="@{'/admin/user/list'}">用户[EU]</a> <span class="text-muted">- 管理用户[EU] (也指账号)</span>
+                <a th:href="@{'/admin/rp/list'}">客户端[RP]</a> <span
+                    class="text-muted">- 管理客户端[RP] (client_details)</span>
             </p>
         </li>
         <li>

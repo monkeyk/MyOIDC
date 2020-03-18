@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="shortcut icon" href="../../../static/favicon.ico" th:href="@{/static/favicon.ico}"/>
+
+    <title>用户[EU] . MyOIDC</title>
+
+    <th:block th:include="fragment/header :: public-css"/>
+</head>
+<body>
+
+<div th:replace="fragment/header :: public-header"/>
+
+<div class="container">
+
+</div>
+
+<hr/>
+<div th:replace="fragment/footer :: footer-oidc"/>
+</body>
+</html>

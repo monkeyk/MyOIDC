@@ -5,7 +5,7 @@ import myoidc.server.domain.shared.UUIDGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * @author Shengzhao Li
@@ -33,7 +33,7 @@ public abstract class AbstractDomain implements Serializable {
     protected int version;
 
     /**
-     * Domain business guid.
+     * Domain business uuid.
      */
     @Column(name = "uuid", unique = true)
     protected String uuid = UUIDGenerator.generate();
@@ -42,8 +42,8 @@ public abstract class AbstractDomain implements Serializable {
      * The domain create time.
      */
     @Column(name = "create_time")
-//    @Type(type = "org.hibernate.type.TimestampType")
-    protected Date createTime = new Date();
+//    @Type(type = "org.hibernate.type.LocalDateTimeType")
+    protected LocalDateTime createTime = LocalDateTime.now();
 
 
     public AbstractDomain() {
@@ -74,7 +74,7 @@ public abstract class AbstractDomain implements Serializable {
         this.uuid = uuid;
     }
 
-    public Date createTime() {
+    public LocalDateTime createTime() {
         return createTime;
     }
 

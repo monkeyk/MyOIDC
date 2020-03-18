@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * 2018/3/22
@@ -39,6 +40,15 @@ public class UserRepositoryHibernateTest extends AbstractRepositoryTest {
         final List<Privilege> privileges = userRepository.findUserPrivileges(user.uuid());
         assertNotNull(privileges);
 //        System.out.println(privileges);
+    }
+
+
+    @Test
+    public void findUsersByUsername() {
+
+        List<User> list = userRepository.findUsersByUsername("us");
+        assertTrue(list.isEmpty());
+
     }
 
 }

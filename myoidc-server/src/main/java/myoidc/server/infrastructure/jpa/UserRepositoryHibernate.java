@@ -33,4 +33,11 @@ public class UserRepositoryHibernate extends AbstractRepositoryHibernate<User> i
         return query.getResultList();
     }
 
+    @Override
+    public List<User> findUsersByUsername(String username) {
+        final String hql = "from User u where u.username like :username and u.archived = false order by u.id desc ";
+        // 右半 %,  使用索引
+        return find(hql, ImmutableMap.of("username", username + "%"));
+    }
+
 }
