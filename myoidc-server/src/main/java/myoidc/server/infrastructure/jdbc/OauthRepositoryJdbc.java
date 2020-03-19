@@ -3,6 +3,7 @@ package myoidc.server.infrastructure.jdbc;
 
 import myoidc.server.domain.oauth.OauthClientDetails;
 import myoidc.server.domain.oauth.OauthRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -34,16 +35,22 @@ public class OauthRepositoryJdbc implements OauthRepository {
     }
 
     @Override
-    public List<OauthClientDetails> findAllOauthClientDetails() {
-        final String sql = " select * from oauth_client_details order by create_time desc ";
-        return this.jdbcTemplate.query(sql, oauthClientDetailsRowMapper);
+    public List<OauthClientDetails> findAllOauthClientDetails(String clientId) {
+        String sql;
+        if (StringUtils.isNoneBlank(clientId)) {
+            sql = " select * from oauth_client_details where client_id like ? order by create_time desc ";
+            return this.jdbcTemplate.query(sql, oauthClientDetailsRowMapper, clientId + "%");
+        } else {
+            sql = " select * from oauth_client_details order by create_time desc ";
+            return this.jdbcTemplate.query(sql, oauthClientDetailsRowMapper);
+        }
     }
 
     @Override
 //    @CacheEvict(value = CLIENT_DETAILS_CACHE, key = "#clientId")
-    public void updateOauthClientDetailsArchive(String clientId, boolean archive) {
+    public int updateOauthClientDetailsArchive(String clientId, boolean archive) {
         final String sql = " update oauth_client_details set archived = ? where client_id = ? ";
-        this.jdbcTemplate.update(sql, archive, clientId);
+        return this.jdbcTemplate.update(sql, archive, clientId);
     }
 
     @Override

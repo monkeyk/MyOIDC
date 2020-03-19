@@ -1,8 +1,6 @@
 package myoidc.server.domain.oauth;
 
 
-import myoidc.server.domain.shared.Repository;
-
 import java.util.List;
 
 /**
@@ -14,9 +12,9 @@ public interface OauthRepository {
 
     OauthClientDetails findOauthClientDetails(String clientId);
 
-    List<OauthClientDetails> findAllOauthClientDetails();
+    List<OauthClientDetails> findAllOauthClientDetails(String clientId);
 
-    void updateOauthClientDetailsArchive(String clientId, boolean archive);
+    int updateOauthClientDetailsArchive(String clientId, boolean archive);
 
     void saveOauthClientDetails(OauthClientDetails clientDetails);
 }

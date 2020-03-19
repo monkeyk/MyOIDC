@@ -3,9 +3,15 @@ package myoidc.server.service.impl;
 import myoidc.server.domain.oauth.OauthClientDetails;
 import myoidc.server.domain.oauth.OauthRepository;
 import myoidc.server.service.OauthService;
+import myoidc.server.service.dto.OauthClientDetailsDto;
+import myoidc.server.web.WebUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * 2018/3/24
@@ -16,6 +22,8 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("oauthService")
 public class OauthServiceImpl implements OauthService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(OauthServiceImpl.class);
 
 
     @Autowired
@@ -32,6 +40,15 @@ public class OauthServiceImpl implements OauthService {
     @Transactional()
     @Override
     public void archiveOauthClientDetails(String clientId) {
-        oauthRepository.updateOauthClientDetailsArchive(clientId, true);
+        int i = oauthRepository.updateOauthClientDetailsArchive(clientId, true);
+        LOG.debug("{}|Archived client: {}, {}", WebUtils.getIp(), clientId, i);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<OauthClientDetailsDto> loadOauthClientDetailsDtos(String clientId) {
+        //暂时不加分页
+        List<OauthClientDetails> clientDetailses = oauthRepository.findAllOauthClientDetails(clientId);
+        return OauthClientDetailsDto.toDtos(clientDetailses);
     }
 }

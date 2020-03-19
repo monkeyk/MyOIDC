@@ -24,7 +24,7 @@ public class OauthClientDetails implements Serializable {
 
     private String clientSecret;
     /**
-     * Available values: read,write
+     * Available values: read,write,openid
      */
     private String scope;
 
