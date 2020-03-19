@@ -20,9 +20,7 @@ Version: 1.0
 <p>
     英文原版: <a href="http://openid.net/specs/openid-connect-core-1_0.html">http://openid.net/specs/openid-connect-core-1_0.html</a>
 </p>
-<p>
-    中文翻译最新进展请访问:<br/> <a href="http://git.oschina.net/shengzhao/spring-oauth-server/tree/master/others/oidc?dir=1&filepath=others%2Foidc&oid=ec2b907c58efcb56a8c774e8f7868ab80c6cb69a&sha=25a0e1f2357768eadf3f0e3b8035959e3bbd3d66">http://git.oschina.net/shengzhao/spring-oauth-server/tree/master/others/oidc?dir=1&filepath=others%2Foidc&oid=ec2b907c58efcb56a8c774e8f7868ab80c6cb69a&sha=25a0e1f2357768eadf3f0e3b8035959e3bbd3d66</a>
-</p>
+
 
 <p>
     JSON Web Signature(JWS): <a href="https://tools.ietf.org/html/rfc7515">https://tools.ietf.org/html/rfc7515</a>
@@ -53,6 +51,7 @@ Version: 1.0
 <ul>
     <li><p>编写各个OIDC实现库的使用DEMO</p></li>
     <li><p>参考OIDC协议实现具体的流程</p></li>
+    <li><p>项目整体基于<a href="https://gitee.com/shengzhao/spring-oauth-server">spring-oauth-server</a>扩展实现</p></li>
 </ul>
 
 
@@ -65,6 +64,7 @@ Version: 1.0
     <li><p>2016-07-12  开始尝试翻译OIDC协议为中文</p></li>
     <li><p>2017-01-21  加入GitHub https://github.com/monkeyk/MyOIDC, Git@OSC地址 http://gitee.com/mkk/MyOIDC</p>(与GitHub同步)</li>
     <li><p>2018-02-04  开始1.1.0分支, 使用SprintBoot重构, 开始受折磨的技术</p></li>
+    <li><p>2020-03-10  1.1.0分支继续开发, 包括Endpoint API, 界面流程完善，EU,RP功能开发等</p></li>
 </ol>
 
 <hr/>

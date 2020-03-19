@@ -1,0 +1,26 @@
+
+记录开发的点点滴滴!
+
+
+
+2020-03-14
+1. keys 按要求来实现, 增加 use     --ok
+2. 生成的token中增加 kid,                -- ok
+3.openid scope时要有 access_token, id_token   -- ok
+4. 去掉 jpa, 用 hibernate                --ok
+
+
+2020-03-18
+1.初始密码修改至少10位  ok
+2.完成客户端RP管理
+3.完成用户EU管理      ok
+4.API提供基础实现     ok
+
+
+
+2020-03-19
+1.API完善并进行各API具体的测试
+2.考虑把 access_token不使用 id_token 格式
+3. myoidc-client 准备设计与实现
+
+
