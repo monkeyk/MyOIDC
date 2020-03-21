@@ -21,6 +21,9 @@
         或在线访问<a th:href="@{'/static/api/MyOIDC_API-1.1.0.html'}" target="_blank">db_table_description.html</a>;
         添加客户端[RP]实际上是向该表中按不同的条件添加数据.
     </p>
+    <div class="alert alert-warning" role="alert">
+        <strong class="text-danger">注意: </strong> 由于client_secret 会加密存储, 请先复制并保留client_secret值, 添加成功后不会再显示
+    </div>
 
     <form class="form-horizontal" th:action="@{''}" method="post" th:object="${formDto}">
         <div class="form-group">
@@ -28,7 +31,7 @@
 
             <div class="col-sm-10">
                 <input th:field="*{clientId}" name="clientId" class="form-control" placeholder="client_id"
-                       required="required"
+                       required="required" minlength="10"
                        type="text" value=""/>
 
                 <p class="help-block">client_id必须输入,且必须唯一,长度至少10位; 在实际应用中的另一个名称叫appKey,与client_id是同一个概念.</p>
@@ -40,11 +43,9 @@
 
             <div class="col-sm-10">
                 <input th:field="*{clientSecret}" name="clientSecret" class="form-control" placeholder="client_secret"
-                       required="required" type="text" value=""/>
+                       required="required" type="text" value="" minlength="10"/>
 
                 <p class="help-block">client_secret必须输入,且长度至少10位; 在实际应用中的另一个名称叫appSecret,与client_secret是同一个概念.
-                    <br/>
-                    <strong class="text-danger">注意: </strong> 由于client_secret 会加密存储, 请先复制并保留client_secret值, 添加成功后不会再显示
                 </p>
             </div>
         </div>

@@ -67,7 +67,7 @@ public class AdminRPController {
             return "admin/rp_form";
         }
         String clientId = oauthService.saveOAuthClientDetails(formDto);
-        model.addAttribute("clientId", clientId);
+        model.addAttribute("newClientId", clientId);
         return "redirect:../list";
     }
 
