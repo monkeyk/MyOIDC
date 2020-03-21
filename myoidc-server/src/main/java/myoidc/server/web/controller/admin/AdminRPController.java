@@ -62,11 +62,12 @@ public class AdminRPController {
      * 添加客户端
      */
     @PostMapping("form/plus")
-    public String submitClient(@ModelAttribute("formDto") @Valid OauthClientDetailsDto formDto, BindingResult result) {
+    public String submitClient(@ModelAttribute("formDto") @Valid OauthClientDetailsDto formDto, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "admin/rp_form";
         }
-        oauthService.saveOAuthClientDetails(formDto);
+        String clientId = oauthService.saveOAuthClientDetails(formDto);
+        model.addAttribute("clientId", clientId);
         return "redirect:../list";
     }
 
