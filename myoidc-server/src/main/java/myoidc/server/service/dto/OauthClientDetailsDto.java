@@ -3,16 +3,24 @@ package myoidc.server.service.dto;
 
 import myoidc.server.Constants;
 import myoidc.server.domain.oauth.OauthClientDetails;
+import myoidc.server.infrastructure.PasswordHandler;
 import myoidc.server.infrastructure.oauth.OIDCUtils;
+import myoidc.server.service.validation.ClientIdValidation;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.URL;
 
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static myoidc.server.infrastructure.oauth.OIDCUtils.ACCESS_TOKEN_VALIDITY;
 import static myoidc.server.infrastructure.oauth.OIDCUtils.GrantType.*;
+import static myoidc.server.infrastructure.oauth.OIDCUtils.REFRESH_TOKEN_VALIDITY;
 
 /**
  * From spring-oauth-server
@@ -28,25 +36,36 @@ public class OauthClientDetailsDto implements Serializable {
     private String createTime;
     private boolean archived;
 
+    @Length(min = 10, message = "client_id长度最少10位")
+    @ClientIdValidation
     private String clientId = OIDCUtils.generateClientId();
 
     //固定值
     private String resourceIds = Constants.RESOURCE_ID;
 
     //加密存储
+    @NotBlank(message = "client_secret不能为空")
+    @Length(min = 10, message = "client_secret长度最少10位")
     private String clientSecret = OIDCUtils.generateClientSecret();
 
     //默认 openid
+    @NotBlank(message = "scope不能为空")
     private String scope = OIDCUtils.SCOPE_OPENID;
 
+    @NotBlank(message = "grant_type不能为空")
     private String authorizedGrantTypes;
 
+    @NotBlank(message = "redirect_uri不能为空")
+    @URL(message = "redirect_uri格式错误")
     private String webServerRedirectUri;
+
 
     private String authorities;
 
+    @Positive(message = "access_token_validity必须大于0")
     private Integer accessTokenValidity;
 
+    @Positive(message = "refresh_token_validity必须大于0")
     private Integer refreshTokenValidity;
 
     // optional
@@ -62,7 +81,8 @@ public class OauthClientDetailsDto implements Serializable {
 
     public OauthClientDetailsDto(OauthClientDetails clientDetails) {
         this.clientId = clientDetails.clientId();
-        this.clientSecret = clientDetails.clientSecret();
+        //clientSecret 加密,不赋值
+//        this.clientSecret = clientDetails.clientSecret();
         this.scope = clientDetails.scope();
 
         this.createTime = clientDetails.createTime().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
@@ -78,6 +98,20 @@ public class OauthClientDetailsDto implements Serializable {
         this.trusted = clientDetails.trusted();
 
         this.authorizedGrantTypes = clientDetails.authorizedGrantTypes();
+    }
+
+
+    /**
+     * 做一些基础的初始化数据
+     *
+     * @return this
+     * @since 1.1.0
+     */
+    public OauthClientDetailsDto initialized() {
+        this.accessTokenValidity = ACCESS_TOKEN_VALIDITY;
+        this.refreshTokenValidity = REFRESH_TOKEN_VALIDITY;
+        this.authorizedGrantTypes = OIDCUtils.GrantType.AUTHORIZATION_CODE.getType();
+        return this;
     }
 
 
@@ -228,7 +262,7 @@ public class OauthClientDetailsDto implements Serializable {
         OauthClientDetails clientDetails = new OauthClientDetails()
                 .clientId(clientId)
                 // encrypted client secret
-//                .clientSecret(PasswordHandler.encode(clientSecret))
+                .clientSecret(PasswordHandler.encode(clientSecret))
                 .resourceIds(resourceIds)
                 .authorizedGrantTypes(authorizedGrantTypes)
                 .scope(scope);

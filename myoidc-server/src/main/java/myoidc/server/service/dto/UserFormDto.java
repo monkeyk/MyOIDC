@@ -3,6 +3,7 @@ package myoidc.server.service.dto;
 
 import myoidc.server.domain.user.Privilege;
 import myoidc.server.domain.user.User;
+import myoidc.server.infrastructure.PasswordHandler;
 import myoidc.server.service.validation.UsernameValidation;
 import org.hibernate.validator.constraints.Length;
 
@@ -66,8 +67,8 @@ public class UserFormDto implements Serializable {
         final User user = new User()
                 .username(getUsername())
                 .phone(getPhone())
-                .email(getEmail());
-//                .password(PasswordHandler.encode(getPassword()));
+                .email(getEmail())
+                .password(PasswordHandler.encode(getPassword()));
         user.privileges().addAll(getPrivileges());
         return user;
     }

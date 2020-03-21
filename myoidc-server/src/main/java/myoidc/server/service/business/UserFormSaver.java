@@ -26,7 +26,7 @@ public class UserFormSaver {
 
     private UserRepository userRepository = BeanProvider.getBean(UserRepository.class);
 
-    private PasswordEncoder passwordEncoder = BeanProvider.getBean(PasswordEncoder.class);
+//    private PasswordEncoder passwordEncoder = BeanProvider.getBean(PasswordEncoder.class);
 
 
     private UserFormDto formDto;
@@ -38,7 +38,7 @@ public class UserFormSaver {
     public String save() {
 
         User user = formDto.newUser();
-        user.password(passwordEncoder.encode(formDto.getPassword()));
+//        user.password(passwordEncoder.encode(formDto.getPassword()));
         userRepository.saveOrUpdate(user);
 
         List<Privilege> privileges = formDto.getPrivileges();

@@ -5,10 +5,10 @@ import myoidc.server.service.dto.OauthClientDetailsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -47,5 +47,27 @@ public class AdminRPController {
         return "redirect:../list";
     }
 
+
+    /**
+     * 添加客户端
+     */
+    @GetMapping("form/plus")
+    public String addClient(Model model) {
+        model.addAttribute("formDto", new OauthClientDetailsDto().initialized());
+        return "admin/rp_form";
+    }
+
+
+    /**
+     * 添加客户端
+     */
+    @PostMapping("form/plus")
+    public String submitClient(@ModelAttribute("formDto") @Valid OauthClientDetailsDto formDto, BindingResult result) {
+        if (result.hasErrors()) {
+            return "admin/rp_form";
+        }
+        oauthService.saveOAuthClientDetails(formDto);
+        return "redirect:../list";
+    }
 
 }

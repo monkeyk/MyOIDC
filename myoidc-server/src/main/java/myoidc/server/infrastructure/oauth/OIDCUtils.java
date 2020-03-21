@@ -14,6 +14,23 @@ import java.util.List;
 public abstract class OIDCUtils {
 
 
+    /**
+     * 默认的 refresh_token 有效时间(秒)
+     * From DefaultTokenServices.java
+     *
+     * @since 1.1.0
+     */
+    public static int REFRESH_TOKEN_VALIDITY = 60 * 60 * 24 * 30; // default 30 days.
+
+    /**
+     * 默认的 access_token 有效时间(秒)
+     * From DefaultTokenServices.java
+     *
+     * @since 1.1.0
+     */
+    public static int ACCESS_TOKEN_VALIDITY = 60 * 60 * 12; // default 12 hours.
+
+
     public enum GrantType {
         PASSWORD("password"),
         AUTHORIZATION_CODE("authorization_code"),

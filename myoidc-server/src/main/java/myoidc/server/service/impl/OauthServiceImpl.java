@@ -3,6 +3,7 @@ package myoidc.server.service.impl;
 import myoidc.server.domain.oauth.OauthClientDetails;
 import myoidc.server.domain.oauth.OauthRepository;
 import myoidc.server.service.OauthService;
+import myoidc.server.service.business.OAuthClientDetailsSaver;
 import myoidc.server.service.dto.OauthClientDetailsDto;
 import myoidc.server.web.WebUtils;
 import org.slf4j.Logger;
@@ -50,5 +51,19 @@ public class OauthServiceImpl implements OauthService {
         //暂时不加分页
         List<OauthClientDetails> clientDetailses = oauthRepository.findAllOauthClientDetails(clientId);
         return OauthClientDetailsDto.toDtos(clientDetailses);
+    }
+
+    @Transactional()
+    @Override
+    public String saveOAuthClientDetails(OauthClientDetailsDto formDto) {
+        OAuthClientDetailsSaver saver = new OAuthClientDetailsSaver(formDto);
+        return saver.save();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public OauthClientDetailsDto loadOauthClientDetailsDto(String clientId) {
+        final OauthClientDetails oauthClientDetails = oauthRepository.findOauthClientDetails(clientId);
+        return oauthClientDetails != null ? new OauthClientDetailsDto(oauthClientDetails) : null;
     }
 }
