@@ -88,8 +88,8 @@ Version: 1.0
 <h3>国内OIDC 实践</h3>
 
 <ul>
-    <li><p>北京九州云腾科技有限公司 <a href="https://www.idsmanager.com/">https://www.idsmanager.com/</a></p></li>
-    <li><p>阿里云API网关 OpenID Connect集成 <a href="https://help.aliyun.com/document_detail/48019.html">https://help.aliyun.com/document_detail/48019.html</a></p></li>
+    <li><p>北京九州云腾科技有限公司 <a href="https://www.idsmanager.com/">https://www.idsmanager.com/</a></p></li>
+    <li><p>阿里云API网关 OpenID Connect集成 <a href="https://help.aliyun.com/document_detail/48019.html">https://help.aliyun.com/document_detail/48019.html</a></p></li>
 </ul>
 
 
