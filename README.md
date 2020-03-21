@@ -41,6 +41,11 @@ Version: 1.0
     <li><p>Jose4j (0.6.2)</p></li>
 </ul>
 
+<strong>模块说明</strong>
+<ul>
+    <li><p>myoidc-server  - OpenID Provider[OP] 认证授权服务端</p></li>
+    <li><p>myoidc-client  - Relying Party[RP] 客户端</p></li>
+</ul>
 
 <hr/>
 
@@ -64,7 +69,7 @@ Version: 1.0
     <li><p>2016-07-12  开始尝试翻译OIDC协议为中文</p></li>
     <li><p>2017-01-21  加入GitHub https://github.com/monkeyk/MyOIDC, Git@OSC地址 http://gitee.com/mkk/MyOIDC</p>(与GitHub同步)</li>
     <li><p>2018-02-04  开始1.1.0分支, 使用SprintBoot重构, 开始受折磨的技术</p></li>
-    <li><p>2020-03-10  1.1.0分支继续开发, 包括Endpoint API, 界面流程完善，EU,RP功能开发等</p></li>
+    <li><p>2020-03-10  1.1.0分支继续开发, 包括Endpoint API, 界面流程完善，EU,RP功能开发等; 详细查看文件<em>others/development-log.txt</em></p></li>
 </ol>
 
 <hr/>
@@ -80,10 +85,11 @@ Version: 1.0
 
 <hr/>
 
-<h3>鸣谢</h3>
+<h3>国内OIDC 实践</h3>
 
 <ul>
-    <li><p>北京九州云腾科技有限公司 <a href="https://www.idsmanager.com/">https://www.idsmanager.com/</a>; 他们是国内最早的 OIDC 实践者</p></li>
+    <li><p>北京九州云腾科技有限公司 <a href="https://www.idsmanager.com/">https://www.idsmanager.com/</a></p></li>
+    <li><p>阿里云API网关 OpenID Connect集成 <a href="https://help.aliyun.com/document_detail/48019.html">https://help.aliyun.com/document_detail/48019.html</a></p></li>
 </ul>
 
 
