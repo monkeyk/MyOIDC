@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+import static myoidc.server.domain.shared.Application.host;
+
 /**
  * 2020/3/18
  * <p>
@@ -69,6 +71,18 @@ public class AdminRPController {
         String clientId = oauthService.saveOAuthClientDetails(formDto);
         model.addAttribute("newClientId", clientId);
         return "redirect:../list";
+    }
+
+
+    /**
+     * Test client
+     */
+    @RequestMapping("test_client/{clientId}")
+    public String testClient(@PathVariable("clientId") String clientId, Model model) {
+        OauthClientDetailsDto clientDetailsDto = oauthService.loadOauthClientDetailsDto(clientId);
+        model.addAttribute("clientDetailsDto", clientDetailsDto);
+        model.addAttribute("host", host());
+        return "admin/rp_client_test";
     }
 
 }

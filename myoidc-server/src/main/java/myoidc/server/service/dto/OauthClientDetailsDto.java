@@ -183,6 +183,16 @@ public class OauthClientDetailsDto implements Serializable {
         return webServerRedirectUri;
     }
 
+    /**
+     * 判断 是否空的 webServerRedirectUri
+     *
+     * @return true blank
+     * @since 1.1.0
+     */
+    public boolean isBlankWebServerRedirectUri() {
+        return StringUtils.isBlank(webServerRedirectUri);
+    }
+
     public void setWebServerRedirectUri(String webServerRedirectUri) {
         this.webServerRedirectUri = webServerRedirectUri;
     }

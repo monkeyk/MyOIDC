@@ -38,10 +38,10 @@ public class OauthRepositoryJdbc implements OauthRepository {
     public List<OauthClientDetails> findAllOauthClientDetails(String clientId) {
         String sql;
         if (StringUtils.isNoneBlank(clientId)) {
-            sql = " select * from oauth_client_details where client_id like ? order by create_time desc ";
+            sql = " select * from oauth_client_details where archived = 0 and client_id like ? order by create_time desc ";
             return this.jdbcTemplate.query(sql, oauthClientDetailsRowMapper, clientId + "%");
         } else {
-            sql = " select * from oauth_client_details order by create_time desc ";
+            sql = " select * from oauth_client_details where archived = 0 order by create_time desc ";
             return this.jdbcTemplate.query(sql, oauthClientDetailsRowMapper);
         }
     }
