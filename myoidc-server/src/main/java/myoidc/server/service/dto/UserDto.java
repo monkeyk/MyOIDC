@@ -5,6 +5,7 @@ import myoidc.server.domain.user.Privilege;
 import myoidc.server.domain.user.User;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,11 @@ public class UserDto implements Serializable {
 
     private List<Privilege> privileges = new ArrayList<>();
 
+    private boolean defaultUser = false;
+
+    private String lastLoginTime;
+
+    private String creatorName;
 
     public UserDto() {
     }
@@ -43,6 +49,40 @@ public class UserDto implements Serializable {
 
         this.privileges = user.privileges();
         this.createTime = user.createTime().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        this.defaultUser = user.defaultUser();
+
+        LocalDateTime lastLoginTime = user.lastLoginTime();
+        if (lastLoginTime != null) {
+            this.lastLoginTime = lastLoginTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        }
+        User creator = user.creator();
+        if (creator != null) {
+            this.createTime = creator.username();
+        }
+    }
+
+    public boolean isDefaultUser() {
+        return defaultUser;
+    }
+
+    public void setDefaultUser(boolean defaultUser) {
+        this.defaultUser = defaultUser;
+    }
+
+    public String getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    public void setLastLoginTime(String lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
+    }
+
+    public String getCreatorName() {
+        return creatorName;
+    }
+
+    public void setCreatorName(String creatorName) {
+        this.creatorName = creatorName;
     }
 
     public String getCreateTime() {

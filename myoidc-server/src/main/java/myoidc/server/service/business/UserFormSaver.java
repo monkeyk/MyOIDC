@@ -1,5 +1,6 @@
 package myoidc.server.service.business;
 
+import myoidc.server.domain.security.SecurityUtils;
 import myoidc.server.domain.shared.BeanProvider;
 import myoidc.server.domain.user.Privilege;
 import myoidc.server.domain.user.User;
@@ -9,7 +10,6 @@ import myoidc.server.service.dto.UserFormDto;
 import myoidc.server.web.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
@@ -38,6 +38,7 @@ public class UserFormSaver {
     public String save() {
 
         User user = formDto.newUser();
+        user.creator(SecurityUtils.currentUser());
 //        user.password(passwordEncoder.encode(formDto.getPassword()));
         userRepository.saveOrUpdate(user);
 

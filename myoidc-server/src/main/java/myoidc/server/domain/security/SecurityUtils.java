@@ -1,6 +1,8 @@
 package myoidc.server.domain.security;
 
 
+import myoidc.server.domain.user.User;
+
 /**
  * @author Shengzhao Li
  */
@@ -12,13 +14,27 @@ public class SecurityUtils {
         SecurityUtils.securityHolder = securityHolder;
     }
 
-//    public static User currentUser() {
-//        AndailyUserDetails userDetails = securityHolder.userDetails();
-//        return userDetails != null ? userDetails.user() : null;
-//    }
-//
-//    public static String currentUsername() {
-//        final User user = currentUser();
-//        return user != null ? user.username() : "unknown";
-//    }
+
+    /**
+     * 当前登录用户
+     *
+     * @return Current user
+     * @since 1.1.0
+     */
+    public static User currentUser() {
+        OIDCUserDetails userDetails = securityHolder.userDetails();
+        return userDetails != null ? userDetails.user() : null;
+    }
+
+
+    /**
+     * 当前登录用户名
+     *
+     * @return Current username
+     * @since 1.1.0
+     */
+    public static String currentUsername() {
+        final User user = currentUser();
+        return user != null ? user.username() : "unknown";
+    }
 }

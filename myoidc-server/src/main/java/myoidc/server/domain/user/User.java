@@ -2,16 +2,20 @@ package myoidc.server.domain.user;
 
 
 import myoidc.server.domain.AbstractDomain;
+import myoidc.server.domain.security.SecurityUtils;
 import myoidc.server.domain.shared.BeanProvider;
+import myoidc.server.infrastructure.PasswordHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 /**
+ * From spring-oauth-server
+ *
  * @author Shengzhao Li
  */
 @Entity
@@ -46,7 +50,7 @@ public class User extends AbstractDomain {
     private boolean defaultUser = false;
 
     @Column(name = "last_login_time")
-    private Date lastLoginTime;
+    private LocalDateTime lastLoginTime;
 
     /*
     * Register is null; otherwise is current logged user
@@ -135,31 +139,53 @@ public class User extends AbstractDomain {
         return this;
     }
 
-//    public String resetPassword() {
-//        String newOriginalPass = PasswordHandler.randomPassword();
-//        this.password = PasswordHandler.encryptPassword(newOriginalPass);
-//        LOG.debug("<{}> reset User [username={},guid={}] password", SecurityUtils.currentUsername(), username, guid);
-//        return newOriginalPass;
-//    }
+
+    /**
+     * 重置密码
+     *
+     * @return newPassword
+     * @since 1.1.0
+     */
+    public String resetPassword() {
+        String newOriginalPass = PasswordHandler.randomPassword();
+        this.password = PasswordHandler.encode(newOriginalPass);
+        LOG.debug("<{}> reset User [username={},uuid={}] password", SecurityUtils.currentUsername(), username, uuid);
+        return newOriginalPass;
+    }
 
 
-    public Date lastLoginTime() {
+    public LocalDateTime lastLoginTime() {
         return lastLoginTime;
     }
 
-    public void lastLoginTime(Date lastLoginTime) {
+    public void lastLoginTime(LocalDateTime lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
     }
 
-//    public User deleteMe() {
-//        this.archived(true);
-//        LOG.debug("<{}> delete User: {} [Logic delete]", SecurityUtils.currentUsername(), this);
-//        return this;
-//    }
-//
-//    public User updatePassword(String newPassword) {
-//        this.password = PasswordHandler.encryptPassword(newPassword);
-//        LOG.debug("<{}> update user[{}] password", SecurityUtils.currentUsername(), this);
-//        return this;
-//    }
+
+    /**
+     * 逻辑删除
+     *
+     * @return this
+     * @since 1.1.0
+     */
+    public User deleteMe() {
+        this.archived(true);
+        LOG.debug("<{}> delete User: {} [Logic delete]", SecurityUtils.currentUsername(), this);
+        return this;
+    }
+
+    /**
+     * 更新密码
+     *
+     * @param newPassword 新密码
+     * @return this
+     * @since 1.1.0
+     */
+    public User updatePassword(String newPassword) {
+        this.password = PasswordHandler.encode(newPassword);
+        LOG.debug("<{}> update user[{}] password", SecurityUtils.currentUsername(), this);
+        return this;
+    }
+
 }
