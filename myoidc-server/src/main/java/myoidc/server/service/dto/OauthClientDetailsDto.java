@@ -4,7 +4,7 @@ package myoidc.server.service.dto;
 import myoidc.server.Constants;
 import myoidc.server.domain.oauth.OauthClientDetails;
 import myoidc.server.infrastructure.PasswordHandler;
-import myoidc.server.infrastructure.oauth.OIDCUtils;
+import myoidc.server.infrastructure.oidc.OIDCUtils;
 import myoidc.server.service.validation.ClientIdValidation;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.validator.constraints.Length;
@@ -18,9 +18,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static myoidc.server.infrastructure.oauth.OIDCUtils.ACCESS_TOKEN_VALIDITY;
-import static myoidc.server.infrastructure.oauth.OIDCUtils.GrantType.*;
-import static myoidc.server.infrastructure.oauth.OIDCUtils.REFRESH_TOKEN_VALIDITY;
+import static myoidc.server.infrastructure.oidc.OIDCUtils.ACCESS_TOKEN_VALIDITY;
+import static myoidc.server.infrastructure.oidc.OIDCUtils.GrantType.*;
+import static myoidc.server.infrastructure.oidc.OIDCUtils.REFRESH_TOKEN_VALIDITY;
 
 /**
  * From spring-oauth-server

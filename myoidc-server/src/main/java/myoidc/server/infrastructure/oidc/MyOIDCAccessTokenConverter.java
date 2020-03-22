@@ -1,4 +1,4 @@
-package myoidc.server.infrastructure.oauth;
+package myoidc.server.infrastructure.oidc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

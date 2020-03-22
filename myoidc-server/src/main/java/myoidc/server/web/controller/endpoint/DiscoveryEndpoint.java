@@ -1,6 +1,6 @@
 package myoidc.server.web.controller.endpoint;
 
-import myoidc.server.infrastructure.oauth.OIDCUtils;
+import myoidc.server.infrastructure.oidc.OIDCUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,9 +12,9 @@ import java.util.Map;
 import static myoidc.server.Constants.ID_TOKEN;
 import static myoidc.server.Constants.OIDC_ALG;
 import static myoidc.server.domain.shared.Application.host;
-import static myoidc.server.infrastructure.oauth.OIDCUtils.SCOPE_OPENID;
-import static myoidc.server.infrastructure.oauth.OIDCUtils.SCOPE_READ;
-import static myoidc.server.infrastructure.oauth.OIDCUtils.SCOPE_WRITE;
+import static myoidc.server.infrastructure.oidc.OIDCUtils.SCOPE_OPENID;
+import static myoidc.server.infrastructure.oidc.OIDCUtils.SCOPE_READ;
+import static myoidc.server.infrastructure.oidc.OIDCUtils.SCOPE_WRITE;
 
 /**
  * 2020/3/11

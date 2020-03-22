@@ -1,4 +1,4 @@
-package myoidc.server.infrastructure.oauth;
+package myoidc.server.infrastructure.oidc;
 
 
 import org.apache.commons.lang3.RandomStringUtils;

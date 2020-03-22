@@ -1,4 +1,4 @@
-package myoidc.server.infrastructure.oauth;
+package myoidc.server.infrastructure.oidc;
 
 import com.google.common.collect.ImmutableMap;
 import myoidc.server.web.WebUtils;

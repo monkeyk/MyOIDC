@@ -1,4 +1,4 @@
-package myoidc.server.infrastructure.oauth;
+package myoidc.server.infrastructure.oidc;
 
 import myoidc.server.domain.security.OIDCUserDetails;
 import myoidc.server.domain.shared.Application;

@@ -3,9 +3,9 @@ package myoidc.server.config;
 import com.google.common.base.Charsets;
 import com.google.common.io.CharStreams;
 import myoidc.server.Constants;
-import myoidc.server.infrastructure.oauth.MyOIDCAccessTokenConverter;
-import myoidc.server.infrastructure.oauth.MyOIDCJwtAccessTokenConverter;
-import myoidc.server.infrastructure.oauth.MyOIDCUserAuthenticationConverter;
+import myoidc.server.infrastructure.oidc.MyOIDCAccessTokenConverter;
+import myoidc.server.infrastructure.oidc.MyOIDCJwtAccessTokenConverter;
+import myoidc.server.infrastructure.oidc.MyOIDCUserAuthenticationConverter;
 import myoidc.server.service.OauthService;
 import myoidc.server.service.SecurityService;
 import myoidc.server.service.oauth.CustomJdbcClientDetailsService;
@@ -280,6 +280,9 @@ public class OAuth2ServerConfiguration implements Constants {
             oauthServer.realm("MyOIDC")
                     // 支持 client_credentials 的配置
                     .allowFormAuthenticationForClients();
+
+            //自定义 clientSecret  passwordEncoder 配置
+            //oauthServer.passwordEncoder(new xxx);
         }
 
         @Bean

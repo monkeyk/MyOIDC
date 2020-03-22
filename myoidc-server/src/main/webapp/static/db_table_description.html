@@ -34,19 +34,13 @@
         <tr>
             <td>resource_ids</td>
             <td>
-                客户端所能访问的资源id集合,多个资源时用逗号(,)分隔,如: "unity-resource,mobile-resource".
-                <br/>
-                该字段的值必须来源于与<code>security.xml</code>中标签<code>&lsaquo;oauth2:resource-server</code>的属性<code>resource-id</code>值一致.
-                在<code>security.xml</code>配置有几个<code>&lsaquo;oauth2:resource-server</code>标签, 则该字段可以使用几个该值.
-                <br/>
-                在实际应用中, 我们一般将资源进行分类,并分别配置对应的<code>&lsaquo;oauth2:resource-server</code>,如订单资源配置一个<code>&lsaquo;oauth2:resource-server</code>,
-                用户资源又配置一个<code>&lsaquo;oauth2:resource-server</code>. 当注册客户端时,根据实际需要可选择资源id,也可根据不同的注册流程,赋予对应的资源id.
+                客户端所能访问的资源id集合,多个资源时用逗号(,)分隔. myoidc-server实现中的 resource_ids 是固定值 'myoidc-resource', 不可修改.
             </td>
         </tr>
         <tr>
             <td>client_secret</td>
             <td>
-                用于指定客户端(client)的访问密匙; 在注册时必须填写(也可由服务端自动生成).
+                用于指定客户端(client)的访问密匙; 在注册时必须填写(也可由服务端自动生成); client_secret存储在数据库时是加密的.
                 <br/>
                 对于不同的grant_type,该字段都是必须的. 在实际应用中的另一个名称叫appSecret,与client_secret是同一个概念.
             </td>
@@ -54,13 +48,10 @@
         <tr>
             <td>scope</td>
             <td>
-                指定客户端申请的权限范围,可选值包括<em>read</em>,<em>write</em>,<em>trust</em>;若有多个权限范围用逗号(,)分隔,如: "read,write".
+                指定客户端申请的权限范围,可选值包括<em>read</em>,<em>write</em>,<em>openid</em>;若有多个权限范围用逗号(,)分隔,如: "read,write".
                 <br/>
-                scope的值与<code>security.xml</code>中配置的<code>&lsaquo;intercept-url</code>的<code>access</code>属性有关系.
-                如<code>&lsaquo;intercept-url</code>的配置为
-                <pre>&lsaquo;intercept-url pattern="/m/**" access="ROLE_MOBILE,SCOPE_READ"/&gt;</pre>
-                则说明访问该URL时的客户端必须有<em>read</em>权限范围.
-                <em>write</em>的配置值为<em>SCOPE_WRITE</em>, <em>trust</em>的配置值为<em>SCOPE_TRUST</em>.
+                scope的值与<code>OAuth2ServerConfiguration.java</code>中配置的<code>#oauth2.hasScope('openid')</code>表达式有关系.
+                可根据实际需要进行scope值的扩展
                 <br/>
                 在实际应该中, 该值一般由服务端指定, 常用的值为<em>read,write</em>.
             </td>
@@ -81,8 +72,8 @@
         <tr>
             <td>web_server_redirect_uri</td>
             <td>
-                客户端的重定向URI,可为空, 当grant_type为<code>authorization_code</code>或<code>implicit</code>时,
-                在Oauth的流程中会使用并检查与注册时填写的redirect_uri是否一致. 下面分别说明:
+                客户端的重定向URI,可为空,也可多个,多个uri时用逗号(,)分隔, 当grant_type为<code>authorization_code</code>或<code>implicit</code>时,
+                在OIDC的流程中会使用并检查与注册时填写的redirect_uri是否一致. 下面分别说明:
                 <ul>
                     <li>
                         当grant_type=<code>authorization_code</code>时, 第一步 <code>从 spring-oauth-server获取
@@ -93,12 +84,12 @@
                         在实际应用中, <em>web_server_redirect_uri</em>在注册时是必须填写的, 一般用来处理服务器返回的<code>code</code>,
                         验证<code>state</code>是否合法与通过<code>code</code>去换取<code>access_token</code>值.
                         <br/>
-                        在<a href="http://git.oschina.net/mkk/spring-oauth-client">spring-oauth-client</a>项目中,
+                        在<code>myoidc-client</code>模块中,
                         可具体参考<code>AuthorizationCodeController.java</code>中的<code>authorizationCodeCallback</code>方法.
                     </li>
                     <li>
                         当grant_type=<code>implicit</code>时通过<code>redirect_uri</code>的hash值来传递<code>access_token</code>值.如:
-                        <pre>http://{host}/implicit#access_token=dc891f4a-ac88-4ba6-8224-a2497e013865&token_type=bearer&expires_in=43199</pre>
+                        <code>https://{host}/implicit#access_token=dc891f4a-ac88-4ba6-8224-a2497e013865&token_type=bearer&expires_in=43199</code>
                         然后客户端通过JS等从hash值中取到<code>access_token</code>值.
                     </li>
                 </ul>
@@ -110,17 +101,16 @@
                 指定客户端所拥有的Spring Security的权限值,可选, 若有多个权限值,用逗号(,)分隔, 如: "ROLE_UNITY,ROLE_USER".
                 <br/>
                 对于是否要设置该字段的值,要根据不同的grant_type来判断,
-                若客户端在Oauth流程中需要用户的用户名(username)与密码(password)的(<code>authorization_code</code>,<code>password</code>),
+                若客户端在OIDC流程中需要用户的用户名(username)与密码(password)的(<code>authorization_code</code>,<code>password</code>),
                 <br/>
                 则该字段可以不需要设置值,因为服务端将根据用户在服务端所拥有的权限来判断是否有权限访问对应的API.
                 <br/>
-                但如果客户端在Oauth流程中不需要用户信息的(<code>implicit</code>,<code>client_credentials</code>),
+                但如果客户端在OIDC流程中不需要用户信息的(<code>implicit</code>,<code>client_credentials</code>),
                 <br/>
                 则该字段必须要设置对应的权限值, 因为服务端将根据该字段值的权限来判断是否有权限访问对应的API.
                 <br/>
 
-                <p class="help-block">(请在<a
-                        href="http://git.oschina.net/mkk/spring-oauth-client">spring-oauth-client</a>项目中来测试不同grant_type时authorities的变化)
+                <p class="help-block">(请在<code>mysoidc-client</code>模块中来测试不同grant_type时authorities的变化)
                 </p>
             </td>
         </tr>
@@ -144,14 +134,13 @@
                 若客户端的grant_type不包括<code>refresh_token</code>,则不用关心该字段
                 在项目中, 可具体参考<code>DefaultTokenServices.java</code>中属性<code>refreshTokenValiditySeconds</code>.
                 <br/>
-                <br/>
                 在实际应用中, 该值一般是由服务端处理的, 不需要客户端自定义.
             </td>
         </tr>
         <tr>
             <td>additional_information</td>
             <td>
-                这是一个预留的字段,在Oauth的流程中没有实际的使用,可选,但若设置值,必须是JSON格式的数据,如:
+                这是一个预留的字段,在OIDC的流程中没有实际的使用,可选,但若设置值,必须是JSON格式的数据,如:
                 <pre>{"country":"CN","country_code":"086"}</pre>
                 按照<code>spring-security-oauth</code>项目中对该字段的描述
                 <br/>
