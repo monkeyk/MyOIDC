@@ -60,7 +60,7 @@ CREATE TABLE user_privilege (
 --
 --  Oauth sql  -- MYSQL
 --
-
+-- oauth_client_details
 Drop table  if exists oauth_client_details;
 create table oauth_client_details (
   client_id VARCHAR(255) PRIMARY KEY,
@@ -79,7 +79,7 @@ create table oauth_client_details (
   autoapprove VARCHAR (255) default 'false'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+-- oauth_access_token
 Drop table  if exists oauth_access_token;
 create table oauth_access_token (
   create_time timestamp default now(),
@@ -92,7 +92,7 @@ create table oauth_access_token (
   refresh_token VARCHAR(255)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+-- oauth_refresh_token
 Drop table  if exists oauth_refresh_token;
 create table oauth_refresh_token (
   create_time timestamp default now(),
@@ -101,7 +101,7 @@ create table oauth_refresh_token (
   authentication BLOB
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+-- oauth_code
 Drop table  if exists oauth_code;
 create table oauth_code (
   create_time timestamp default now(),

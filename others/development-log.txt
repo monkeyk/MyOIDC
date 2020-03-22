@@ -12,7 +12,7 @@
 
 2020-03-18
 1.初始密码修改至少10位  ok
-2.完成客户端RP管理
+2.完成客户端RP管理      ok
 3.完成用户EU管理      ok
 4.API提供基础实现     ok
 
@@ -22,6 +22,6 @@
 1.API完善并进行各API具体的测试
 2.考虑把 access_token不使用 id_token 格式
 3. myoidc-client 准备设计与实现
-4.升级 spring security oauth2, jwt 版本并测试
+4.升级 spring security oauth2, jwt 版本并测试   -- 保持不变
 5.db_table_description.html检查内容
 
