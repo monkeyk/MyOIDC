@@ -23,5 +23,11 @@
 2.考虑把 access_token不使用 id_token 格式
 3. myoidc-client 准备设计与实现
 4.升级 spring security oauth2, jwt 版本并测试   -- 保持不变
-5.db_table_description.html检查内容
+5.db_table_description.html检查内容     --ok
+
+
+
+2020-03-22
+1.用户EU增加 archive 功能(默认用户不能archived)
+
 
