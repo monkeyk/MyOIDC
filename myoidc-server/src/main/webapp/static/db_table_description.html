@@ -196,50 +196,6 @@
                 </p>
             </td>
         </tr>
-        <!-- oauth_client_token -->
-        <tr>
-            <td rowspan="7">oauth_client_token</td>
-            <td>create_time</td>
-            <td>数据的创建时间,精确到秒,由数据库在插入数据时取当前系统时间自动生成(扩展字段)</td>
-        </tr>
-        <tr>
-            <td>token_id</td>
-            <td>
-                从服务器端获取到的<code>access_token</code>的值.
-            </td>
-        </tr>
-        <tr>
-            <td>token</td>
-            <td>
-                这是一个二进制的字段, 存储的数据是<code>OAuth2AccessToken.java</code>对象序列化后的二进制数据.
-            </td>
-        </tr>
-        <tr>
-            <td>authentication_id</td>
-            <td>
-                该字段具有唯一性, 是根据当前的username(如果有),client_id与scope通过MD5加密生成的.
-                <br/>
-                具体实现请参考<code>DefaultClientKeyGenerator.java</code>类.
-            </td>
-        </tr>
-        <tr>
-            <td>user_name</td>
-            <td>登录时的用户名</td>
-        </tr>
-        <tr>
-            <td>client_id</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <p class="text-info">
-                    <em class="glyphicon glyphicon-info-sign"></em> 该表用于在客户端系统中存储从服务端获取的token数据,
-                    在<a href="http://git.oschina.net/shengzhao/spring-oauth-server">spring-oauth-server</a>项目中未使用到.
-                    <br/>
-                    对<code>oauth_client_token</code>表的主要操作在<code>JdbcClientTokenServices.java</code>类中, 更多的细节请参考该类.
-                </p>
-            </td>
-        </tr>
         <!-- oauth_access_token -->
         <tr>
             <td rowspan="9">oauth_access_token</td>
@@ -271,7 +227,7 @@
         </tr>
         <tr>
             <td>client_id</td>
-            <td></td>
+            <td>表<code>oauth_client_details</code>中的 client_id 字段值</td>
         </tr>
         <tr>
             <td>authentication</td>
@@ -288,7 +244,7 @@
         <tr>
             <td colspan="2">
                 <p class="text-info">
-                    <em class="glyphicon glyphicon-info-sign"></em> 在项目中,主要操作<code>oauth_access_token</code>表的对象是<code>JdbcTokenStore.java</code>.
+                    <em class="glyphicon glyphicon-info-sign"></em> 在项目中,主要操作<code>oauth_access_token</code>表的对象是<code>TokenStore.java</code>.
                     更多的细节请参考该类.
                 </p>
             </td>
@@ -320,7 +276,7 @@
         <tr>
             <td colspan="2">
                 <p class="text-info">
-                    <em class="glyphicon glyphicon-info-sign"></em> 在项目中,主要操作<code>oauth_refresh_token</code>表的对象是<code>JdbcTokenStore.java</code>.
+                    <em class="glyphicon glyphicon-info-sign"></em> 在项目中,主要操作<code>oauth_refresh_token</code>表的对象是<code>TokenStore.java</code>.
                     (与操作<code>oauth_access_token</code>表的对象一样);更多的细节请参考该类.
                     <br/>
                     如果客户端的grant_type不支持<code>refresh_token</code>,则不会使用该表.
