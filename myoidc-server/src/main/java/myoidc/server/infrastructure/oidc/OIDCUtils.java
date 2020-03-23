@@ -2,6 +2,7 @@ package myoidc.server.infrastructure.oidc;
 
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,19 @@ public abstract class OIDCUtils {
      * @since 1.1.0
      */
     public static int ACCESS_TOKEN_VALIDITY = 60 * 60 * 12; // default 12 hours.
+
+
+    /**
+     * 判断是否为 JWT 格式 token
+     *
+     * @param tokenValue token
+     * @return true JWT, otherwise false
+     * @since 1.1.0
+     */
+    public static boolean isJWT(String tokenValue) {
+        return StringUtils.isNotBlank(tokenValue)
+                && tokenValue.split("\\.").length == 3;
+    }
 
 
     public enum GrantType {

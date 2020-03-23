@@ -20,7 +20,7 @@
 
 2020-03-19
 1.API完善并进行各API具体的测试
-2.考虑把 access_token不使用 id_token 格式
+2.考虑把 access_token不使用 id_token 格式       --取消
 3. myoidc-client 准备设计与实现
 4.升级 spring security oauth2, jwt 版本并测试   -- 保持不变
 5.db_table_description.html检查内容     --ok
