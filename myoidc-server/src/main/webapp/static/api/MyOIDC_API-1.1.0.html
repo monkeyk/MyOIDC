@@ -36,6 +36,7 @@
             <li class="list-group-item"><a href="#getTokenRest">获取access_token (Restful API)</a></li>
             <li class="list-group-item"><a href="#verifyToken">校验access_token</a></li>
             <li class="list-group-item"><a href="#refreshToken">刷新access_token (grant_type=refresh_token)</a></li>
+            <li class="list-group-item"><a href="#userInfoAPI">UserInfo API (ROLE_USER)</a></li>
             <li class="list-group-item"><a href="#userInfoUnity">获取当前用户信息 (ROLE_UNITY)</a></li>
             <li class="list-group-item"><a href="#userInfoMobile">获取当前用户信息 (ROLE_MOBILE)</a></li>
         </ul>
@@ -562,6 +563,67 @@
                                 异常 [401]<br/>
                                 <mark>
                                     {"error":"invalid_grant","error_description":"Invalid refresh token: xxx"}
+                                </mark>
+                            </p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="well well-sm" id="userInfoAPI">
+            <h3>UserInfo API (ROLE_USER)</h3>
+
+            <p class="text-muted">使用access_token获取用户信息, 需要有 ROLE_USER 权限</p>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p>
+                        请求URI: <code>/api/userinfo</code> <span
+                            class="label label-info">GET</span>
+                    </p>
+
+                    <div>
+                        请求参数说明:
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>参数名</th>
+                                <th>参数值</th>
+                                <th>必须?</th>
+                                <th>备注</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td colspan="4">无</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        请求示例:
+                        <p>
+                            <code>http://localhost:8080/myoidc-server/api/userinfo?access_token=b12cace6-7ce4-4fa8-b127-cf537d15b213</code>
+                        </p>
+
+                    </div>
+                    <br/>
+
+                    <strong>响应</strong>
+
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <p>
+                                正常 [200]<br/>
+                                <mark>
+                                    {"openid":"Ajlt9ZwVyGUvxrJCdKlFA4AataAVKVgH6gxYeCxD6J","username":"unity","phone":null,"email":"unity@qc8.me","create_time":0,"privileges":["USER","UNITY"]}
+                                </mark>
+                            </p>
+                        </li>
+                        <li class="list-group-item">
+                            <p>
+                                异常 [401]<br/>
+                                <mark>
+                                    {"error":"invalid_token","error_description":"Cannot convert access token to JSON"}
                                 </mark>
                             </p>
                         </li>
