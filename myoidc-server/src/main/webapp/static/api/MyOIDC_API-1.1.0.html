@@ -90,7 +90,7 @@
                                 <td>scope</td>
                                 <td>{scope}</td>
                                 <td>是</td>
-                                <td>read or write</td>
+                                <td>read or write or openid</td>
                             </tr>
                             <tr>
                                 <td>username</td>
@@ -108,7 +108,7 @@
                         </table>
                         请求示例:
                         <p>
-                            <code>http://localhost:8080/myoidc-server/oauth/token?client_id=6361b08fdea6400f93b2eccda8936b32&client_secret=i4KXewMI0u6i8CFEZo10mB2rGzQRXrIv&grant_type=password&scope=read&username=mobile&password=mobile</code>
+                            <code>http://localhost:8080/myoidc-server/oauth/token?client_id=mobile-client&client_secret=mobile&grant_type=password&scope=openid&username=mobile&password=MyOIDC-2017</code>
                         </p>
 
                     </div>
@@ -121,7 +121,7 @@
                             <p>
                                 正常 [200]<br/>
                                 <mark>
-                                    {"access_token":"1f60abaf-6c3f-45a8-a574-bbbe6f76083f","token_type":"bearer","expires_in":41769,"scope":"read"}
+                                    {"access_token":"eyJhbGciOiJSUzVCIsImtpZCI6I...","token_type":"bearer","refresh_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVC...","expires_in":43199,"scope":"openid","jti":"eac7bc32-9fe1...","id_token":"eyJhbGciOiJSUzI1NiIsInR5..."}
                                 </mark>
                             </p>
                         </li>
@@ -129,7 +129,7 @@
                             <p>
                                 异常 [401]<br/>
                                 <mark>
-                                    &lt;oauth&gt;&lt;error_description&gt;Bad client credentials&lt;/error_description&gt;&lt;error&gt;invalid_client&lt;/error&gt;&lt;/oauth&gt;
+                                    {"error":"invalid_grant","error_description":"Bad credentials"}
                                 </mark>
                             </p>
                         </li>
@@ -198,7 +198,7 @@
                         </table>
                         请求示例:
                         <p>
-                            <code>http://localhost:8080/myoidc-server/oauth/token?client_id=unity-client&client_secret=unity&grant_type=authorization_code&code=[code]&redirect_uri=[redirect_uri]</code>
+                            <code>http://localhost:8080/myoidc-server/oauth/token?client_id=unity-client&client_secret=unity&grant_type=authorization_code&code={code}&redirect_uri={redirect_uri}</code>
                         </p>
 
                     </div>
@@ -211,8 +211,7 @@
                             <p>
                                 正常 [200]<br/>
                                 <mark>
-                                    {"access_token":"2c612eb7-a22b-45f0-8b2e-cd6f9e366772","token_type":"bearer","refresh_token":"6c984bdc-01c7-486f-93bf-5637990d8a37","expires_in":43199,"scope":"read
-                                    write"}
+                                    {"access_token":"eyJhbGciOiJSUzVCIsImtpZCI6I...","token_type":"bearer","refresh_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVC...","expires_in":43199,"scope":"openid","jti":"eac7bc32-9fe1...","id_token":"eyJhbGciOiJSUzI1NiIsInR5..."}
                                 </mark>
                             </p>
                         </li>
@@ -220,7 +219,7 @@
                             <p>
                                 异常 [401]<br/>
                                 <mark>
-                                    {"error":"invalid_grant","error_description":"Invalid authorization code: vzmIh1"}
+                                    {"error":"invalid_grant","error_description":"Invalid authorization code: i9BJiy"}
                                 </mark>
                             </p>
                         </li>
@@ -279,7 +278,7 @@
                                 <td>scope</td>
                                 <td>{scope}</td>
                                 <td>是</td>
-                                <td>read or write</td>
+                                <td>read or write or openid</td>
                             </tr>
                             </tbody>
                         </table>
@@ -298,7 +297,7 @@
                             <p>
                                 正常 [200]<br/>
                                 <mark>
-                                    {"access_token":"e5ea7620-5459-4d53-a7a0-6888bbb76f62","token_type":"bearer","expires_in":43199,"scope":"read"}
+                                    {"access_token":"eyJhbGciOiJSUzVCIsImtpZCI6I...","token_type":"bearer","expires_in":43199,"scope":"openid","jti":"eac7bc32-9fe1...","id_token":"eyJhbGciOiJSUzI1NiIsInR5..."}
                                 </mark>
                             </p>
                         </li>
@@ -306,7 +305,7 @@
                             <p>
                                 异常 [401]<br/>
                                 <mark>
-                                    &lt;oauth&gt;&lt;error_description&gt;Bad client credentials&lt;/error_description&gt;&lt;error&gt;invalid_client&lt;/error&gt;&lt;/oauth&gt;
+                                    {"error":"invalid_client","error_description":"Bad client credentials"}
                                 </mark>
                             </p>
                         </li>
@@ -321,7 +320,7 @@
             </h3>
 
             <p class="text-muted">Restful API 获取access_token,
-                适用于grant_type为authorization_code,password,refresh_token,client_credentials</p>
+                适用于grant_type为password,refresh_token,client_credentials</p>
 
             <ul class="list-group">
                 <li class="list-group-item">
@@ -350,7 +349,7 @@
                                 <td>grant_type</td>
                                 <td>{grant_type}</td>
                                 <td>是</td>
-                                <td>authorization_code,password,refresh_token,client_credentials</td>
+                                <td>password,refresh_token,client_credentials</td>
                             </tr>
                             <tr>
                                 <td>scope</td>
@@ -403,7 +402,7 @@
                             <p>
                                 正常 [200]<br/>
                                 <mark>
-                                    {"access_token":"e2996930-8398-44fd-8de5-7d1b1624ced7","token_type":"bearer","refresh_token":"2b2de701-53e7-4b57-8301-e4a06ee49698","expires_in":43008,"scope":"read"}
+                                    {"access_token":"eyJhbGciOiJSUzVCIsImtpZCI6I...","token_type":"bearer","refresh_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVC...","expires_in":43199,"scope":"openid","jti":"eac7bc32-9fe1...","id_token":"eyJhbGciOiJSUzI1NiIsInR5..."}
                                 </mark>
                             </p>
                         </li>

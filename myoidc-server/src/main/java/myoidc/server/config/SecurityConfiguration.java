@@ -51,11 +51,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().ignoringAntMatchers("/oauth/rest_token");
 //        http.csrf().disable()
         http.authorizeRequests()
                 .antMatchers("/public/**").permitAll()
                 .antMatchers("/.well-known/openid-configuration*").permitAll()
                 .antMatchers("/static/**").permitAll()
+                .antMatchers("/oauth/rest_token*").permitAll()
                 .antMatchers("/login*").permitAll()
 
                 .antMatchers("/admin/**").hasAnyRole("ADMIN")
