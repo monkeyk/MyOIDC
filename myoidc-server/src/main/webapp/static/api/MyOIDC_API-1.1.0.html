@@ -450,17 +450,11 @@
                                 <td>是</td>
                                 <td></td>
                             </tr>
-                            <tr>
-                                <td>client_id</td>
-                                <td>{client_id}</td>
-                                <td>是</td>
-                                <td></td>
-                            </tr>
                             </tbody>
                         </table>
                         请求示例:
                         <p>
-                            <code>http://localhost:8080/myoidc-server/oauth/check_token?token=e2996930-8398-44fd-8de5-7d1b1624ced7&client_id=mobile-client</code>
+                            <code>http://localhost:8080/myoidc-server/oauth/check_token?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Im15b2lkYy1rZXlpZCJ9.eyJzdWIiOiJtb2...</code>
                         </p>
 
                     </div>
@@ -473,7 +467,7 @@
                             <p>
                                 正常 [200]<br/>
                                 <mark>
-                                    {"aud":["mobile-resource"],"exp":1505878459,"user_name":"mobile","authorities":["ROLE_MOBILE","ROLE_USER"],"client_id":"mobile-client","scope":["read","write"]}
+                                    {"sub":"mobile","aud":["myoidc-resource"],"user_name":"mobile","scope":["read"],"iss":"http://localhost:8080/myoidc-server/","exp":1585185717,"iat":1585142517,"authorities":["ROLE_USER","ROLE_UNITY"],"jti":"a2c066ce-44eb-4616-bf33-1bc76bd23bbe","client_id":"tiowJDtSbl3Hg31bBq7g13fGkCk7hKho"}
                                 </mark>
                             </p>
                         </li>
@@ -481,7 +475,7 @@
                             <p>
                                 异常 [401]<br/>
                                 <mark>
-                                    {"error":"invalid_token","error_description":"Token was not recognised"}
+                                    {"error":"invalid_token","error_description":"Cannot convert access token to JSON"}
                                 </mark>
                             </p>
                         </li>
@@ -559,7 +553,7 @@
                             <p>
                                 正常 [200]<br/>
                                 <mark>
-                                    {"access_token":"b12cace6-7ce4-4fa8-b127-cf537d15b213","token_type":"bearer","refresh_token":"2b2de701-53e7-4b57-8301-e4a06ee49698","expires_in":43199,"scope":"read"}
+                                    {"access_token":"eyJhbGciOiJSUzVCIsImtpZCI6I...","token_type":"bearer","refresh_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVC...","expires_in":43199,"scope":"openid","jti":"eac7bc32-9fe1...","id_token":"eyJhbGciOiJSUzI1NiIsInR5..."}
                                 </mark>
                             </p>
                         </li>
@@ -567,8 +561,7 @@
                             <p>
                                 异常 [401]<br/>
                                 <mark>
-                                    {"error":"invalid_grant","error_description":"Invalid refresh token:
-                                    1156ebfe-e303-4572-9fb5-4459a5d46610"}
+                                    {"error":"invalid_grant","error_description":"Invalid refresh token: xxx"}
                                 </mark>
                             </p>
                         </li>
@@ -621,7 +614,7 @@
                             <p>
                                 正常 [200]<br/>
                                 <mark>
-                                    {"guid":"55b713df1c6f423e842ad68668523c49","archived":false,"username":"unity","phone":"","email":"unity@wdcy.cc","privileges":["UNITY"]}
+                                    {"openid":"Ajlt9ZwVyGUvxrJCdKlFA4AataAVKVgH6gxYeCxD6J","username":"unity","phone":null,"email":"unity@qc8.me","create_time":0,"privileges":["USER","UNITY"]}
                                 </mark>
                             </p>
                         </li>
@@ -629,8 +622,7 @@
                             <p>
                                 异常 [401]<br/>
                                 <mark>
-                                    &lt;oauth&gt;&lt;error_description&gt;Invalid access token:
-                                    2c612eb7-a22b-45f0-8b2e-cd6f9e3667722&lt;/error_description&gt;&lt;error&gt;invalid_token&lt;/error&gt;&lt;/oauth&gt;
+                                    {"error":"invalid_token","error_description":"Cannot convert access token to JSON"}
                                 </mark>
                             </p>
                         </li>
@@ -685,7 +677,7 @@
                             <p>
                                 正常 [200]<br/>
                                 <mark>
-                                    {"guid":"612025cb3f964a64a48bbdf77e53c2c1","archived":false,"username":"mobile","phone":"","email":"mobile@wdcy.cc","privileges":["MOBILE"]}
+                                    {"openid":"Ajlt9ZwVyGUvxrJCdKlFA4AataAVKVgH6gxYeCxD6J","username":"mobile","phone":null,"email":"mobile@qc8.me","create_time":0,"privileges":["USER","MOBILE"]}
                                 </mark>
                             </p>
                         </li>
@@ -693,8 +685,7 @@
                             <p>
                                 异常 [401]<br/>
                                 <mark>
-                                    &lt;oauth&gt;&lt;error_description&gt;Invalid access token:
-                                    2c612eb7-a22b-45f0-8b2e-cd6f9e3667722&lt;/error_description&gt;&lt;error&gt;invalid_token&lt;/error&gt;&lt;/oauth&gt;
+                                    {"error":"invalid_token","error_description":"Cannot convert access token to JSON"}
                                 </mark>
                             </p>
                         </li>
