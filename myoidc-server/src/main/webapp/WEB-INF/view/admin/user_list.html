@@ -43,7 +43,10 @@
             <td th:text="${u.phone}">133...</td>
             <td th:text="${u.email}">xxx@xxx.com</td>
             <td th:text="${u.createTime}">2019-xxx</td>
-            <td>...</td>
+            <td>
+                <span th:if="${!u.defaultUser}"><a class="text-danger" th:href="${'archive/'+u.uuid}"
+                                                   onclick="return confirm('Are your sure archive it?')">archive</a></span>
+            </td>
         </tr>
         </tbody>
     </table>

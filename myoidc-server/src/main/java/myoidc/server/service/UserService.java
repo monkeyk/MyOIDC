@@ -17,4 +17,6 @@ public interface UserService {
     boolean isExistedUsername(String username);
 
     String saveUserForm(UserFormDto formDto);
+
+    boolean archiveUserByUuid(String uuid);
 }

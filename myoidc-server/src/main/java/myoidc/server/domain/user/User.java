@@ -169,9 +169,9 @@ public class User extends AbstractDomain {
      * @return this
      * @since 1.1.0
      */
-    public User deleteMe() {
+    public User archiveMe() {
         this.archived(true);
-        LOG.debug("<{}> delete User: {} [Logic delete]", SecurityUtils.currentUsername(), this);
+        LOG.debug("<{}> archived User: {} [Logic delete]", SecurityUtils.currentUsername(), this);
         return this;
     }
 

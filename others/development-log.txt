@@ -28,7 +28,7 @@
 
 
 2020-03-22
-1.用户EU增加 archive 功能(默认用户不能archived)
+1.用户EU增加 archive 功能(默认用户不能archived)  ok
 
 
 2020-03-25

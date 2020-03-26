@@ -63,4 +63,15 @@ public class AdminUserController {
     }
 
 
+    /**
+     * archive
+     */
+    @GetMapping("archive/{uuid}")
+    public String archive(@PathVariable String uuid, Model model) {
+        boolean ok = userService.archiveUserByUuid(uuid);
+        model.addAttribute("alert", ok ? "ArchivedOK" : "ArchivedFailed");
+        return "redirect:../list";
+    }
+
+
 }
