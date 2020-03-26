@@ -46,6 +46,7 @@
             <td>
                 <span th:if="${!u.defaultUser}"><a class="text-danger" th:href="${'archive/'+u.uuid}"
                                                    onclick="return confirm('Are your sure archive it?')">archive</a></span>
+                <span th:if="${u.defaultUser}">...</span>
             </td>
         </tr>
         </tbody>
