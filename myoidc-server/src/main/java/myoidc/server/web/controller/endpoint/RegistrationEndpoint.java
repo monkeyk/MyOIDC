@@ -1,6 +1,9 @@
 package myoidc.server.web.controller.endpoint;
 
 import myoidc.server.infrastructure.oidc.OIDCUseScene;
+import myoidc.server.web.WebUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +22,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/public/")
 public class RegistrationEndpoint {
 
+    private static final Logger LOG = LoggerFactory.getLogger(RegistrationEndpoint.class);
 
     // 引导 注册
     @GetMapping("registration")
     public String preRegistration(Model model) throws Exception {
+        LOG.debug("{}|Pre registration, model: {}", WebUtils.getIp(), model);
         return "registration_pre";
     }
 
