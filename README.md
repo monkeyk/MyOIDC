@@ -39,6 +39,7 @@ Version: 1.0
     <li><p>SprintBoot (2.1.4.RELEASE)</p></li>
     <li><p>Sprint-Security-OAuth (2.3.5.RELEASE)</p></li>
     <li><p>Jose4j (0.6.2)</p></li>
+    <li><p>MySQL (5.7)</p></li>
 </ul>
 
 <strong>模块说明</strong>

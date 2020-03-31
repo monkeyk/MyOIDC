@@ -50,6 +50,7 @@ public class MyOIDCConfiguration {
         properties.setProperty("hibernate.show_sql", "false");
         properties.setProperty("jdbc.use_scrollable_resultset", "false");
         properties.setProperty("hibernate.query.substitutions", "true=1,false=0");
+        properties.setProperty("hibernate.dialect","org.hibernate.dialect.MySQL57Dialect");
         properties.setProperty("hibernate.current_session_context_class", "org.springframework.orm.hibernate5.SpringSessionContext");
         factoryBean.setHibernateProperties(properties);
 
