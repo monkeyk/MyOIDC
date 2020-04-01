@@ -6,6 +6,7 @@ import myoidc.server.domain.oauth.OauthRepository;
 import myoidc.server.domain.shared.BeanProvider;
 import myoidc.server.domain.user.Privilege;
 import myoidc.server.infrastructure.PasswordHandler;
+import myoidc.server.infrastructure.oidc.OIDCUseScene;
 import myoidc.server.infrastructure.oidc.OIDCUtils;
 import myoidc.server.service.dto.ClientRegistrationFormDto;
 import myoidc.server.service.dto.OauthClientDetailsDto;
@@ -54,13 +55,19 @@ public class ClientRegistrationFormSaver {
 
 
     OauthClientDetails createDomain() {
+        OIDCUseScene useScene = formDto.getUseScene();
         OauthClientDetails clientDetails = new OauthClientDetails()
                 .clientId(OIDCUtils.generateClientId())
                 .resourceIds(Constants.RESOURCE_ID)
-                .authorizedGrantTypes(StringUtils.join(formDto.getUseScene().grantTypes(), ","))
-                //fixed: openid
-                .scope(OIDCUtils.SCOPE_OPENID);
+                .authorizedGrantTypes(StringUtils.join(useScene.grantTypes(), ","));
 
+
+        //判断scope
+        if (useScene.isServer()) {
+            clientDetails.scope(OIDCUtils.SCOPE_READ);
+        } else {
+            clientDetails.scope(OIDCUtils.SCOPE_OPENID);
+        }
         clientDetails.webServerRedirectUri(formDto.getWebServerRedirectUri());
 
         //权限默认 CLIENT

@@ -29,4 +29,12 @@ public enum OIDCUseScene {
     public OIDCUtils.GrantType[] grantTypes() {
         return this.grantTypes;
     }
+
+    public boolean isServer() {
+        return SERVER.equals(this);
+    }
+
+    public boolean isDeviceClient() {
+        return DEVICE_CLIENT.equals(this);
+    }
 }
