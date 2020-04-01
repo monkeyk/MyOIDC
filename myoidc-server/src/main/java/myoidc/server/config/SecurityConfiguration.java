@@ -44,8 +44,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        //Ignore, public
-        web.ignoring().antMatchers("/public/**", "/static/**");
+        //Ignore, static
+        web.ignoring().antMatchers("/static/**");
     }
 
 
@@ -72,10 +72,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .usernameParameter("oidc_user")
                 .passwordParameter("oidcPwd")
                 .and()
-//                .csrf()
-//                .requireCsrfProtectionMatcher(new AntPathRequestMatcher("/oauth/authorize"))
-//                .requireCsrfProtectionMatcher(new AntPathRequestMatcher("/oauth/token"))
-//                .disable()
                 .logout()
                 .logoutUrl("/signout")
                 .deleteCookies("JSESSIONID")

@@ -4,6 +4,9 @@ import myoidc.server.domain.security.OIDCUserDetails;
 import myoidc.server.domain.user.User;
 import myoidc.server.domain.user.UserRepository;
 import myoidc.server.service.SecurityService;
+import myoidc.server.service.business.ClientRegistrationFormSaver;
+import myoidc.server.service.dto.ClientRegistrationFormDto;
+import myoidc.server.service.dto.OauthClientDetailsDto;
 import myoidc.server.service.dto.UserJsonDto;
 import myoidc.server.service.oauth.CurrentUserJsonDtoLoader;
 import org.slf4j.Logger;
@@ -48,6 +51,13 @@ public class SecurityServiceImpl implements SecurityService {
     public UserJsonDto loadCurrentUserJsonDto() {
         CurrentUserJsonDtoLoader loader = new CurrentUserJsonDtoLoader();
         return loader.load();
+    }
+
+    @Override
+    @Transactional()
+    public OauthClientDetailsDto saveClientRegistrationForm(ClientRegistrationFormDto formDto) {
+        ClientRegistrationFormSaver formSaver = new ClientRegistrationFormSaver(formDto);
+        return formSaver.save();
     }
 
 

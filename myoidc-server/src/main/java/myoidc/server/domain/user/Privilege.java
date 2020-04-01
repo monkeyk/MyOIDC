@@ -12,6 +12,7 @@ public enum Privilege {
 
     ADMIN("Admin"),    //管理 权限
 
+    CLIENT("Client"),        //注册 client
     UNITY("Unity"),       //资源 权限
     MOBILE("Mobile");   //资源 权限
 

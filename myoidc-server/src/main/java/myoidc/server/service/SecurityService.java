@@ -1,5 +1,7 @@
 package myoidc.server.service;
 
+import myoidc.server.service.dto.ClientRegistrationFormDto;
+import myoidc.server.service.dto.OauthClientDetailsDto;
 import myoidc.server.service.dto.UserJsonDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -12,4 +14,5 @@ public interface SecurityService extends UserDetailsService {
 
     UserJsonDto loadCurrentUserJsonDto();
 
+    OauthClientDetailsDto saveClientRegistrationForm(ClientRegistrationFormDto formDto);
 }
