@@ -25,6 +25,12 @@ Version: 1.0
 <p>
     JSON Web Signature(JWS): <a href="https://tools.ietf.org/html/rfc7515">https://tools.ietf.org/html/rfc7515</a>
 </p>
+<p>
+    JSON Web Encryption(JWE): <a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-encryption">http://tools.ietf.org/html/draft-ietf-jose-json-web-encryption</a>
+</p>
+<p>
+    JSON Web Key(JWK): <a href="https://tools.ietf.org/html/draft-ietf-jose-json-web-key-41">https://tools.ietf.org/html/draft-ietf-jose-json-web-key-41</a>
+</p>
 <p>OIDC相关文章与介绍 <a href="http://andaily.com/blog/?s=OIDC">http://andaily.com/blog/?s=OIDC</a> </p>
 <hr/>
 
