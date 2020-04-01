@@ -39,6 +39,11 @@
                         <p class="list-group-item-text">适用于服务端与MyOIDC之间互相通信调用API进行账户数据校验等(无用户参与)</p>
                     </a>
                 </div>
+                <div class="alert alert-warning">
+                    <strong>提示</strong> OIDC协议中定义了注册参考 <a
+                        href="http://openid.net/specs/openid-connect-registration-1_0.html">http://openid.net/specs/openid-connect-registration-1_0.html</a>;<br/>
+                    MyOIDC中注册实现更多从实际场景出发(并没严格按照规范).
+                </div>
             </div>
         </div>
         <div th:replace="fragment/footer :: footer-oidc"/>
