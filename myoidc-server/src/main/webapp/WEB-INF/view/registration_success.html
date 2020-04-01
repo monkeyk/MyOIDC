@@ -27,9 +27,11 @@
                         <dd th:text="${clientDetailsDto.clientSecret}" class="text-primary">xxx</dd>
                         <dt>Redirect Uri</dt>
                         <dd th:text="${clientDetailsDto.webServerRedirectUri}">xxx</dd>
+                        <dt>Scope</dt>
+                        <dd th:text="${clientDetailsDto.scope}">xxx</dd>
                     </dl>
                 </div>
-                <a th:href="@{'/'}" class="btn btn-default">主页</a>
+                <a th:href="@{'/'}" class="btn btn-info">主页</a>
             </div>
         </div>
         <div th:replace="fragment/footer :: footer-oidc"/>
