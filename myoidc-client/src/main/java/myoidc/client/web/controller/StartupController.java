@@ -1,6 +1,7 @@
 package myoidc.client.web.controller;
 
 
+import myoidc.client.domain.shared.Application;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,7 @@ public class StartupController {
      */
     @RequestMapping(value = "/")
     public String index(Model model) {
-
+        model.addAttribute("host", Application.host());
         return "index";
     }
 

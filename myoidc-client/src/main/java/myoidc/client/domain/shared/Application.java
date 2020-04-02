@@ -33,7 +33,7 @@ public class Application implements InitializingBean {
     }
 
     public void setHost(String host) {
-        Application.host = host;
+        Application.host = host.endsWith("/") ? host : host + "/";
     }
 
 

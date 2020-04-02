@@ -13,11 +13,57 @@
 <div th:replace="fragment/header :: public-header"/>
 
 <div class="container">
-    <h3>这是OIDC中的一个RP
+    <h3>这是OIDC中的RP
         <small>
             RP(Relying Party), 信任方, 理解为OAuth2中的客户端(client)即可
         </small>
     </h3>
+    <div class="alert alert-info">
+        <strong>提示</strong> 在进行以下操作时先确认<code>myoidc-server</code>正在运行中.
+    </div>
+    <ol>
+        <li><p>
+            当前RP的 Redirect Uri: <strong th:text="${host+'authorization_callback'}" class="text-primary"></strong></p>
+        </li>
+        <li>
+            请填写从<code>myoidc-server</code>中获取到的RP相关信息:
+            <p class="text-muted">提示: 若无RP请先访问<code>myoidc-server</code>注册客户端[RP]功能</p>
+            <form class="form-horizontal" th:action="@{/submit}" method="post">
+                <div class="form-group">
+                    <label for="clientId" class="col-sm-2 control-label">ClientId</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="clientId" placeholder="ClientId" required="required"
+                               maxlength="255" name="clientId"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="clientSecret" class="col-sm-2 control-label">ClientSecret</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="clientSecret" placeholder="ClientSecret"
+                               required="required"
+                               maxlength="255" name="clientSecret"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="discoveryEndpoint" class="col-sm-2 control-label">Discovery-Endpoint</label>
+                    <div class="col-sm-10">
+                        <input type="url" class="form-control" id="discoveryEndpoint" placeholder="https://..."
+                               required="required"
+                               maxlength="255" name="clientSecret"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-default">提交保存</button>
+                    </div>
+                </div>
+            </form>
+        </li>
+        <li>
+
+        </li>
+    </ol>
     <p>在进行操作前,请先填写从<label>myoidc-server</label>注册客户端[RP]后获取到的信息</p>
 
 </div>
