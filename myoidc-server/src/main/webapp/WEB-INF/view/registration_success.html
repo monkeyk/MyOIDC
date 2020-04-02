@@ -29,6 +29,8 @@
                         <dd th:text="${clientDetailsDto.webServerRedirectUri}">xxx</dd>
                         <dt>Scope</dt>
                         <dd th:text="${clientDetailsDto.scope}">xxx</dd>
+                        <dt>Discovery-Endpoint</dt>
+                        <dd th:text="${host + '.well-known/openid-configuration'}">xxx</dd>
                     </dl>
                 </div>
                 <a th:href="@{'/'}" class="btn btn-info">主页</a>

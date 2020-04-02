@@ -1,5 +1,6 @@
 package myoidc.server.web.controller.endpoint;
 
+import myoidc.server.domain.shared.Application;
 import myoidc.server.infrastructure.oidc.OIDCUseScene;
 import myoidc.server.service.OauthService;
 import myoidc.server.service.SecurityService;
@@ -37,7 +38,7 @@ public class RegistrationEndpoint {
 
     // 引导 注册
     @GetMapping("registration")
-    public String preRegistration(Model model){
+    public String preRegistration(Model model) {
         LOG.debug("{}|Pre registration, model: {}", WebUtils.getIp(), model);
         return "registration_pre";
     }
@@ -51,7 +52,7 @@ public class RegistrationEndpoint {
      * @return view
      */
     @GetMapping("registration_form")
-    public String registration(@RequestParam("scene") OIDCUseScene useScene, Model model)  {
+    public String registration(@RequestParam("scene") OIDCUseScene useScene, Model model) {
         ClientRegistrationFormDto formDto = new ClientRegistrationFormDto(useScene);
         model.addAttribute("formDto", formDto);
         return "registration_form";
@@ -67,6 +68,7 @@ public class RegistrationEndpoint {
         }
         OauthClientDetailsDto clientDetailsDto = securityService.saveClientRegistrationForm(formDto);
         model.addAttribute("clientDetailsDto", clientDetailsDto);
+        model.addAttribute("host", Application.host());
         return "registration_success";
     }
 
