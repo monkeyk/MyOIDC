@@ -31,6 +31,6 @@ public class OIDCApplicationContextAware implements ApplicationContextAware {
         BeanProvider.initialize(applicationContext);
 
         LOG.info("Initialed BeanProvider from ApplicationContext: {}", applicationContext);
-        LOG.info("[oidc-server] context initialized, Version: {}\n", Application.VERSION);
+        LOG.info("[myoidc-server] context initialized, Version: {}\n", Application.VERSION);
     }
 }
