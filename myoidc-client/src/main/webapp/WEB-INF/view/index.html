@@ -59,6 +59,8 @@
                         <button type="submit" class="btn btn-default">提交保存</button>
                         <p th:if="${#fields.hasAnyErrors()}" th:text="${#fields.errors()}"
                            class="alert alert-warning"></p>
+                        <p th:if="${param.saveResult != null &&(!param.saveResult)}" class="text-danger">保存数据失败或向
+                            Discovery-Endpoint请求数据失败, 请检查</p>
                         <p class="text-muted">说明: 此步骤填写的RP信息在实际使用中一般是配置在RP服务器端的配置文件或数据库中</p>
                     </div>
                 </div>

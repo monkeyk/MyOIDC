@@ -5,6 +5,7 @@ import myoidc.client.domain.shared.Application;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 
 /**
@@ -29,5 +30,10 @@ public class MyOIDCConfiguration {
         return application;
     }
 
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
 }

@@ -1,7 +1,12 @@
 package myoidc.client.domain;
 
+import myoidc.client.domain.shared.BeanProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.jose4j.jwt.JwtClaims;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
@@ -16,6 +21,7 @@ import java.util.Map;
 public class RPHolder implements Serializable {
     private static final long serialVersionUID = 4335285706375582063L;
 
+    private static final Logger LOG = LoggerFactory.getLogger(RPHolder.class);
 
     private static final String CLIENT_ID_KEY = "clientId";
     private static final String CLIENT_SECRET_KEY = "clientSecret";
@@ -59,6 +65,21 @@ public class RPHolder implements Serializable {
         return StringUtils.isNoneBlank(clientId)
                 && StringUtils.isNotBlank(clientSecret)
                 && StringUtils.isNotBlank(discoveryEndpoint);
+    }
+
+    /**
+     * 发送请求获取 信息
+     *
+     * @return DiscoveryEndpointInfo or null(error)
+     */
+    public DiscoveryEndpointInfo getDiscoveryEndpointInfo() {
+        RestTemplate restTemplate = BeanProvider.getBean(RestTemplate.class);
+        try {
+            return restTemplate.getForObject(this.discoveryEndpoint, DiscoveryEndpointInfo.class);
+        } catch (RestClientException e) {
+            LOG.error("Send request to: {} error: {}", this.discoveryEndpoint, e);
+        }
+        return null;
     }
 
     public String getClientId() {

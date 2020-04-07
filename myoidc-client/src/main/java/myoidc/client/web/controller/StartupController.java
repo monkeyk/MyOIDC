@@ -57,8 +57,8 @@ public class StartupController {
             return "index";
         }
         boolean ok = clientService.saveRPHolder(formDto);
-        model.addAttribute("result", ok);
-        return "redirect:../";
+        model.addAttribute("saveResult", ok);
+        return "redirect:/";
     }
 
 

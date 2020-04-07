@@ -26,6 +26,7 @@ public class MyOIDCClientServiceImpl implements MyOIDCClientService {
 
     @Override
     public boolean saveRPHolder(RPHolder rpHolder) {
-        return rpHolderRepository.saveRPHolder(rpHolder);
+        boolean saveOK = rpHolderRepository.saveRPHolder(rpHolder);
+        return saveOK && rpHolder.getDiscoveryEndpointInfo() != null;
     }
 }
