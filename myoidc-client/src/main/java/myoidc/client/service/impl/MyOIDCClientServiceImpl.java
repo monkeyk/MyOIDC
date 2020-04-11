@@ -85,7 +85,11 @@ public class MyOIDCClientServiceImpl implements MyOIDCClientService {
 
     private AccessTokenDto loadAccessTokenDto(String fullUri, Map<String, String> params) {
         try {
-            return restTemplate.postForObject(fullUri, params, AccessTokenDto.class);
+            StringBuilder url = new StringBuilder(fullUri + "?");
+            for (String key : params.keySet()) {
+                url.append(key).append("=").append(params.get(key)).append("&");
+            }
+            return restTemplate.postForObject(url.toString(), null, AccessTokenDto.class);
         } catch (RestClientException e) {
             LOG.error("Send request to: {} error", fullUri, e);
         }
