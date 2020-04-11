@@ -71,6 +71,7 @@
                 <p class="text-success">Discovery Endpoint Info</p>
                 <textarea class="form-control" th:text="${formDto.discoveryEndpointInfo}" rows="5"
                           readonly="readonly"></textarea>
+                <p><a th:href="${formDto.discoveryEndpointInfo.jwks_uri}" target="_blank">查看 OIDC JWK</a></p>
             </div>
         </li>
         <li th:if="${formDto.configRP}">
