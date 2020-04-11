@@ -46,7 +46,7 @@
                 <li>
                     方式1: 调用本地的接口,由后台去向服务器获取资源并进行处理(如将JSON数据转化成对象), 通过页面展示信息
                     <br/>
-                    <a href="#" th:href="@{'user_info?access_token=' + accessTokenDto.accessToken}">OIDC Server
+                    <a href="#" th:href="${'user_info?access_token=' + accessTokenDto.accessToken}">OIDC Server
                         用户信息</a>
                 </li>
                 <li>

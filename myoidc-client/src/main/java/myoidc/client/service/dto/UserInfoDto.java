@@ -1,5 +1,7 @@
 package myoidc.client.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class UserInfoDto extends AbstractOauthDto {
 
     private static final long serialVersionUID = -4028887815415395655L;
 
+    @JsonProperty("create_time")
     private long createTime;
     private String email;
     private String openid;

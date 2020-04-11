@@ -74,7 +74,8 @@ public class MyOIDCClientServiceImpl implements MyOIDCClientService {
             RPHolder rpHolder = loadRPHolder();
             try {
                 String userinfoEndpoint = rpHolder.getDiscoveryEndpointInfo().getUserinfo_endpoint();
-                return restTemplate.getForObject(userinfoEndpoint, UserInfoDto.class, ImmutableMap.of("access_token", accessToken));
+                //access_token 建议使用header传递
+                return restTemplate.getForObject(userinfoEndpoint + "?access_token=" + accessToken, UserInfoDto.class);
             } catch (RestClientException e) {
                 LOG.error("Rest error", e);
             }
@@ -85,6 +86,7 @@ public class MyOIDCClientServiceImpl implements MyOIDCClientService {
 
     private AccessTokenDto loadAccessTokenDto(String fullUri, Map<String, String> params) {
         try {
+            //此处的 post请求参数用在 url上拼接不是好方式
             StringBuilder url = new StringBuilder(fullUri + "?");
             for (String key : params.keySet()) {
                 url.append(key).append("=").append(params.get(key)).append("&");
