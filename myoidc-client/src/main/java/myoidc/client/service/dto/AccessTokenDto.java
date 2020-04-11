@@ -1,6 +1,7 @@
 package myoidc.client.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 15-5-18
@@ -30,6 +31,10 @@ public class AccessTokenDto extends AbstractOauthDto {
     public AccessTokenDto() {
     }
 
+
+    public boolean isIncludeIdToken() {
+        return StringUtils.isNotBlank(this.idToken);
+    }
 
     public String getIdToken() {
         return idToken;

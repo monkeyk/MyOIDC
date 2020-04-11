@@ -35,8 +35,9 @@
                 <dd><code th:text="${accessTokenDto.scope}"></code></dd>
                 <dt>expires_in</dt>
                 <dd><code th:text="${accessTokenDto.expiresIn}"></code></dd>
-                <dt>id_token</dt>
-                <dd><code th:text="${accessTokenDto.idToken}"></code></dd>
+                <dt th:if="${accessTokenDto.includeIdToken}">id_token</dt>
+                <dd th:if="${accessTokenDto.includeIdToken}"><code th:text="${accessTokenDto.idToken}"></code> <a
+                        th:href="${'verify_id_token?id_token=' + accessTokenDto.idToken}">Verify</a></dd>
             </dl>
             <hr/>
             <p>
