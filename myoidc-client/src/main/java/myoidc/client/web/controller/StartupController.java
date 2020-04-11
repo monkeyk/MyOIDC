@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
@@ -62,4 +63,16 @@ public class StartupController {
     }
 
 
+    /**
+     * Common handle oauth error ,
+     * show the error message.
+     */
+    @RequestMapping("oauth_error")
+    public String oauthError(String error, String message, Model model) {
+        model.addAttribute("error", error);
+        model.addAttribute("message", message);
+
+        LOG.debug("Go to oauth_error, error={},message={}", error, message);
+        return "oauth_error";
+    }
 }

@@ -67,9 +67,41 @@
             </form>
         </li>
         <li th:if="${formDto.configRP}">
-            ...
+            <div class="alert alert-info">
+                <p class="text-success">Discovery Endpoint Info</p>
+                <textarea class="form-control" th:text="${formDto.discoveryEndpointInfo}" rows="5"
+                          readonly="readonly"></textarea>
+            </div>
+        </li>
+        <li th:if="${formDto.configRP}">
+            <strong>请根据ClientId支持的grant_type选择操作</strong>
+            <ul>
+                <li>
+                    <p><a href="#" th:href="${'authorization_code'}">authorization_code</a><br/>授权码模式(即先登录获取code,再获取token)
+                        [最常用]</p>
+                </li>
+                <li>
+                    <p><a href="#" th:href="${'password'}">password</a> <br/>密码模式(将用户名,密码传过去,直接获取token) [适用于可信的移动设备]</p>
+                </li>
+                <li>
+                    <p><a href="#" th:href="${'client_credentials'}">client_credentials</a> <br/>客户端模式(无用户,用户向客户端注册,然后客户端以自己的名义向'服务端'获取资源)
+                    </p>
+                </li>
+                <li>
+                    <p><a href="#" th:href="${'implicit'}">implicit</a> <br/>简化模式(在redirect_uri 的Hash传递token;
+                        Auth客户端运行在浏览器中,如JS,Flash)</p>
+                </li>
+                <li>
+                    <p><a href="#" th:href="${'refresh_token'}">refresh_token</a> <br/>刷新access_token</p>
+                </li>
+            </ul>
+
+            <p class="text-muted">
+                &Delta; 提示: 项目前端使用了 Angular-JS 来处理动态数据展现.
+            </p>
         </li>
     </ol>
+
 
 </div>
 

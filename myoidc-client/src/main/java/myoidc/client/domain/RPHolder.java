@@ -38,6 +38,12 @@ public class RPHolder implements Serializable {
     private String discoveryEndpoint;
 
 
+    /**
+     * 临时变量，缓存
+     */
+    private DiscoveryEndpointInfo endpointInfo;
+
+
     public RPHolder() {
     }
 
@@ -73,13 +79,15 @@ public class RPHolder implements Serializable {
      * @return DiscoveryEndpointInfo or null(error)
      */
     public DiscoveryEndpointInfo getDiscoveryEndpointInfo() {
-        RestTemplate restTemplate = BeanProvider.getBean(RestTemplate.class);
-        try {
-            return restTemplate.getForObject(this.discoveryEndpoint, DiscoveryEndpointInfo.class);
-        } catch (RestClientException e) {
-            LOG.error("Send request to: {} error: {}", this.discoveryEndpoint, e);
+        if (this.endpointInfo == null) {
+            RestTemplate restTemplate = BeanProvider.getBean(RestTemplate.class);
+            try {
+                this.endpointInfo = restTemplate.getForObject(this.discoveryEndpoint, DiscoveryEndpointInfo.class);
+            } catch (RestClientException e) {
+                LOG.error("Send request to: {} error: {}", this.discoveryEndpoint, e);
+            }
         }
-        return null;
+        return this.endpointInfo;
     }
 
     public String getClientId() {
