@@ -40,6 +40,8 @@ public class OIDCTokenVerifier {
         VerificationKeyResolver verificationKeyResolver = new HttpsJwksVerificationKeyResolver(new HttpsJwks(rpHolder.getDiscoveryEndpointInfo().getJwks_uri()));
         JwtConsumer consumer = new JwtConsumerBuilder()
                 .setVerificationKeyResolver(verificationKeyResolver)
+                //此处有许可项可配置进行校验，请根据实际需要配置
+                //更多帮助可访问 https://bitbucket.org/b_c/jose4j/wiki/JWT%20Examples
                 .setRequireExpirationTime()
                 .setRequireSubject()
                 .setRequireIssuedAt()
