@@ -28,12 +28,24 @@ public class AccessTokenDto extends AbstractOauthDto {
     @JsonProperty("id_token")
     private String idToken;
 
+    @JsonProperty("jti")
+    private String jti;
+
     public AccessTokenDto() {
     }
 
 
     public boolean isIncludeIdToken() {
         return StringUtils.isNotBlank(this.idToken);
+    }
+
+
+    public String getJti() {
+        return jti;
+    }
+
+    public void setJti(String jti) {
+        this.jti = jti;
     }
 
     public String getIdToken() {

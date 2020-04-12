@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
+import static myoidc.client.domain.RPHolder.RESOURCE_ID;
+
 /**
  * 2020/4/12
  *
@@ -40,8 +42,10 @@ public class OIDCTokenVerifier {
                 .setVerificationKeyResolver(verificationKeyResolver)
                 .setRequireExpirationTime()
                 .setRequireSubject()
-                .setRequireNotBefore()
-                .setRequireJwtId()
+                .setRequireIssuedAt()
+                .setExpectedAudience(RESOURCE_ID)
+//                .setRequireNotBefore()
+//                .setRequireJwtId()
                 .build();
         try {
             JwtClaims claims = consumer.processToClaims(token);

@@ -37,7 +37,9 @@
                 <dd><code th:text="${accessTokenDto.expiresIn}"></code></dd>
                 <dt th:if="${accessTokenDto.includeIdToken}">id_token</dt>
                 <dd th:if="${accessTokenDto.includeIdToken}"><code th:text="${accessTokenDto.idToken}"></code> <a
-                        th:href="${'verify_token?token=' + accessTokenDto.idToken}">Verify</a></dd>
+                        th:href="${'verify_token?token=' + accessTokenDto.idToken}" target="_blank">Verify</a></dd>
+                <dt>jti</dt>
+                <dd><code th:text="${accessTokenDto.jti}">jti</code></dd>
             </dl>
             <hr/>
             <p>

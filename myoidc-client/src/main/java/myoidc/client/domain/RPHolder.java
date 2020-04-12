@@ -23,6 +23,13 @@ public class RPHolder implements Serializable {
 
     private static final Logger LOG = LoggerFactory.getLogger(RPHolder.class);
 
+
+    /**
+     * Fixed,  resource-id, from myoidc-server Constants.java
+     */
+    public static final String RESOURCE_ID = "myoidc-resource";
+
+
     private static final String CLIENT_ID_KEY = "clientId";
     private static final String CLIENT_SECRET_KEY = "clientSecret";
     private static final String DISCOVERY_ENDPOINT_KEY = "discoveryEndpoint";
