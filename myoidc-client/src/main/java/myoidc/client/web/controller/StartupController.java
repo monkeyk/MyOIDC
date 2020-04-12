@@ -10,12 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 
 /**
@@ -66,6 +64,8 @@ public class StartupController {
     /**
      * Common handle oauth error ,
      * show the error message.
+     *
+     * @since 1..1.0
      */
     @RequestMapping("oauth_error")
     public String oauthError(String error, String message, Model model) {
@@ -75,4 +75,19 @@ public class StartupController {
         LOG.debug("Go to oauth_error, error={},message={}", error, message);
         return "oauth_error";
     }
+
+
+    /**
+     * verify id_token
+     *
+     * @param token token
+     * @return map
+     * @since 1.1.0
+     */
+    @GetMapping("verify_token")
+    @ResponseBody
+    public Map<String, Object> verifyIdToken(@RequestParam String token) {
+        return clientService.verifyToken(token);
+    }
+
 }

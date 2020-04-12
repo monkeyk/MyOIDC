@@ -1,9 +1,9 @@
 package myoidc.client.service.impl;
 
-import com.google.common.collect.ImmutableMap;
 import myoidc.client.domain.RPHolder;
 import myoidc.client.domain.RPHolderRepository;
 import myoidc.client.service.MyOIDCClientService;
+import myoidc.client.service.business.OIDCTokenVerifier;
 import myoidc.client.service.dto.AccessTokenDto;
 import myoidc.client.service.dto.AuthAccessTokenDto;
 import myoidc.client.service.dto.AuthCallbackDto;
@@ -81,6 +81,13 @@ public class MyOIDCClientServiceImpl implements MyOIDCClientService {
             }
             return null;
         }
+    }
+
+    @Override
+    public Map<String, Object> verifyToken(String token) {
+        RPHolder rpHolder = loadRPHolder();
+        OIDCTokenVerifier verifier = new OIDCTokenVerifier(rpHolder, token);
+        return verifier.verify();
     }
 
 

@@ -7,6 +7,8 @@ import myoidc.client.service.dto.AuthAccessTokenDto;
 import myoidc.client.service.dto.AuthCallbackDto;
 import myoidc.client.service.dto.UserInfoDto;
 
+import java.util.Map;
+
 /**
  * 2020/4/7
  *
@@ -24,4 +26,6 @@ public interface MyOIDCClientService {
     AccessTokenDto retrieveAccessTokenDto(AuthAccessTokenDto tokenDto);
 
     UserInfoDto loadUserInfoDto(String access_token);
+
+    Map<String,Object> verifyToken(String token);
 }
