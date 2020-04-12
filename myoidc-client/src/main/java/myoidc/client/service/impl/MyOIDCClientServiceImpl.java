@@ -90,6 +90,14 @@ public class MyOIDCClientServiceImpl implements MyOIDCClientService {
         return verifier.verify();
     }
 
+    @Override
+    public AccessTokenDto retrieveCredentialsAccessTokenDto(AuthAccessTokenDto authAccessTokenDto) {
+        final String uri = authAccessTokenDto.getAccessTokenUri();
+        LOG.debug("Get [{}] access_token URL: {}", authAccessTokenDto.getGrantType(), uri);
+
+        return loadAccessTokenDto(uri, authAccessTokenDto.getCredentialsParams());
+    }
+
 
     private AccessTokenDto loadAccessTokenDto(String fullUri, Map<String, String> params) {
         try {

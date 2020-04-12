@@ -28,4 +28,6 @@ public interface MyOIDCClientService {
     UserInfoDto loadUserInfoDto(String access_token);
 
     Map<String,Object> verifyToken(String token);
+
+    AccessTokenDto retrieveCredentialsAccessTokenDto(AuthAccessTokenDto tokenDto);
 }
