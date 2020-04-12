@@ -26,11 +26,13 @@
         <div class="panel-body">
             <dl class="dl-horizontal">
                 <dt>access_token</dt>
-                <dd><code th:text="${accessTokenDto.accessToken}"></code></dd>
+                <dd><code th:text="${accessTokenDto.accessToken}"></code> <a
+                        th:href="${'verify_token?token=' + accessTokenDto.accessToken}" target="_blank">Verify</a></dd>
                 <dt>token_type</dt>
                 <dd><code th:text="${accessTokenDto.tokenType}"></code></dd>
                 <dt>refresh_token</dt>
-                <dd><code th:text="${accessTokenDto.refreshToken}"></code></dd>
+                <dd><code th:text="${accessTokenDto.refreshToken}"></code> <a
+                        th:href="${'verify_token?token=' + accessTokenDto.refreshToken}" target="_blank">Verify</a></dd>
                 <dt>scope</dt>
                 <dd><code th:text="${accessTokenDto.scope}"></code></dd>
                 <dt>expires_in</dt>

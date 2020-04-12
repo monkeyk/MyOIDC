@@ -101,7 +101,7 @@ public class MyOIDCClientServiceImpl implements MyOIDCClientService {
             return restTemplate.postForObject(url.toString(), null, AccessTokenDto.class);
         } catch (RestClientException e) {
             LOG.error("Send request to: {} error", fullUri, e);
+            return new AccessTokenDto("request_error", e.getMessage());
         }
-        return null;
     }
 }

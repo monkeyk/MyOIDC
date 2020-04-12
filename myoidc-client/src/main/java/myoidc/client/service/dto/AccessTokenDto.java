@@ -34,6 +34,11 @@ public class AccessTokenDto extends AbstractOauthDto {
     public AccessTokenDto() {
     }
 
+    public AccessTokenDto(String error, String errorDescription) {
+        this.error = error;
+        this.errorDescription = errorDescription;
+    }
+
 
     public boolean isIncludeIdToken() {
         return StringUtils.isNotBlank(this.idToken);
