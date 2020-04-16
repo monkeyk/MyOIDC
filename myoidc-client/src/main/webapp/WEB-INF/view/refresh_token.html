@@ -169,7 +169,7 @@
                         </dl>
                         <p class="text-danger">{{tokenError}}</p>
 
-                        <p class="help-block">多次点击 '获取access_token' 将会看到<code>expires_in</code>的变化</p>
+                        <!--<p class="help-block">多次点击 '获取access_token' 将会看到<code>expires_in</code>的变化</p>-->
                     </div>
 
                     <form class="form-horizontal" action="#" onsubmit="return false;">
@@ -249,10 +249,6 @@
                                 <dd><code>{{newTokenScope}}</code></dd>
                                 <dt>expires_in</dt>
                                 <dd><code>{{newExpiresIn}}</code></dd>
-                                <dt>jti</dt>
-                                <dd><code>{{newJti}}</code></dd>
-                                <dt>id_token</dt>
-                                <dd><code>{{newIdToken}}</code></dd>
                             </dl>
                             <p class="text-danger">{{newTokenError}}</p>
                         </div>
@@ -323,8 +319,6 @@
 
                     $scope.newTokenScope = data.scope;
                     $scope.newExpiresIn = data.expires_in;
-                    $scope.jti = data.jti;
-                    $scope.idToken = data.id_token;
                     //if have error
                     if (data.error) {
                         $scope.newTokenError = data.error + " " + data.errorDescription;
