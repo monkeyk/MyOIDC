@@ -101,6 +101,17 @@
                 &Delta; 提示: 项目前端使用了 Angular-JS 来处理动态数据展现.
             </p>
         </li>
+        <li th:if="${formDto.configRP}">
+            <form th:action="${'verify_token'}" target="_blank">
+                <div class="form-group">
+                    <label for="token">校验 Token</label>
+                    <input type="text" class="form-control" id="token" placeholder="eyJhbGciOiJSUzI1NiIsInR5..."
+                           name="token" required="required"/>
+                    <p class="help-block">Token指 'id_token', 'access_token' 等</p>
+                </div>
+                <button type="submit" class="btn btn-default">提交</button>
+            </form>
+        </li>
     </ol>
 
 
