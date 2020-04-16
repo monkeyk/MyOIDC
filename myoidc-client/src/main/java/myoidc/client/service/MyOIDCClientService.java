@@ -2,10 +2,7 @@ package myoidc.client.service;
 
 
 import myoidc.client.domain.RPHolder;
-import myoidc.client.service.dto.AccessTokenDto;
-import myoidc.client.service.dto.AuthAccessTokenDto;
-import myoidc.client.service.dto.AuthCallbackDto;
-import myoidc.client.service.dto.UserInfoDto;
+import myoidc.client.service.dto.*;
 
 import java.util.Map;
 
@@ -30,4 +27,8 @@ public interface MyOIDCClientService {
     Map<String,Object> verifyToken(String token);
 
     AccessTokenDto retrieveCredentialsAccessTokenDto(AuthAccessTokenDto tokenDto);
+
+    AccessTokenDto retrievePasswordAccessTokenDto(AuthAccessTokenDto authAccessTokenDto);
+
+    AccessTokenDto refreshAccessTokenDto(RefreshAccessTokenDto refreshAccessTokenDto);
 }

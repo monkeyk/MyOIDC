@@ -4,10 +4,7 @@ import myoidc.client.domain.RPHolder;
 import myoidc.client.domain.RPHolderRepository;
 import myoidc.client.service.MyOIDCClientService;
 import myoidc.client.service.business.OIDCTokenVerifier;
-import myoidc.client.service.dto.AccessTokenDto;
-import myoidc.client.service.dto.AuthAccessTokenDto;
-import myoidc.client.service.dto.AuthCallbackDto;
-import myoidc.client.service.dto.UserInfoDto;
+import myoidc.client.service.dto.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -96,6 +93,22 @@ public class MyOIDCClientServiceImpl implements MyOIDCClientService {
         LOG.debug("Get [{}] access_token URL: {}", authAccessTokenDto.getGrantType(), uri);
 
         return loadAccessTokenDto(uri, authAccessTokenDto.getCredentialsParams());
+    }
+
+    @Override
+    public AccessTokenDto retrievePasswordAccessTokenDto(AuthAccessTokenDto authAccessTokenDto) {
+        final String fullUri = authAccessTokenDto.getAccessTokenUri();
+        LOG.debug("Get [password] access_token URL: {}", fullUri);
+
+        return loadAccessTokenDto(fullUri, authAccessTokenDto.getAccessTokenParams());
+    }
+
+    @Override
+    public AccessTokenDto refreshAccessTokenDto(RefreshAccessTokenDto refreshAccessTokenDto) {
+        final String fullUri = refreshAccessTokenDto.getRefreshAccessTokenUri();
+        LOG.debug("Get refresh_access_token URL: {}", fullUri);
+
+        return loadAccessTokenDto(fullUri, refreshAccessTokenDto.getRefreshTokenParams());
     }
 
 
