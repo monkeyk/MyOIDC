@@ -304,8 +304,9 @@
                     $scope.jti = data.jti;
                     $scope.idToken = data.id_token;
                     //if have error
-                    $scope.tokenError = data.error + " " + data.errorDescription;
-
+                    if (data.error) {
+                        $scope.tokenError = data.error + " " + data.errorDescription;
+                    }
                     $scope.tokenVisible = true;
                 });
             };
@@ -325,8 +326,9 @@
                     $scope.jti = data.jti;
                     $scope.idToken = data.id_token;
                     //if have error
-                    $scope.newTokenError = data.error + " " + data.errorDescription;
-
+                    if (data.error) {
+                        $scope.newTokenError = data.error + " " + data.errorDescription;
+                    }
                     $scope.refreshTokenVisible = true;
                 });
             };
