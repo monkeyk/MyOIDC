@@ -77,6 +77,7 @@ Version: 1.0
     <li><p>2017-01-21  加入GitHub https://github.com/monkeyk/MyOIDC, Git@OSC地址 http://gitee.com/mkk/MyOIDC</p>(与GitHub同步)</li>
     <li><p>2018-02-04  开始1.1.0分支, 使用SprintBoot重构, 开始受折磨的技术</p></li>
     <li><p>2020-03-10  1.1.0分支继续开发, 包括Endpoint API, 界面流程完善，EU,RP功能开发等; 详细查看文件<em>others/development-log.txt</em></p></li>
+    <li><p>2020-04-16  1.1.0分支开发完成, v1.1.1开始分支</p></li>
 </ol>
 
 <hr/>
