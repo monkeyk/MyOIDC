@@ -18,5 +18,7 @@
 
 
 [myoidc-client]
-...
+
+1..修改 application.properties 中的 application.host
+2..使用TOMCAT或其他服务器启动,  访问
 
