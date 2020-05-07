@@ -19,8 +19,12 @@
 
 [myoidc-client]
 
-1..修改 application.properties 中的 application.host
+1. 修改 application.properties 中的 application.host
 2. 直接运行 MyOIDCClientApplication.java ,  访问的默认端口 8087
+3. 若使用jar方式启动，则命令为
+    java -jar myoidc-client-{version}.jar
+  若使用自定义的 application.properties 文件，则命名为
+    java -jar myoidc-client-{version}.jar --spring.config.location=application.properties
 
 注意：启动前最好确保 myoidc-server 已经在运行
 
