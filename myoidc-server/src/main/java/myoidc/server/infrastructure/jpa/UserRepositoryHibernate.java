@@ -45,4 +45,11 @@ public class UserRepositoryHibernate extends AbstractRepositoryHibernate<User> i
         }
     }
 
+    @Override
+    public User findUserByUsernameNoArchived(String username) {
+        final String hql = "from User u where u.username = :username ";
+        final List<User> list = find(hql, ImmutableMap.of("username", username));
+        return list.isEmpty() ? null : list.get(0);
+    }
+
 }

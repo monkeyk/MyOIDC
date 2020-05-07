@@ -17,4 +17,13 @@ public interface UserRepository extends Repository {
     List<Privilege> findUserPrivileges(String userUuid);
 
     List<User> findUsersByUsername(String username);
+
+    /**
+     * 无 archived 条件
+     *
+     * @param username username
+     * @return User
+     * @since 1.1.1
+     */
+    User findUserByUsernameNoArchived(String username);
 }
