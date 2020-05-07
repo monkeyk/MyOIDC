@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8"/>
-    <link rel="shortcut icon" href="../../../static/favicon.ico" th:href="@{/static/favicon.ico}"/>
+    <link rel="shortcut icon" href="../../public/favicon.ico" th:href="@{/favicon.ico}"/>
 
     <title>客户端[RP] . MyOIDC</title>
 
@@ -66,8 +66,8 @@
         每一个item对应<code>oauth_client_details</code>表中的一条数据.
         <br/>
         对MyOIDC数据库表的详细说明请访问
-        <a href="/db_table_description.html" target="_blank" th:href="@{'/static/db_table_description.html'}">db_table_description.html</a>
-        (或访问项目 src/main/webapp/static/目录的db_table_description.html文件)
+        <a href="/db_table_description.html" target="_blank" th:href="@{'/db_table_description.html'}">db_table_description.html</a>
+        (或访问项目 src/main/resources/public/目录的db_table_description.html文件)
     </p>
 </div>
 

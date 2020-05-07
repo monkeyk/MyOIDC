@@ -12,7 +12,11 @@
   source initial-db.ddl
 
 3.修改 application.properties 中的 数据库连接信息 与  application.host
-4.使用TOMCAT或其他服务器启动,  访问, 初始账号/密码:  admin/MyOIDC-2017
+4.直接运行 MyOIDCServerApplication.java ,  访问的默认端口 8086, 初始账号/密码:  admin/MyOIDC-2017
+5. 若使用jar方式启动，则命令为
+    java -jar myoidc-server-{version}.jar
+  若使用自定义的 application.properties 文件，则命名为
+    java -jar myoidc-server-{version}.jar --spring.config.location=application.properties
 
 
 

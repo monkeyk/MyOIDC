@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <link rel="shortcut icon" href="../../static/favicon.ico" th:href="@{/static/favicon.ico}"/>
+    <link rel="shortcut icon" href="../public/favicon.ico" th:href="@{/favicon.ico}"/>
 
     <title>登录 . MyOIDC</title>
 
@@ -49,7 +49,7 @@
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <img alt="Logo" th:src="@{/static/images/openid.png}" style="max-height: 100px;"/>
+                    <img alt="Logo" th:src="@{/images/openid.png}" style="max-height: 100px;"/>
 
                     <form th:action="@{/signin}" method="post" class="form-horizontal">
                         <div class="form-group">

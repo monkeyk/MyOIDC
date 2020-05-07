@@ -45,7 +45,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         //Ignore, static
-        web.ignoring().antMatchers("/static/**");
+//        web.ignoring().antMatchers("/static/**");
     }
 
 
@@ -56,7 +56,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/public/**").permitAll()
                 .antMatchers("/.well-known/openid-configuration*").permitAll()
-                .antMatchers("/static/**").permitAll()
+                .antMatchers("/bootstrap/**", "/images/**", "/favicon.ico*").permitAll()
                 .antMatchers("/oauth/rest_token*").permitAll()
                 .antMatchers("/login*").permitAll()
 
