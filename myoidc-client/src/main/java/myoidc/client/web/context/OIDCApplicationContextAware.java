@@ -39,7 +39,9 @@ public class OIDCApplicationContextAware implements ApplicationContextAware {
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         BeanProvider.initialize(applicationContext);
 
-        LOG.info("Initialed BeanProvider from ApplicationContext: {}", applicationContext);
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Initialed BeanProvider from ApplicationContext: {}", applicationContext);
+        }
         LOG.info("{} context initialized, Version: {}, applicationHost: {}\n", this.applicationName, Application.VERSION, this.applicationHost);
     }
 }

@@ -100,10 +100,11 @@
                         <manifestEntries>
                             <Implementation-BuildNumber>${project.version}</Implementation-BuildNumber>
                             <Built-Time>${maven.build.timestamp}</Built-Time>
-                            <Specification-Vendor>andaily.com</Specification-Vendor>
+                            <Specification-Vendor>http://andaily.com</Specification-Vendor>
                             <Implementation-Vendor>https://github.com/monkeyk/MyOIDC</Implementation-Vendor>
                             <Implementation-Title>${project.name}</Implementation-Title>
                             <Implementation-Version>${project.version}</Implementation-Version>
+                            <Implementation-URL>https://github.com/monkeyk/MyOIDC</Implementation-URL>
                         </manifestEntries>
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
