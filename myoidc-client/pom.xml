@@ -7,7 +7,7 @@
     <groupId>myoidc</groupId>
     <artifactId>myoidc-client</artifactId>
     <version>1.1.1</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
     <description>MyOIDC Client</description>
@@ -93,11 +93,8 @@
             </plugin>
 
             <plugin>
-                <artifactId>maven-war-plugin</artifactId>
+                <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <warSourceExcludes>*/classes/application.properties</warSourceExcludes>
-                    <packagingExcludes>*/classes/application.properties</packagingExcludes>
                     <archive>
                         <addMavenDescriptor>false</addMavenDescriptor>
                         <manifestEntries>
@@ -109,7 +106,6 @@
                             <Implementation-Version>${project.version}</Implementation-Version>
                         </manifestEntries>
                         <manifest>
-                            <!--<mainClass>${start-class}</mainClass>-->
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>
                     </archive>

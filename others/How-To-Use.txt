@@ -20,5 +20,7 @@
 [myoidc-client]
 
 1..修改 application.properties 中的 application.host
-2..使用TOMCAT或其他服务器启动,  访问
+2. 直接运行 MyOIDCClientApplication.java ,  访问的默认端口 8087
+
+注意：启动前最好确保 myoidc-server 已经在运行
 

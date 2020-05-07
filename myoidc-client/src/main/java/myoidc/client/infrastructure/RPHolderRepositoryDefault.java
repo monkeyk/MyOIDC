@@ -2,6 +2,7 @@ package myoidc.client.infrastructure;
 
 import myoidc.client.domain.RPHolder;
 import myoidc.client.domain.RPHolderRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.jose4j.json.JsonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,8 +42,10 @@ public class RPHolderRepositoryDefault implements RPHolderRepository {
         try {
             File file = getFile();
             String json = FileCopyUtils.copyToString(new FileReader(file));
-            Map<String, Object> map = JsonUtil.parseJson(json);
-            return new RPHolder(map);
+            if(StringUtils.isNotBlank(json)){
+                Map<String, Object> map = JsonUtil.parseJson(json);
+                return new RPHolder(map);
+            }
         } catch (Exception e) {
             LOG.error("File handle error", e);
         }

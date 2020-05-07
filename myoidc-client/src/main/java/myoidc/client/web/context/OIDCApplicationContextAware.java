@@ -6,6 +6,7 @@ import myoidc.client.domain.shared.BeanProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
@@ -23,6 +24,14 @@ public class OIDCApplicationContextAware implements ApplicationContextAware {
     private static final Logger LOG = LoggerFactory.getLogger(OIDCApplicationContextAware.class);
 
 
+    @Value("${spring.application.name}")
+    private String applicationName;
+
+
+    @Value("${application.host}")
+    private String applicationHost;
+
+
     public OIDCApplicationContextAware() {
     }
 
@@ -31,6 +40,6 @@ public class OIDCApplicationContextAware implements ApplicationContextAware {
         BeanProvider.initialize(applicationContext);
 
         LOG.info("Initialed BeanProvider from ApplicationContext: {}", applicationContext);
-        LOG.info("[myoidc-client] context initialized, Version: {}\n", Application.VERSION);
+        LOG.info("{} context initialized, Version: {}, applicationHost: {}\n", this.applicationName, Application.VERSION, this.applicationHost);
     }
 }
