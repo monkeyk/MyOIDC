@@ -26,7 +26,7 @@
 
         <spring.security.oauth.version>2.3.5.RELEASE</spring.security.oauth.version>
         <spring.security.jwt.version>1.0.9.RELEASE</spring.security.jwt.version>
-        <jose4j.version>0.6.2</jose4j.version>
+        <jose4j.version>0.7.1</jose4j.version>
         <nimbus.jose.jwt.version>8.8</nimbus.jose.jwt.version>
 
         <test.skip>false</test.skip>
