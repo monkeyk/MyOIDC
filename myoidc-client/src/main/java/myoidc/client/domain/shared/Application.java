@@ -14,7 +14,7 @@ public class Application implements InitializingBean {
 
     public static final String PROJECT_HOME = "https://github.com/monkeyk/MyOIDC";
     //Current  version
-    public static final String VERSION = "1.1.1";
+    public static final String VERSION = "1.1.2";
 
 
     //application host

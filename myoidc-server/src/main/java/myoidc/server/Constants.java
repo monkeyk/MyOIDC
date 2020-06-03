@@ -73,7 +73,7 @@ public interface Constants {
     String PROJECT_HOME = "https://github.com/monkeyk/MyOIDC";
 
     //Current  version
-    String VERSION = "1.1.1";
+    String VERSION = "1.1.2";
 
 
 }
