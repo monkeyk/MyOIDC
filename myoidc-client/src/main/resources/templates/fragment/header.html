@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Fragment Header</title>
+
+
+    <div th:fragment="public-css">
+        <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.min.css"
+              th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+    </div>
+
+</head>
+<body>
+
+<div th:fragment="public-header">
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="" th:href="@{/}">OIDC-Client[RP]</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="" th:href="@{/}">首页</a></li>
+                    <!--<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="" th:href="@{/admin/users}">User</a></li>-->
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+</body>
+</html>

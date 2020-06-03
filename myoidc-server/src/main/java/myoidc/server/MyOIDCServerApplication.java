@@ -11,7 +11,7 @@ public class MyOIDCServerApplication {
 
 
     /**
-     * Do not run it directly
+     * Run it directly
      *
      * @param args args
      */

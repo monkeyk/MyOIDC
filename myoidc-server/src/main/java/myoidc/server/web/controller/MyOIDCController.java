@@ -36,7 +36,7 @@ public class MyOIDCController {
     //Go login
     @GetMapping(value = {"/login"})
     public String login(Model model) {
-        LOG.info("Go to login, IP: {}", WebUtils.getIp());
+        LOG.debug("Go to login, IP: {}", WebUtils.getIp());
         model.addAttribute("host", host());
         return "login";
     }

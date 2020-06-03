@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="shortcut icon" href="../../public/favicon.ico" th:href="@{/favicon.ico}"/>
+
+    <title>用户[EU] . MyOIDC</title>
+
+    <th:block th:include="fragment/header :: public-css"/>
+</head>
+<body>
+
+<div th:replace="fragment/header :: public-header"/>
+
+<div class="container">
+    <h2>用户[EU] </h2>
+    <div class="pull-right"><a th:href="@{'form/plus'}" class="btn btn-success">添加用户</a></div>
+    <form action="" class="form-inline">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="请输入账号" name="username"
+                   th:value="${listDto.username}"/>
+        </div>
+        <button type="submit" class="btn btn-default">搜索</button>
+        &nbsp;<span class="text-info">Total: [[${listDto.size}]]</span>
+    </form>
+    <br/>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th>账号</th>
+            <th>权限</th>
+            <th>电话</th>
+            <th>邮箱</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="u:${listDto.userDtos}">
+            <td th:text="${u.username}">unity</td>
+            <td th:text="${u.privileges}">[UNITY]</td>
+            <td th:text="${u.phone}">133...</td>
+            <td th:text="${u.email}">xxx@xxx.com</td>
+            <td th:text="${u.createTime}">2019-xxx</td>
+            <td>
+                <span th:if="${!u.defaultUser}"><a class="text-danger" th:href="${'archive/'+u.uuid}"
+                                                   onclick="return confirm('Are your sure archive it?')">archive</a></span>
+                <span th:if="${u.defaultUser}">...</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<hr/>
+<div th:replace="fragment/footer :: footer-oidc"/>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="shortcut icon" href="../public/favicon.ico" th:href="@{/favicon.ico}"/>
+
+    <title>登录 . MyOIDC</title>
+
+    <th:block th:include="fragment/header :: public-css"/>
+</head>
+<body>
+
+<div class="container" style="margin-top: 5%;">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h2>MyOIDC Endpoint</h2>
+                    <hr/>
+                    <dl>
+                        <dt>Discovery-Endpoint</dt>
+                        <dd><a th:href="${'.well-known/openid-configuration'}" target="_blank">[[${host +
+                            '.well-known/openid-configuration'}]]</a>
+                        </dd>
+                        <dt>Authorization-Endpoint</dt>
+                        <dd><a th:href="${'oauth/authorize'}" target="_blank">[[${host + 'oauth/authorize'}]]</a>
+                        </dd>
+                        <dt>Token-Endpoint</dt>
+                        <dd><a th:href="${'oauth/token'}" target="_blank">[[${host + 'oauth/token'}]]</a>
+                        </dd>
+                        <dt>UserInfo-Endpoint</dt>
+                        <dd><a th:href="${'api/userinfo'}" target="_blank">[[${host + 'api/userinfo'}]]</a> (认证后才能访问)
+                        </dd>
+                        <dt>JWKS-Endpoint</dt>
+                        <dd><a th:href="${'public/jwks'}" target="_blank">[[${host + 'public/jwks'}]]</a>
+                        </dd>
+                        <dt>Registration-Endpoint</dt>
+                        <dd>
+                            <a th:href="${'public/registration'}" target="_blank">[[${host +
+                                'public/registration'}]]</a> (注册客户端[RP])
+                        </dd>
+                    </dl>
+                    <p>
+                        更多信息请访问：<a href="https://openid.net/specs/openid-connect-core-1_0.html" target="_blank">https://openid.net/specs/openid-connect-core-1_0.html</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <img alt="Logo" th:src="@{/images/openid.png}" style="max-height: 100px;"/>
+
+                    <form th:action="@{/signin}" method="post" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">账号</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="请输入账号" name="oidc_user"
+                                       required="required"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" placeholder="请输入密码" name="oidcPwd"
+                                       required="required"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary"><em
+                                        class="glyphicon glyphicon-log-in"></em> 登录
+                                </button>
+                                <span class="label label-info" th:if="${param.logout}">退出成功</span>
+                                <span class="label label-danger" th:if="${param.error}">账号或密码错误</span>
+                            </div>
+
+
+                        </div>
+                    </form>
+                    <div>
+                        <small>你可以使用以下几个初始的账号进行登录 (使用<code>admin</code>登录后可添加新账号)</small>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>账号</th>
+                                <th>密码</th>
+                                <th>说明</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>admin</td>
+                                <td>MyOIDC-2017</td>
+                                <td>初始管理员, 有所有权限</td>
+                            </tr>
+                            <tr>
+                                <td>unity</td>
+                                <td>MyOIDC-2017</td>
+                                <td>普通账号, 只有访问资源[UNITY]的权限</td>
+                            </tr>
+                            <tr>
+                                <td>mobile</td>
+                                <td>MyOIDC-2017</td>
+                                <td>普通账号, 只有访问资源[MOBILE]的权限</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:replace="fragment/footer :: footer-oidc"/>
+    </div>
+</div>
+
+
+</body>
+</html>

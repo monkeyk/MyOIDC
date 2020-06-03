@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="shortcut icon" href="../static/favicon.ico" th:href="@{/static/favicon.ico}"/>
+
+    <title>首页 . MyOIDC[RP]</title>
+
+    <th:block th:include="fragment/header :: public-css"/>
+</head>
+<body>
+
+<div th:replace="fragment/header :: public-header"/>
+
+<div class="container">
+    <h3>这是OIDC中的RP
+        <small>
+            RP(Relying Party), 信任方, 理解为OAuth2中的客户端(client)即可
+        </small>
+    </h3>
+    <div class="alert alert-info">
+        <strong>提示</strong> 在进行以下操作时先确认<code>myoidc-server</code>正在运行中.
+    </div>
+    <ol>
+        <li><p>
+            当前RP的 Redirect Uri: <strong th:text="${host+'authorization_callback'}" class="text-primary"></strong></p>
+        </li>
+        <li>
+            请填写从<code>myoidc-server</code>中获取到的RP相关信息:
+            <p class="text-muted">提示: 若无RP请先访问<code>myoidc-server</code>注册客户端[RP]功能</p>
+            <form class="form-horizontal" th:action="@{/submit}" method="post" th:object="${formDto}">
+                <div class="form-group">
+                    <label for="clientId" class="col-sm-2 control-label">ClientId</label>
+                    <div class="col-sm-10">
+                        <input type="text" th:field="*{clientId}" class="form-control" id="clientId"
+                               placeholder="ClientId" required="required"
+                               maxlength="255" name="clientId"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="clientSecret" class="col-sm-2 control-label">ClientSecret</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="clientSecret" placeholder="ClientSecret"
+                               required="required" th:field="*{clientSecret}"
+                               maxlength="255" name="clientSecret"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="discoveryEndpoint" class="col-sm-2 control-label">Discovery-Endpoint</label>
+                    <div class="col-sm-10">
+                        <input type="url" class="form-control" id="discoveryEndpoint" placeholder="https://..."
+                               required="required" th:field="*{discoveryEndpoint}"
+                               maxlength="255" name="discoveryEndpoint"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-default">提交保存</button>
+                        <p th:if="${#fields.hasAnyErrors()}" th:text="${#fields.errors()}"
+                           class="alert alert-warning"></p>
+                        <p th:if="${param.saveResult != null &&(!param.saveResult)}" class="text-danger">保存数据失败或向
+                            Discovery-Endpoint请求数据失败, 请检查</p>
+                        <p class="text-muted">说明: 此步骤填写的RP信息在实际使用中一般是配置在RP服务器端的配置文件或数据库中</p>
+                    </div>
+                </div>
+            </form>
+        </li>
+        <li th:if="${formDto.configRP}">
+            <div class="alert alert-info">
+                <p class="text-success">Discovery Endpoint Info</p>
+                <textarea class="form-control" th:text="${formDto.discoveryEndpointInfo}" rows="5"
+                          readonly="readonly"></textarea>
+                <p><a th:href="${formDto.discoveryEndpointInfo.jwks_uri}" target="_blank">查看 OIDC JWK</a></p>
+            </div>
+        </li>
+        <li th:if="${formDto.configRP}">
+            <strong>请根据ClientId支持的grant_type选择操作</strong>
+            <ul>
+                <li>
+                    <p><a href="#" th:href="${'authorization_code'}">authorization_code</a><br/>授权码模式(即先登录获取code,再获取token)
+                        [最常用]</p>
+                </li>
+                <li>
+                    <p><a href="#" th:href="${'password'}">password</a> <br/>密码模式(将用户名,密码传过去,直接获取token) [适用于可信的移动设备]</p>
+                </li>
+                <li>
+                    <p><a href="#" th:href="${'client_credentials'}">client_credentials</a> <br/>客户端模式(无用户,用户向客户端注册,然后客户端以自己的名义向'服务端'获取资源)
+                    </p>
+                </li>
+                <li>
+                    <p><a href="#" th:href="${'implicit'}">implicit</a> <br/>简化模式(在redirect_uri 的Hash传递token;
+                        Auth客户端运行在浏览器中,如JS,Flash)</p>
+                </li>
+                <li>
+                    <p><a href="#" th:href="${'refresh_token'}">refresh_token</a> <br/>刷新access_token</p>
+                </li>
+            </ul>
+
+            <p class="text-muted">
+                &Delta; 提示: 项目前端使用了 Angular-JS 来处理动态数据展现.
+            </p>
+        </li>
+        <li th:if="${formDto.configRP}">
+            <form th:action="${'verify_token'}" target="_blank">
+                <div class="form-group">
+                    <label for="token">校验 Token</label>
+                    <input type="text" class="form-control" id="token" placeholder="eyJhbGciOiJSUzI1NiIsInR5..."
+                           name="token" required="required"/>
+                    <p class="help-block">Token指 'id_token', 'access_token' 等</p>
+                </div>
+                <button type="submit" class="btn btn-default">提交校验</button>
+            </form>
+        </li>
+    </ol>
+
+
+</div>
+
+
+<hr/>
+<div th:replace="fragment/footer :: footer-oidc"/>
+</body>
+</html>

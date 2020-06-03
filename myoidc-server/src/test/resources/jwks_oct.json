@@ -1,0 +1,11 @@
+{
+  "keys": [
+    {
+      "kty": "oct",
+      "use": "enc",
+      "kid": "myoidc-keyid",
+      "k": "x5nQay6CzVV7kuPeYA7Y23pVk3eJqYZLGMOp9TiwOiVHDyq1vaJzvVrMNJ4qNQaC5YaNn71jmHu3OZ3f1WK9BfpUPIY8RRc-DvssK7Pyjg8oa-2UI_OwY0yIXeaUSC7qJbpI22qyvATiVC6I7kKv3_FXXWeStayJj1gsiQmofqmLl2nmuqyk60jCIQx8TQYN5Fc4dIvIJkYVrOwYfIImAbwxeNifoF-bXeQqLK1DovtJFLg_uA_-Aeabh4QLXAM2VcLUGO9TDhpq-V8WkqX47TooB_r1IhQv0hsHAwvRC_ahHvNkU8OkXdpWUtnlGmtefd8-PWQkq5M0_d-5Jhvnkg",
+      "alg": "HS256"
+    }
+  ]
+}

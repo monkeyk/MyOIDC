@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Fragment Header</title>
+
+
+    <div th:fragment="public-css">
+        <link rel="stylesheet" href="../../public/bootstrap/css/bootstrap.min.css"
+              th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+    </div>
+
+</head>
+<body>
+
+<div th:fragment="public-header">
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="" th:href="@{/}">OIDC-Server[OP]</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="" th:href="@{/}">首页</a></li>
+                    <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="" th:href="@{/admin/user/list}">用户[EU]</a></li>
+                    <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="" th:href="@{/admin/rp/list}">客户端[RP]</a></li>
+                </ul>
+                <form action="" th:action="@{/signout}" class="navbar-form navbar-right" role="search" method="post">
+                    <button type="submit" class="btn btn-default">退出</button>
+                </form>
+                <p class="navbar-text pull-right"><a href=""><span sec:authentication="name">user</span></a></p>
+            </div>
+        </div>
+    </nav>
+</div>
+
+</body>
+</html>

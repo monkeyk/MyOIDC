@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="shortcut icon" href="../public/favicon.ico" th:href="@{/favicon.ico}"/>
+
+    <title>注册 . MyOIDC</title>
+
+    <th:block th:include="fragment/header :: public-css"/>
+</head>
+<body>
+
+<div class="container" style="margin-top: 5%;">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <a th:href="@{'/'}"><img alt="Logo" th:src="@{/images/openid.png}"
+                                         style="max-height: 100px;"/></a>
+
+                <p class="text-muted">请选择注册使用场景</p>
+                <div class="list-group">
+                    <a href="#" th:href="@{'registration_form?scene=WEB'}" class="list-group-item list-group-item-info">
+                        <h4 class="list-group-item-heading">浏览器, H5页面</h4>
+                        <p class="list-group-item-text">适用于PC浏览器访问或移动设备的webview中使用H5页面访问等有session(会话),
+                            cookie的场景使用(推荐)</p>
+                    </a>
+                    <a href="#" th:href="@{'registration_form?scene=CELL_PHONE'}" class="list-group-item">
+                        <h4 class="list-group-item-heading">手机APP</h4>
+                        <p class="list-group-item-text">适用于移动手机中Native-APP使用, 通过API调用获取<code>access_token</code> <code>id_token</code>
+                        </p>
+                    </a>
+                    <a href="#" th:href="@{'registration_form?scene=DEVICE_CLIENT'}" class="list-group-item">
+                        <h4 class="list-group-item-heading">其他设备</h4>
+                        <p class="list-group-item-text">适用于如智能家居等(一般指非手机的设备), 通过API调用获取<code>access_token</code> <code>id_token</code>
+                        </p>
+                    </a>
+                    <a href="#" th:href="@{'registration_form?scene=SERVER'}" class="list-group-item">
+                        <h4 class="list-group-item-heading">服务端</h4>
+                        <p class="list-group-item-text">适用于服务端与MyOIDC之间互相通信调用API进行账户数据校验等(无用户参与)</p>
+                    </a>
+                </div>
+                <div class="alert alert-warning">
+                    <strong>提示</strong> OIDC协议中定义了注册参考 <a
+                        href="http://openid.net/specs/openid-connect-registration-1_0.html">http://openid.net/specs/openid-connect-registration-1_0.html</a>;<br/>
+                    MyOIDC中注册实现更多从实际场景出发(并没严格按照规范).
+                </div>
+            </div>
+        </div>
+        <div th:replace="fragment/footer :: footer-oidc"/>
+    </div>
+</div>
+
+
+</body>
+</html>

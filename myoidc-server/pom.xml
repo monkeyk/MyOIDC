@@ -6,8 +6,8 @@
 
     <groupId>myoidc</groupId>
     <artifactId>myoidc-server</artifactId>
-    <version>1.1.0</version>
-    <packaging>war</packaging>
+    <version>1.1.1</version>
+    <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
     <description>MyOIDC Server</description>
@@ -26,7 +26,7 @@
 
         <spring.security.oauth.version>2.3.5.RELEASE</spring.security.oauth.version>
         <spring.security.jwt.version>1.0.9.RELEASE</spring.security.jwt.version>
-        <jose4j.version>0.6.2</jose4j.version>
+        <jose4j.version>0.7.1</jose4j.version>
         <nimbus.jose.jwt.version>8.8</nimbus.jose.jwt.version>
 
         <test.skip>false</test.skip>
@@ -187,23 +187,20 @@
             </plugin>
 
             <plugin>
-                <artifactId>maven-war-plugin</artifactId>
+                <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <warSourceExcludes>*/classes/application.properties</warSourceExcludes>
-                    <packagingExcludes>*/classes/application.properties</packagingExcludes>
                     <archive>
                         <addMavenDescriptor>false</addMavenDescriptor>
                         <manifestEntries>
                             <Implementation-BuildNumber>${project.version}</Implementation-BuildNumber>
                             <Built-Time>${maven.build.timestamp}</Built-Time>
-                            <Specification-Vendor>andaily.com</Specification-Vendor>
+                            <Specification-Vendor>http://andaily.com</Specification-Vendor>
                             <Implementation-Vendor>https://github.com/monkeyk/MyOIDC</Implementation-Vendor>
                             <Implementation-Title>${project.name}</Implementation-Title>
                             <Implementation-Version>${project.version}</Implementation-Version>
+                            <Implementation-URL>https://github.com/monkeyk/MyOIDC</Implementation-URL>
                         </manifestEntries>
                         <manifest>
-                            <!--<mainClass>${start-class}</mainClass>-->
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>
                     </archive>

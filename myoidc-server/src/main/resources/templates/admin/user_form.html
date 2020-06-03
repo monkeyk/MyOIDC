@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="shortcut icon" href="../../public/favicon.ico" th:href="@{/favicon.ico}"/>
+
+    <title>用户[EU] . MyOIDC</title>
+
+    <th:block th:include="fragment/header :: public-css"/>
+</head>
+<body>
+
+<div th:replace="fragment/header :: public-header"/>
+
+<div class="container">
+    <h2>添加用户</h2>
+
+    <form class="form-horizontal" th:action="@{''}" method="post" th:object="${formDto}">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">账号<em class="text-danger">*</em></label>
+
+            <div class="col-sm-10">
+                <input th:field="*{username}" name="username" class="form-control" placeholder="请输入账号"
+                       required="required" type="text" value="" minlength="4"/>
+
+                <p class="help-block">账号不能为空, 且唯一</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">密码<em class="text-danger">*</em></label>
+
+            <div class="col-sm-10">
+                <input th:field="*{password}" name="password" class="form-control" placeholder="请输入密码"
+                       required="required" type="password" value="" minlength="10"/>
+
+                <p class="help-block">密码要求至少10位</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">权限<em class="text-danger">*</em></label>
+
+            <div class="col-sm-10">
+                <label class="checkbox-inline">
+                    <input name="privileges" type="checkbox" value="MOBILE"/> MOBILE
+                </label>
+                <label class="checkbox-inline">
+                    <input name="privileges" type="checkbox" value="UNITY"/> UNITY
+                </label>
+                <label class="checkbox-inline">
+                    <input name="privileges" type="checkbox" value="ADMIN"/> ADMIN
+                </label>
+
+                <p class="help-block">至少选择一个权限</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">电话</label>
+
+            <div class="col-sm-10">
+                <input th:field="*{phone}" name="phone" class="form-control" placeholder="133..." type="text" value=""/>
+
+                <p class="help-block">电话号码, 可选</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">邮箱</label>
+
+            <div class="col-sm-10">
+                <input th:field="*{email}" name="email" class="form-control" placeholder="xxx@xxx.com" type="text"
+                       value=""/>
+
+                <p class="help-block">邮箱, 可选</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+                <p th:if="${#fields.hasAnyErrors()}" th:text="${#fields.errors()}"
+                   class="alert alert-warning"></p>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-success">保存</button>
+                <a href="../list">取消</a>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<hr/>
+<div th:replace="fragment/footer :: footer-oidc"/>
+</body>
+</html>

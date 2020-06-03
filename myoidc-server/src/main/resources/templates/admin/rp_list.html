@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="shortcut icon" href="../../public/favicon.ico" th:href="@{/favicon.ico}"/>
+
+    <title>客户端[RP] . MyOIDC</title>
+
+    <th:block th:include="fragment/header :: public-css"/>
+</head>
+<body>
+
+<div th:replace="fragment/header :: public-header"/>
+
+<div class="container">
+    <h2>客户端[RP] </h2>
+    <div class="pull-right"><a th:href="@{'form/plus'}" class="btn btn-success">添加客户端</a></div>
+    <form action="" class="form-inline">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="请输入ClientId" name="clientId"
+                   th:value="${clientId}"/>
+        </div>
+        <button type="submit" class="btn btn-default">搜索</button>
+        &nbsp;<span class="text-info">Total: [[${dtoList.size()}]]</span>
+    </form>
+    <br/>
+    <ul class="list-group">
+
+        <li class="list-group-item" th:each="cli:${dtoList}">
+            <div class="pull-right">
+                <div th:if="${!cli.archived}">
+                    <a href="" th:href="${'test_client/'+cli.clientId}">test</a>
+                    <a href="" class="text-danger" th:href="${'archive_client/'+cli.clientId}"
+                       onclick="return confirm('Are your sure archive it?')">archive</a>
+                </div>
+                <strong class="text-muted" th:if="${cli.archived}">Archived</strong>
+            </div>
+            <h3 class="list-group-item-heading">
+                [[${cli.clientId}]]
+                <small th:text="${cli.authorizedGrantTypes}">authorization_code,refresh_token</small>
+            </h3>
+
+            <div class="list-group-item-text text-muted">
+                client_id: <span class="text-danger" th:text="${cli.clientId}">93dac4daa5c745b986c009f2d77b483d</span>&nbsp;
+                client_secret: <span class="text-primary">***</span>&nbsp;
+                <br/>
+                authorized_grant_types: <span class="text-primary" th:text="${cli.authorizedGrantTypes}">authorization_code,refresh_token</span>&nbsp;
+                resource_ids: <span class="text-primary" th:text="${cli.resourceIds}">unity-resource</span>&nbsp;
+                <br/>
+                scope: <span class="text-primary" th:text="${cli.scope}">read</span>&nbsp;
+                web_server_redirect_uri: <span class="text-primary" th:text="${cli.webServerRedirectUri}"></span>&nbsp;
+                <br/>
+                authorities: <span class="text-primary" th:text="${cli.authorities}"></span>&nbsp;
+                access_token_validity: <span class="text-primary" th:text="${cli.accessTokenValidity}"></span>&nbsp;
+                refresh_token_validity: <span class="text-primary" th:text="${cli.refreshTokenValidity}"></span>&nbsp;
+                <br/>
+                create_time: <span class="text-primary" th:text="${cli.createTime}">2020-03-18 17:05:08</span>&nbsp;
+                archived: <strong class="text-warning" th:text="${cli.archived}">true</strong>&nbsp;
+                trusted: <span class="text-primary" th:text="${cli.trusted}">true</span>&nbsp;
+                additional_information: <span class="text-primary" th:text="${cli.additionalInformation}"></span>&nbsp;
+            </div>
+        </li>
+    </ul>
+    <p class="help-block">
+        每一个item对应<code>oauth_client_details</code>表中的一条数据.
+        <br/>
+        对MyOIDC数据库表的详细说明请访问
+        <a href="/db_table_description.html" target="_blank" th:href="@{'/db_table_description.html'}">db_table_description.html</a>
+        (或访问项目 src/main/resources/public/目录的db_table_description.html文件)
+    </p>
+</div>
+
+<hr/>
+<div th:replace="fragment/footer :: footer-oidc"/>
+</body>
+</html>

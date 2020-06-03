@@ -195,7 +195,9 @@ public class OAuth2ServerConfiguration implements Constants {
 //            System.out.println("Key:\n" + accessTokenConverter.getKey());
 
             MyOIDCAccessTokenConverter tokenConverter = new MyOIDCAccessTokenConverter();
-            tokenConverter.setUserTokenConverter(new MyOIDCUserAuthenticationConverter());
+            MyOIDCUserAuthenticationConverter userTokenConverter = new MyOIDCUserAuthenticationConverter();
+            userTokenConverter.setUserDetailsService(this.userDetailsService);
+            tokenConverter.setUserTokenConverter(userTokenConverter);
             accessTokenConverter.setAccessTokenConverter(tokenConverter);
 
             return accessTokenConverter;
