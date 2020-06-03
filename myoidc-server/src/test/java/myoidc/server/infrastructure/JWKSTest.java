@@ -80,6 +80,8 @@ public class JWKSTest {
 
         assertNotNull(publicKeyString);
         assertNotNull(privateKeyString);
+//        System.out.println("PublicKey:\n" + publicKeyString);
+//        System.out.println("PrivateKey:\n" + privateKeyString);
 
         //生成 jwks
         JSONObject jsonObject = new JSONObject(jwk.toParams(JsonWebKey.OutputControlLevel.INCLUDE_PRIVATE));
@@ -114,11 +116,13 @@ public class JWKSTest {
         jwk.setAlgorithm(AlgorithmIdentifiers.HMAC_SHA256);
         //        jwk.setKeyOps();
 
-        final String publicKeyString = jwk.toJson(JsonWebKey.OutputControlLevel.PUBLIC_ONLY);
+//        final String publicKeyString = jwk.toJson(JsonWebKey.OutputControlLevel.PUBLIC_ONLY);
         final String privateKeyString = jwk.toJson(JsonWebKey.OutputControlLevel.INCLUDE_PRIVATE);
 
-        assertNotNull(publicKeyString);
+//        assertNotNull(publicKeyString);
         assertNotNull(privateKeyString);
+//        System.out.println("PublicKey:\n" + publicKeyString);
+//        System.out.println("PrivateKey:\n" + privateKeyString);
 
         //生成 jwks
         JSONObject jsonObject = new JSONObject(jwk.toParams(JsonWebKey.OutputControlLevel.INCLUDE_PRIVATE));
