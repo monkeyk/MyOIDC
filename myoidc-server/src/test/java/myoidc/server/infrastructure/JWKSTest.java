@@ -112,7 +112,7 @@ public class JWKSTest {
 
         OctetSequenceJsonWebKey jwk = OctJwkGenerator.generateJwk(DEFAULT_KEY_SIZE);
         //sig or enc
-        jwk.setUse(USE_SIG);
+        jwk.setUse(USE_ENC);
         jwk.setKeyId(DEFAULT_KEY_ID);
         jwk.setAlgorithm(AlgorithmIdentifiers.HMAC_SHA256);
         //        jwk.setKeyOps();
