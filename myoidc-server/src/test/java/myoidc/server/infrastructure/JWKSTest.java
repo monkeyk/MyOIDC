@@ -102,7 +102,8 @@ public class JWKSTest {
 
 
     /**
-     * Oct jwks 示例
+     * Oct(AES jwks 示例
+     * 对称算法
      *
      * @throws Exception e
      */
