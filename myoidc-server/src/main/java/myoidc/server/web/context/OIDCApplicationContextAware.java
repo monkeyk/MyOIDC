@@ -11,6 +11,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import static myoidc.server.Constants.PROJECT_HOME;
+
 /**
  * 2018/03/22
  * <p>
@@ -40,6 +42,7 @@ public class OIDCApplicationContextAware implements ApplicationContextAware {
 
         if (LOG.isDebugEnabled()) {
             LOG.debug("Initialed BeanProvider from ApplicationContext: {}", applicationContext);
+            LOG.debug("{} home: {}", this.applicationName, PROJECT_HOME);
         }
         LOG.info("{} context initialized, Version: {}, applicationHost: {}\n", this.applicationName, Application.VERSION, this.applicationHost);
     }
