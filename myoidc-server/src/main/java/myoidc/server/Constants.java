@@ -1,5 +1,9 @@
 package myoidc.server;
 
+import org.jose4j.jwk.JsonWebKey;
+import org.jose4j.jwk.Use;
+import org.jose4j.jws.AlgorithmIdentifiers;
+
 /**
  * 2020/3/11
  *
@@ -34,19 +38,19 @@ public interface Constants {
     String KEYSTORE_NAME = "jwks.json";
 
     /**
-     * ALG: RS256
+     * Default ALG: RS256
      *
      * @since 1.1.0
      */
-    String OIDC_ALG = "RS256";
+    String OIDC_ALG = AlgorithmIdentifiers.RSA_USING_SHA256;
 
     /**
      * OIDC key use: sig or enc
      *
      * @since 1.1.0
      */
-    String USE_SIG = "sig";
-    String USE_ENC = "enc";
+    String USE_SIG = Use.SIGNATURE;
+    String USE_ENC = Use.ENCRYPTION;
 
     /**
      * id_token constants
@@ -60,7 +64,7 @@ public interface Constants {
      *
      * @since 1.1.0
      */
-    String KEY_ID = "kid";
+    String KEY_ID = JsonWebKey.KEY_ID_PARAMETER;
 
 
     //系统字符编码
