@@ -2,7 +2,6 @@ package myoidc.client.web.context;
 
 
 import myoidc.client.domain.shared.Application;
-import myoidc.client.domain.shared.BeanProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -39,7 +38,6 @@ public class OIDCApplicationContextAware implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        BeanProvider.initialize(applicationContext);
 
         if (LOG.isDebugEnabled()) {
             LOG.debug("Initialed BeanProvider from ApplicationContext: {}", applicationContext);

@@ -1,19 +1,31 @@
 package myoidc.server.domain.shared;
 
-import org.springframework.context.ApplicationContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.BeanFactory;
 
 /**
  * @author Shengzhao Li
  */
 public abstract class BeanProvider {
 
-    private static ApplicationContext applicationContext;
+    private static final Logger LOG = LoggerFactory.getLogger(BeanProvider.class);
+
+    /**
+     * @since 1.1.2
+     */
+    protected static BeanFactory beanFactory;
 
     protected BeanProvider() {
     }
 
-    public static void initialize(ApplicationContext applicationContext) {
-        BeanProvider.applicationContext = applicationContext;
+    /**
+     * Initial from  beanFactory
+     *
+     * @param beanFactory beanFactory
+     */
+    public static void initialize(BeanFactory beanFactory) {
+        BeanProvider.beanFactory = beanFactory;
     }
 
     /**
@@ -24,18 +36,20 @@ public abstract class BeanProvider {
      * @return Bean instance
      */
     public static <T> T getBean(Class<T> clazz) {
-        if (applicationContext == null) {
+        if (beanFactory == null) {
+            LOG.warn("Null beanFactory, clazz: {}", clazz);
             return null;
         }
-        return applicationContext.getBean(clazz);
+        return beanFactory.getBean(clazz);
     }
 
     @SuppressWarnings("unchecked")
     public static <T> T getBean(String beanId) {
-        if (applicationContext == null) {
+        if (beanFactory == null) {
+            LOG.warn("Null beanFactory, beanId: {}", beanId);
             return null;
         }
-        return (T) applicationContext.getBean(beanId);
+        return (T) beanFactory.getBean(beanId);
     }
 
 }
