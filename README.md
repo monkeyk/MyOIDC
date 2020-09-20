@@ -5,6 +5,9 @@
     基于OIDC协议的参考实现,根据各类库提供实现参考.
 </p>
 <p>
+    提示：从v1.1.2版本开始最新的代码更新在Gitee上，访问地址 <a href="https://gitee.com/mkk/MyOIDC">https://gitee.com/mkk/MyOIDC</a>
+</p>
+<p>
 OIDC(OpenID Connect), 下一代的身份认证授权协议; 当前发布版本1.0;
 <br/>
 OIDC是基于OAuth2+OpenID整合的新的认证授权协议; OAuth2是一个授权(authorization)的开放协议, 在全世界得到广泛使用, 但在实际使用中,OAuth2只解决了授权问题, 没有实现认证部分,往往需要添加额外的API来实现认证; 而OpenID呢,是一个认证(authentication )的协议, 二者在实际使用过程中都有其局限性;
